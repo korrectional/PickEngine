@@ -8,6 +8,7 @@
 #include "glad.h"
 #include "UI.h"
 #include "GameObject.h"
+#include "Camera.h"
 #include "stb_image_implementation.h"
 
 
@@ -193,6 +194,7 @@ public:
         window = SDL_CreateWindow("Line",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 500, 500, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
         renderer = SDL_CreateRenderer(window, -1, 0); 
         glcontext = SDL_GL_CreateContext(window);
+        
         gladLoadGL();
         
         //102, 153, 255
@@ -577,8 +579,14 @@ public:
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
+    float camX = 0; float camZ = 0;
     void renderLoop(int visionMode)
     {
+        // SDL_WarpMouseInWindow(window,250,250);
+        camZ ++;
+        glm::mat4 view = camera.camera(camZ,camZ);
+
+
 
 
         //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -610,8 +618,8 @@ public:
         glEnable(GL_DEPTH_TEST);  // Scene
 
 
-        cubeObject.renderObject(shaderProgram, VAO[0]);
-        cubeObject1.renderObject(shaderProgram, VAO[2]);
+        cubeObject.renderObject(shaderProgram, VAO[0],view);
+        cubeObject1.renderObject(shaderProgram, VAO[2],view);
         glDisable(GL_DEPTH_TEST);  
 
 
@@ -633,7 +641,6 @@ public:
 
         
         SDL_GL_SwapWindow(window);
-        SDL_Delay(17);
     }
 
 

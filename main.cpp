@@ -5,6 +5,7 @@
 #include "UI.h"
 #include "renderer.h"
 #include "GameObject.h"
+#include "Camera.h"
 
 
 // /#include <glm/glm.hpp>
@@ -34,6 +35,8 @@ int main()
     // INITIALIZATION
     render.initializeRenderer();
     render.initializeText();
+    camera.initialize();
+    
     SDL_Event event;
 
 
@@ -91,18 +94,31 @@ int main()
 
 
 
+    //keys:
+    bool wPressed = false;
+    bool sPressed = false;
+    bool aPressed = false;
+    bool dPressed = false;
 
+    bool kPressed = false;
+    bool lPressed = false;
 
+    float camZ = 3;
 
+    float exit = false;
     while (1)
 	{
+
+
         // events!!!!!!!
-        if(SDL_PollEvent(&event)){
+        while(SDL_PollEvent(&event)){
             if(event.type == SDL_QUIT){
+                exit = true;
                 break;    
             }
             if(event.type == SDL_KEYDOWN){
                 if(event.key.keysym.sym == SDLK_ESCAPE){
+                    exit = true;
                     break;
                 }
                 if(event.key.keysym.sym == SDLK_p){
@@ -111,6 +127,50 @@ int main()
                         visionMode = 0;
                     }
                 }
+                if(event.key.keysym.sym == SDLK_w){
+                    wPressed = true; 
+                }
+                if(event.key.keysym.sym == SDLK_s){
+                    sPressed = true;
+                }
+                if(event.key.keysym.sym == SDLK_a){ 
+                    aPressed = true; 
+                }
+                if(event.key.keysym.sym == SDLK_d){
+                    dPressed = true;
+                }
+
+                if(event.key.keysym.sym == SDLK_k){ 
+                    kPressed = true; 
+                }
+                if(event.key.keysym.sym == SDLK_l){
+                    lPressed = true;
+                }
+            
+            }
+            else if(event.type = SDL_KEYUP)
+            {
+                
+                if(event.key.keysym.sym == SDLK_w){ 
+                    wPressed = false; 
+                }
+                if(event.key.keysym.sym == SDLK_s){
+                    sPressed = false;
+                }
+                if(event.key.keysym.sym == SDLK_a){ 
+                    aPressed = false; 
+                }
+                if(event.key.keysym.sym == SDLK_d){
+                    dPressed = false;
+                }
+
+                if(event.key.keysym.sym == SDLK_k){ 
+                    kPressed = false; 
+                }
+                if(event.key.keysym.sym == SDLK_l){
+                    lPressed = false;
+                }
+
             }
             float buttonPos[] = {0.0f,0.0f,62.0f,25.0f};
             if(event.type == SDL_MOUSEBUTTONDOWN){
@@ -141,7 +201,37 @@ int main()
 
             
         }
+        if(exit){
+            break;
+        }
 
+        //check for keys 
+        if(wPressed == true){
+            float transform____[3]={0,0,-0.1f};
+            camera.force(transform____);
+        }
+        if(sPressed == true){
+            float transform____[3]={0,0,0.1f};
+            camera.force(transform____);
+        }
+        if(aPressed == true){
+            float transform____[3]={-0.1f,0,0};
+            camera.force(transform____);
+        }
+        if(dPressed == true){
+            float transform____[3]={0.1f,0,0};
+            camera.force(transform____);
+        }
+
+        if(lPressed == true){
+            float rotate____[3]={0.0f,0.05f,0};
+            camera.gameObject.rotate(rotate____);
+        }
+        if(kPressed == true){
+            float rotate____[3]={0.0f,-0.05f,0};
+            camera.gameObject.rotate(rotate____);
+        }
+        
         
         //Object positions
         float transform__[3] = {-0.001,0,-0.005f};
@@ -160,8 +250,8 @@ int main()
 
 
 
-
         render.renderLoop(visionMode);
+        SDL_Delay(17);
 	}
 
     SDL_DestroyWindow(render.window);

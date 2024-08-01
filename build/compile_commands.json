@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/david/Desktop/PickEngine/build",
+  "command": "/usr/bin/g++ -I/usr/include/SDL2 -g -o CMakeFiles/PickEngine.dir/main.cpp.o -c /home/david/Desktop/PickEngine/main.cpp",
+  "file": "/home/david/Desktop/PickEngine/main.cpp"
+}
+]

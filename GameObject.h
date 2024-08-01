@@ -4,7 +4,8 @@
 
 #include <iostream>
 #include "glad.h"
-#include <vector>
+
+
 
 
 
@@ -82,13 +83,13 @@ public:
 
     }
 
-    void renderObject(GLuint shader, GLuint VAO_)
+    void renderObject(GLuint shader, GLuint VAO_, glm::mat4 view_)
     {
         glUseProgram(shader);
 
 
         glm::mat4 view = glm::mat4(1.0f);
-        view = glm::translate(view, glm::vec3(transform[0],transform[1],transform[2]));
+        view = view_ * glm::translate(view, glm::vec3(transform[0],transform[1],transform[2]));
         int viewLoc = glGetUniformLocation(shader, "view");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
         
