@@ -148,7 +148,8 @@ public:
 
 
 
-
+    int sX = 500;
+    int sY = 500;
 
     SDL_Window* window;
     SDL_Renderer* renderer;
@@ -191,9 +192,13 @@ public:
         SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,16);
 
         SDL_Init(SDL_INIT_VIDEO);
-        window = SDL_CreateWindow("Line",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 500, 500, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+        window = SDL_CreateWindow("Line",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sX, sY, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
         renderer = SDL_CreateRenderer(window, -1, 0); 
         glcontext = SDL_GL_CreateContext(window);
+
+        //SDL_VIDEODRIVER=x11;
+        SDL_SetWindowMouseGrab(window,SDL_TRUE);
+        SDL_ShowCursor(SDL_DISABLE);
         
         gladLoadGL();
         
@@ -201,7 +206,7 @@ public:
         glClearColor(0.4f,0.6f,1.0f,1.0f);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         SDL_GL_SwapWindow(window);
-        glViewport(0,0,500,500);
+        glViewport(0,0,sX,sY);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
@@ -558,7 +563,7 @@ public:
     int projectionLoc;
     void setFOV(){
         // set FOV
-        projection = glm::perspective(glm::radians(45.0f), 500.0f / 500.0f, 0.1f, 100.0f);
+        projection = glm::perspective(glm::radians(45.0f), float(sX) / float(sY), 0.1f, 100.0f);
         projectionLoc = glGetUniformLocation(shaderProgram, "projection");
 
 
@@ -582,7 +587,8 @@ public:
     float camX = 0; float camZ = 0;
     void renderLoop(int visionMode)
     {
-        // SDL_WarpMouseInWindow(window,250,250);
+        //SDL_WarpMouseInWindow(window,250,250);
+        
         camZ ++;
         glm::mat4 view = camera.camera(camZ,camZ);
 

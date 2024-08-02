@@ -35,7 +35,7 @@ int main()
     // INITIALIZATION
     render.initializeRenderer();
     render.initializeText();
-    camera.initialize();
+    camera.initialize(false);
     
     SDL_Event event;
 
@@ -92,6 +92,11 @@ int main()
     texObject1.setColor(grey);
 
 
+    // set cam
+    //float rotate____[3] = {2.5f,2.5f,0};
+    //camera.gameObject.rotationPos(rotate____);
+
+
 
 
     //keys:
@@ -99,11 +104,19 @@ int main()
     bool sPressed = false;
     bool aPressed = false;
     bool dPressed = false;
+    bool leftPressed = false;
+    bool rightPressed = false;
+    bool upPressed = false;
+    bool downPressed = false;
 
     bool kPressed = false;
-    bool lPressed = false;
-
+    float omX=0, omY=0;
+    float olXweid = 0;
     float camZ = 3;
+    float dmX;
+    float dmY;
+    int mX, mY;
+
 
     float exit = false;
     while (1)
@@ -140,11 +153,17 @@ int main()
                     dPressed = true;
                 }
 
-                if(event.key.keysym.sym == SDLK_k){ 
-                    kPressed = true; 
+                if(event.key.keysym.sym == SDLK_LEFT){ 
+                    leftPressed = true; 
                 }
-                if(event.key.keysym.sym == SDLK_l){
-                    lPressed = true;
+                if(event.key.keysym.sym == SDLK_RIGHT){
+                    rightPressed = true;
+                }
+                if(event.key.keysym.sym == SDLK_UP){ 
+                    upPressed = true; 
+                }
+                if(event.key.keysym.sym == SDLK_DOWN){  // DO THE FALSE PART NOW
+                    downPressed = true;
                 }
             
             }
@@ -164,11 +183,17 @@ int main()
                     dPressed = false;
                 }
 
-                if(event.key.keysym.sym == SDLK_k){ 
-                    kPressed = false; 
+                if(event.key.keysym.sym == SDLK_LEFT){ 
+                    leftPressed = false; 
                 }
-                if(event.key.keysym.sym == SDLK_l){
-                    lPressed = false;
+                if(event.key.keysym.sym == SDLK_RIGHT){
+                    rightPressed = false;
+                }
+                if(event.key.keysym.sym == SDLK_UP){ 
+                    upPressed = false; 
+                }
+                if(event.key.keysym.sym == SDLK_DOWN){  
+                    downPressed = false;
                 }
 
             }
@@ -205,7 +230,49 @@ int main()
             break;
         }
 
-        //check for keys 
+
+        if(camera.mouseCommand == true){
+            SDL_GetMouseState(&mX, &mY);
+            if(olXweid==0){omX=mX;omY=mY;olXweid=1;}
+            dmX = (mX-omX)*0.01;
+            dmY = (mY-omY);
+            omX = mX; omY = mY;
+            std::cout<<dmX<<"\n";
+        }
+        else{
+            dmY = 0;
+            dmX = 0;
+            if(upPressed){
+                dmY = -4;
+            }
+            if(downPressed){
+                dmY = 4;
+            }
+            if(leftPressed){
+                dmX = -0.05;
+            }
+            if(rightPressed){
+                dmX = 0.05;
+            }
+
+        }
+
+
+        float y2val = dmY*3.14/500;
+        float rotate____[3]={y2val,dmX,0};
+        camera.gameObject.rotate(rotate____);
+
+        
+        
+        
+        
+        //Object positions
+        float transform__[3] = {0,0.01f,0};
+        cubeObject.force(transform__);
+
+
+
+
         if(wPressed == true){
             float transform____[3]={0,0,-0.1f};
             camera.force(transform____);
@@ -222,26 +289,6 @@ int main()
             float transform____[3]={0.1f,0,0};
             camera.force(transform____);
         }
-
-        if(lPressed == true){
-            float rotate____[3]={0.0f,0.05f,0};
-            camera.gameObject.rotate(rotate____);
-        }
-        if(kPressed == true){
-            float rotate____[3]={0.0f,-0.05f,0};
-            camera.gameObject.rotate(rotate____);
-        }
-        
-        
-        //Object positions
-        float transform__[3] = {-0.001,0,-0.005f};
-        cubeObject1.force(transform__);
-
-        float rotation_[4] = {3.0f,0,0,0};
-        cubeObject.rotate(rotation_);
-
-        float rotation__[4] = {5.0f,0,0,0};
-        cubeObject1.rotate(rotation__);
 
 
 
