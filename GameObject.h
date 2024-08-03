@@ -6,7 +6,7 @@
 #include "glad.h"
 
 
-
+int gameObjectCount = 0;
 
 
 
@@ -27,6 +27,7 @@ public:
     
     void createObject(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], float vertices_[], int pointCount_, GLuint VAO_, GLuint VBO, bool textured_)
     {
+        gameObjectCount++;
         for(int i=0;i<3;i++){transform[i] = transform_[i];}
         for(int i=0;i<4;i++){rotation[i] = rotation_[i];}
         for(int i=0;i<4;i++){color[i] = color_[i];}

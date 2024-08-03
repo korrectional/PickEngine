@@ -197,8 +197,10 @@ public:
         glcontext = SDL_GL_CreateContext(window);
 
         //SDL_VIDEODRIVER=x11;
-        SDL_SetWindowMouseGrab(window,SDL_TRUE);
-        SDL_ShowCursor(SDL_DISABLE);
+        if(camera.mouseCommand == true){
+            SDL_SetWindowMouseGrab(window,SDL_TRUE);
+            SDL_ShowCursor(SDL_DISABLE);
+        }
         
         gladLoadGL();
         
@@ -587,7 +589,6 @@ public:
     float camX = 0; float camZ = 0;
     void renderLoop(int visionMode)
     {
-        //SDL_WarpMouseInWindow(window,250,250);
         
         camZ ++;
         glm::mat4 view = camera.camera(camZ,camZ);

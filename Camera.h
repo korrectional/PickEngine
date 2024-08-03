@@ -71,6 +71,7 @@ public:
             velocity_[2] = dirR[1] * -velocity[0];
         }
         else{
+            calculateDir();
             velocity_[0] = direction.x * -velocity[2];
             velocity_[1] = 0;
             velocity_[2] = direction.z * -velocity[2];

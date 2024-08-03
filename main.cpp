@@ -33,9 +33,10 @@ int main()
 
 
     // INITIALIZATION
+    camera.initialize(false);
     render.initializeRenderer();
     render.initializeText();
-    camera.initialize(false);
+    
     
     SDL_Event event;
 
@@ -117,11 +118,12 @@ int main()
     float dmY;
     int mX, mY;
 
+    float i = 0;
 
     float exit = false;
     while (1)
 	{
-
+        
 
         // events!!!!!!!
         while(SDL_PollEvent(&event)){
@@ -273,6 +275,8 @@ int main()
 
 
 
+
+
         if(wPressed == true){
             float transform____[3]={0,0,-0.1f};
             camera.force(transform____);
@@ -289,10 +293,6 @@ int main()
             float transform____[3]={0.1f,0,0};
             camera.force(transform____);
         }
-
-
-
-
 
 
 
