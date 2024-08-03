@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <iostream>
-#include "glad.h"
+//#include "glad.h"
 #include "font.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

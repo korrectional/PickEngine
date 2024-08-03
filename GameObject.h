@@ -6,7 +6,7 @@
 #include "glad.h"
 
 
-int gameObjectCount = 0;
+int gameObjectCount = -1;
 
 
 
@@ -24,8 +24,8 @@ public:
     const char* tag;
     bool textured;
     
-    
-    void createObject(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], float vertices_[], int pointCount_, GLuint VAO_, GLuint VBO, bool textured_)
+
+    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], int pointCount_, bool textured_)
     {
         gameObjectCount++;
         for(int i=0;i<3;i++){transform[i] = transform_[i];}
@@ -36,6 +36,36 @@ public:
         textured = textured_;
         tag = tag_;
         pointCount = pointCount_;
+        //glBindVertexArray(VAO_);
+        //glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        //glBufferData(GL_ARRAY_BUFFER, pointCount*4, vertices_, GL_DYNAMIC_DRAW);
+        //if(textured = true)
+        //{
+        //    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+        //    glEnableVertexAttribArray(0);
+        //    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        //    glEnableVertexAttribArray(1);
+        //}
+        //else
+        //{
+        //    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+        //    glEnableVertexAttribArray(0);
+        //}
+    }
+
+
+    
+    void createRenderObject(float vertices_[], GLuint VAO_, GLuint VBO)
+    {
+        //gameObjectCount++;
+        //for(int i=0;i<3;i++){transform[i] = transform_[i];}
+        //for(int i=0;i<4;i++){rotation[i] = rotation_[i];}
+        //for(int i=0;i<4;i++){color[i] = color_[i];}
+//
+//
+        //textured = textured_;
+        //tag = tag_;
+        //pointCount = pointCount_;
         glBindVertexArray(VAO_);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, pointCount*4, vertices_, GL_DYNAMIC_DRAW);
@@ -177,11 +207,14 @@ public:
 
 };
 
+GameObject objectArray[2];
+//GameObject TextObjectArray[1];
+GameObject UIObjectArray[1];
 
-GameObject buttonObject;
-GameObject cubeObject;
-GameObject cubeObject1;
-GameObject texObject1;
+//GameObject buttonObject;
+//GameObject cubeObject;
+//GameObject cubeObject1;
+//GameObject texObject1;
 
 
 

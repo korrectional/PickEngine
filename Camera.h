@@ -14,6 +14,14 @@
 
 class Camera
 {
+private:
+    float omX=0, omY=0;
+    float olXweid = 0;
+    float camZ = 3;
+    float dmX;
+    float dmY;
+    int mX, mY;
+    float i = 0;    
 public:
     GameObject gameObject;
     float transform[3] = {0,0,3.0f};float rotation[3] = {3.14,4.6,0};
@@ -43,13 +51,11 @@ public:
 
         processRotInput();
         distanceY = fabs(sin(gameObject.rotation[0]+1.57));
-        //std::cout<<gameObject.rotation[0]<<"\n"<<distanceY<<"\n";
         
         direction.x = cos(gameObject.rotation[1]) * distanceY; 
         direction.y = sin(gameObject.rotation[0]);// * distanceY;
         direction.z = sin(gameObject.rotation[1]) * distanceY;
         cameraFront = glm::normalize(direction);
-        //std::cout<<direction.x<<" "<<direction.y<<" "<<direction.z<<"\n\n\n";
 
         glm::mat4 view_;
         view_ = glm::lookAt(
@@ -72,9 +78,9 @@ public:
         }
         else{
             calculateDir();
-            velocity_[0] = direction.x * -velocity[2];
+            velocity_[0] = dirR[0] * -velocity[2];
             velocity_[1] = 0;
-            velocity_[2] = direction.z * -velocity[2];
+            velocity_[2] = dirR[1] * -velocity[2];
         }
         gameObject.force(velocity_);
     }
@@ -95,12 +101,46 @@ public:
     void processRotInput() // X rotation (up n'down)
     {
         float rot = gameObject.rotation[0];
-        if(rot>4.71){   // I think it should be half
+        if(rot>4.71){
             gameObject.rotation[0] = 4.71;
         }
         else if(rot<1.57){
             gameObject.rotation[0] = 1.57;
         }
+    }
+
+
+    void defaultCameraCommandLoop(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed){
+        if(mouseCommand == true){
+            SDL_GetMouseState(&mX, &mY);
+            if(olXweid==0){omX=mX;omY=mY;olXweid=1;}
+            dmX = (mX-omX)*0.01;
+            dmY = (mY-omY);
+            omX = mX; omY = mY;
+        }
+        else{
+            dmY = 0;
+            dmX = 0;
+            if(upPressed){
+                dmY = -4;
+            }
+            if(downPressed){
+                dmY = 4;
+            }
+            if(leftPressed){
+                dmX = -0.05;
+            }
+            if(rightPressed){
+                dmX = 0.05;
+            }
+
+        }
+
+
+        float y2val = dmY*3.14/500;
+        float rotate____[3]={y2val,dmX,0};
+        gameObject.rotate(rotate____);
+
     }
 
 

@@ -24,7 +24,7 @@
 class renderer{
 public:
 
-
+    
 
 
     //                Create shader code 
@@ -170,6 +170,7 @@ public:
     GLuint fragmentShaderTex;
     GLuint shaderProgramTex;
     unsigned int texture;
+    float FOV = 45;
 
 
 
@@ -405,15 +406,20 @@ public:
 
         GLfloat red[4] = {
             1.0f,1.0f,0.0f,1.0f
-        }; // rotation[0] is degrees
+        }; 
         
 
         // Scene Objects
-        cubeObject.createObject("cube1", transform, rotation, red, vertices,36*5,VAO[0],VBO[0], true);
-        cubeObject1.createObject("cube2", transform, rotation, red, vertices,36*5,VAO[2],VBO[2], true);
+        //objectArray[0].create()
+        //objectArray[1].create()
+        //objectArray[0].create("cube1", transform, rotation, red, 36*5, true);
+        //objectArray[1].create("cube2", transform, rotation, red, 36*5, true);
+        for(int i=0;i<gameObjectCount+1;i++){
+            objectArray[i].createRenderObject(vertices, VAO[i],VBO[i]);
+        }
         // UI
-        buttonObject.createButtonObject("button1", transform, rotation, red, button,6*3,VAO[1],VBO[1], false);
-        texObject1.createButtonObject("cube3", transform, rotation, red, texCoords,6*5,VAO[3],VBO[3], true);
+        UIObjectArray[0].createButtonObject("button1", transform, rotation, red, button,6*3,VAO[gameObjectCount+1],VBO[2], false);
+        //TextObjectArray[0].createButtonObject("cube3", transform, rotation, red, texCoords,6*5,VAO[3],VBO[3], true);
 
         
 
@@ -565,7 +571,7 @@ public:
     int projectionLoc;
     void setFOV(){
         // set FOV
-        projection = glm::perspective(glm::radians(45.0f), float(sX) / float(sY), 0.1f, 100.0f);
+        projection = glm::perspective(glm::radians(FOV), float(sX) / float(sY), 0.1f, 100.0f);
         projectionLoc = glGetUniformLocation(shaderProgram, "projection");
 
 
@@ -622,21 +628,22 @@ public:
             glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
         }
         //////////////////////////////////////////////////DRAWDRAW/////////////////////////////
+        glBindTexture(GL_TEXTURE_2D, texture);
         glEnable(GL_DEPTH_TEST);  // Scene
 
-
-        cubeObject.renderObject(shaderProgram, VAO[0],view);
-        cubeObject1.renderObject(shaderProgram, VAO[2],view);
+        
+        objectArray[0].renderObject(shaderProgram, VAO[0],view);
+        objectArray[1].renderObject(shaderProgram, VAO[1],view);
         glDisable(GL_DEPTH_TEST);  
 
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 
-        //buttonObject.renderButtonObject(shaderProgramUI, VAO[1]);
-        glBindTexture(GL_TEXTURE_2D, texture);
+        UIObjectArray[0].renderButtonObject(shaderProgramUI, VAO[2]);
+        
 
-        texObject1.renderButtonObject(shaderProgramTex, VAO[3]);
+        //UIObjectArray.renderButtonObject(shaderProgramTex, VAO[3]);
 
         
 
