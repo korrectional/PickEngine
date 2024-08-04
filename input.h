@@ -8,7 +8,6 @@
 #include "UI.h"
 #include "GameObject.h"
 #include "Camera.h"
-//#include "stb_image_implementation.h"
 #include "renderer.h"
 
 
@@ -32,6 +31,8 @@ bool rightPressed = false;
 bool upPressed = false;
 bool downPressed = false;
 bool kPressed = false;
+bool spPressed = false;
+bool shPressed = false;
 float exitProgram = false;
 
 
@@ -80,8 +81,14 @@ public:
                 if(event.key.keysym.sym == SDLK_UP){ 
                     upPressed = true; 
                 }
-                if(event.key.keysym.sym == SDLK_DOWN){  // DO THE FALSE PART NOW
+                if(event.key.keysym.sym == SDLK_DOWN){ 
                     downPressed = true;
+                }
+                if(event.key.keysym.sym == SDLK_SPACE){ 
+                    spPressed = true;
+                }
+                if(event.key.keysym.sym == SDLK_LSHIFT){ 
+                    shPressed = true;
                 }
             
             }
@@ -113,33 +120,21 @@ public:
                 if(event.key.keysym.sym == SDLK_DOWN){  
                     downPressed = false;
                 }
+                if(event.key.keysym.sym == SDLK_SPACE){ 
+                    spPressed = false;
+                }
+                if(event.key.keysym.sym == SDLK_LSHIFT){ 
+                    shPressed = false;
+                }
 
             }
             float buttonPos[] = {0.0f,0.0f,62.0f,25.0f};
             if(event.type == SDL_MOUSEBUTTONDOWN){
                 float* velocity = new float[3];
                 if(event.button.button == SDL_BUTTON_LEFT){
-                    
-                    //float* velocity = ui.ButtonLogic(event, 1.0f,buttonPos);
-//
-                    //for(int i=0;i<3;i++){
-                    //    transform[i] = transform[i] + velocity[i];
-                    //}
-
                 }    
                 if(event.button.button == SDL_BUTTON_RIGHT){
-                    //float* velocity = ui.ButtonLogic(event, -1.0f, buttonPos);
-//
-                    //for(int i=0;i<3;i++){
-                    //    transform[i] = transform[i] + velocity[i];
-                    //}
-
-                } 
-
-
-
-
-
+                }
             }
 
             

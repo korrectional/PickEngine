@@ -22,12 +22,7 @@
 
 
 class renderer{
-public:
-
-    
-
-
-    //                Create shader code 
+private:
     const char *vertexShaderSource = "#version 330 core\n"
         "layout (location = 0) in vec3 aPos;\n"
         "layout (location = 1) in vec2 aTexCoord;\n"
@@ -75,7 +70,6 @@ public:
         "{\n"
         "   FragColor = color;\n"
         "}\n\0";
-
 
 
     // Text
@@ -137,7 +131,34 @@ public:
         "   FragColor = vec4(texture(ourTexture, TexCoord))*vec4(color);\n"
         "}\n\0";
 
+        int sX;
+    int sY;
 
+    SDL_Renderer* renderer;
+    SDL_GLContext glcontext;
+    GLuint vertexShader;
+    GLuint fragmentShader;
+    GLuint shaderProgram;
+    GLuint vertexShaderUI;
+    GLuint fragmentShaderUI;
+    GLuint vertexShaderText;
+    GLuint fragmentShaderText;
+    GLuint VAO[1000], VBO[1000]; 
+    GLuint shaderProgramUI;
+    GLuint shaderProgramText;
+    GLuint VAOtxt[1], VBOtxt[1]; //txt
+    GLuint vertexShaderTex;
+    GLuint fragmentShaderTex;
+    GLuint shaderProgramTex;
+    unsigned int texture;
+    float FOV = 45;
+
+
+
+public: /////////////////////////////////////BEGIN///////////////////////////////////////////////////////
+
+
+    SDL_Window* window;
 
 
 
@@ -148,42 +169,10 @@ public:
 
 
 
-    int sX = 500;
-    int sY = 500;
 
-    SDL_Window* window;
-    SDL_Renderer* renderer;
-    SDL_GLContext glcontext;
-    GLuint vertexShader;
-    GLuint fragmentShader;
-    GLuint shaderProgram;
-    GLuint vertexShaderUI;
-    GLuint fragmentShaderUI;
-    GLuint vertexShaderText;
-    GLuint fragmentShaderText;
-    GLuint VAO[10], VBO[10]; 
-    GLuint shaderProgramUI;
-    GLuint shaderProgramText;
-    GLuint VAOtxt[1], VBOtxt[1]; //txt
-
-    GLuint vertexShaderTex;
-    GLuint fragmentShaderTex;
-    GLuint shaderProgramTex;
-    unsigned int texture;
-    float FOV = 45;
-
-
-
-
-
-    
-
-
-
-
-    void initializeRenderer()
+    void initializeRenderer(float sX_, float sY_)
     {
-        
+        sX=sX_;sY=sY_;
 
         // INITIALIZATION
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,4);
@@ -360,15 +349,6 @@ public:
 
                 
         float texCoords[] = {                       // TEXTURES!!!!!
-
-
-        //   -1.0f , 1.0f, 0.0f,
-        //   -1.0f , 0.5f, 0.0f,
-        //   -0.5f , 1.0f, 0.0f,  //  125 x, 50 ys
-        //   -1.0f , 0.5f, 0.0f,
-        //   -0.5f , 1.0f, 0.0f,
-        //   -0.5f , 0.5f, 0.0f
-
             -1.0f, 1.0f, 0.0f,   0.0f, 1.0f,
             -1.0f, 0.9f, 0.0f,   1.0f, 1.0f,
             -0.75f, 1.0f, 0.0f,   0.0f, 0.0f,
@@ -380,8 +360,8 @@ public:
        
 
         // VAO and VBO!!!
-        glGenVertexArrays(10, VAO);
-        glGenBuffers(10, VBO);
+        glGenVertexArrays(1000, VAO);
+        glGenBuffers(1000, VBO);
 
 
 
@@ -410,16 +390,11 @@ public:
         
 
         // Scene Objects
-        //objectArray[0].create()
-        //objectArray[1].create()
-        //objectArray[0].create("cube1", transform, rotation, red, 36*5, true);
-        //objectArray[1].create("cube2", transform, rotation, red, 36*5, true);
-        for(int i=0;i<gameObjectCount+1;i++){
-            objectArray[i].createRenderObject(vertices, VAO[i],VBO[i]);
+        for(int i=0;i<gameObjectCount;i++){
+            objectArray[i].createRenderObject(vertices, 36*5, VAO[i],VBO[i]);
         }
         // UI
-        UIObjectArray[0].createButtonObject("button1", transform, rotation, red, button,6*3,VAO[gameObjectCount+1],VBO[2], false);
-        //TextObjectArray[0].createButtonObject("cube3", transform, rotation, red, texCoords,6*5,VAO[3],VBO[3], true);
+        UIObjectArray[0].createButtonObject("button1", transform, rotation, red, button,6*3,VAO[gameObjectCount],VBO[gameObjectCount], false);
 
         
 
@@ -551,7 +526,6 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         // load image, create texture and generate mipmaps
         int width, height, nrChannels;
-        // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
         unsigned char *data = stbi_load("/home/david/Desktop/PickEngine/wall.png", &width, &height, &nrChannels, 0);
         if (data)
         {
@@ -592,17 +566,14 @@ public:
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
-    float camX = 0; float camZ = 0;
     void renderLoop(int visionMode)
     {
         
-        camZ ++;
-        glm::mat4 view = camera.camera(camZ,camZ);
+        glm::mat4 view = camera.camera();
 
 
 
 
-        //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
@@ -631,19 +602,20 @@ public:
         glBindTexture(GL_TEXTURE_2D, texture);
         glEnable(GL_DEPTH_TEST);  // Scene
 
+        for(int i=0;i<gameObjectCount;i++){
+            objectArray[i].renderObject(shaderProgram, VAO[i],view);
+        }
         
-        objectArray[0].renderObject(shaderProgram, VAO[0],view);
-        objectArray[1].renderObject(shaderProgram, VAO[1],view);
+        //objectArray[1].renderObject(shaderProgram, VAO[1],view);
         glDisable(GL_DEPTH_TEST);  
 
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 
-        UIObjectArray[0].renderButtonObject(shaderProgramUI, VAO[2]);
+        UIObjectArray[0].renderButtonObject(shaderProgramUI, VAO[gameObjectCount]);
         
 
-        //UIObjectArray.renderButtonObject(shaderProgramTex, VAO[3]);
 
         
 

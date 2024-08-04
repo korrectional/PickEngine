@@ -7,14 +7,17 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "input.h"
+#include "PickPhysics.h"
 #include "userScript.cpp"
+
+
+
 
 
 // /#include <glm/glm.hpp>
 // /#include <glm/gtc/matrix_transform.hpp>
 // /#include <glm/gtc/type_ptr.hpp>
 
-float sayHi();
 
 
 
@@ -24,6 +27,7 @@ float sayHi();
 // set vars
 UI ui;
 renderer render;
+PickPhysics physics;
 
 
 int main()
@@ -35,8 +39,8 @@ int main()
 
     gameObjectCreation();
     // INITIALIZATION
-    camera.initialize(false);
-    render.initializeRenderer();
+    camera.initialize(false, 500, 500);
+    render.initializeRenderer(500, 500);
     render.initializeText();
     
     
@@ -62,7 +66,7 @@ int main()
 
 
 
-
+        physics.collisionLoop();
         render.renderLoop(visionMode);
         SDL_Delay(17);
 	}

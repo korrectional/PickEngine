@@ -4,68 +4,71 @@
 
 #include <iostream>
 #include "glad.h"
+//#include "PickPhysics.h"
 
 
-int gameObjectCount = -1;
+
+int gameObjectCount = 0;
 
 
 
 class GameObject
 {
-public:
-
-    
-    float transform[3] = {0,0,0};
-    float rotation[4] = {0,0,0,0};
+private:
     GLfloat color[4] = {0,0,0,1.0f};
     float vertices[6]; 
     GLuint VAO;
     int pointCount;
     const char* tag;
     bool textured;
+    int viewLoc;
+    glm::mat4 model;
+    glm::mat4 view;
+    int modelLoc;
+    int colorLoc;
+
+public:
+    float transform[3] = {0,0,0};
+    float rotation[4] = {0,0,0,0};
+    bool staticCollider;
+
+    float initCollisionBox[6] = {
+        0.5,-0.5,//x
+        0.5,-0.5,//y
+        0.5,-0.5//z
+    };
+    float collisionBox[6] = {
+        0.5,-0.5,//x
+        0.5,-0.5,//y
+        0.5,-0.5 //z
+    };
+    
     
 
-    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], int pointCount_, bool textured_)
+    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], bool textured_, bool staticCollider_)
     {
         gameObjectCount++;
         for(int i=0;i<3;i++){transform[i] = transform_[i];}
         for(int i=0;i<4;i++){rotation[i] = rotation_[i];}
         for(int i=0;i<4;i++){color[i] = color_[i];}
 
+        for(int i=0;i<6;i=i+2){
+            collisionBox[i] = transform[i/2]+initCollisionBox[i];
+            collisionBox[i+1] = transform[i/2]+initCollisionBox[i+1];
+        }
+
+
 
         textured = textured_;
         tag = tag_;
-        pointCount = pointCount_;
-        //glBindVertexArray(VAO_);
-        //glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        //glBufferData(GL_ARRAY_BUFFER, pointCount*4, vertices_, GL_DYNAMIC_DRAW);
-        //if(textured = true)
-        //{
-        //    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-        //    glEnableVertexAttribArray(0);
-        //    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-        //    glEnableVertexAttribArray(1);
-        //}
-        //else
-        //{
-        //    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-        //    glEnableVertexAttribArray(0);
-        //}
+        staticCollider = staticCollider_;
     }
 
 
     
-    void createRenderObject(float vertices_[], GLuint VAO_, GLuint VBO)
+    void createRenderObject(float vertices_[], int pointCount_, GLuint VAO_, GLuint VBO)
     {
-        //gameObjectCount++;
-        //for(int i=0;i<3;i++){transform[i] = transform_[i];}
-        //for(int i=0;i<4;i++){rotation[i] = rotation_[i];}
-        //for(int i=0;i<4;i++){color[i] = color_[i];}
-//
-//
-        //textured = textured_;
-        //tag = tag_;
-        //pointCount = pointCount_;
+        pointCount = pointCount_;
         glBindVertexArray(VAO_);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, pointCount*4, vertices_, GL_DYNAMIC_DRAW);
@@ -119,18 +122,18 @@ public:
         glUseProgram(shader);
 
 
-        glm::mat4 view = glm::mat4(1.0f);
+        view = glm::mat4(1.0f);
         view = view_ * glm::translate(view, glm::vec3(transform[0],transform[1],transform[2]));
-        int viewLoc = glGetUniformLocation(shader, "view");
+        viewLoc = glGetUniformLocation(shader, "view");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
         
-        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::mat4(1.0f);
         model = glm::rotate(model, glm::radians(rotation[0]), glm::vec3(rotation[1],rotation[2],rotation[3])); 
-        int modelLoc = glGetUniformLocation(shader, "model");
+        modelLoc = glGetUniformLocation(shader, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
         
-        int colorLoc = glGetUniformLocation(shader, "color"); 
+        colorLoc = glGetUniformLocation(shader, "color"); 
         glUniform4f(colorLoc, color[0],color[1],color[2],color[3]); // MAKING COLOR
 
 
@@ -159,8 +162,30 @@ public:
     }
 
 
+
+
+
+
+
+    //////////////////////////////UTILITY//////////////////////////////////////////////////////////
+    void updateCollider(){
+        if(!staticCollider){
+            for(int i=0;i<6;i=i+2){
+                collisionBox[i] = transform[i/2]+initCollisionBox[i];
+                collisionBox[i+1] = transform[i/2]+initCollisionBox[i+1];
+            }
+            //for(int i=0;i<6;i++){
+            //    std::cout<<collisionBox[i]<<"\n";
+            //}
+            //std::cout<<"\n";
+        }
+
+        
+    }
+
+
     
-    
+    //////////////////////////////////USER/UTILITY/////////////////////////////////////////
     
     
     
@@ -207,14 +232,8 @@ public:
 
 };
 
-GameObject objectArray[2];
-//GameObject TextObjectArray[1];
-GameObject UIObjectArray[1];
-
-//GameObject buttonObject;
-//GameObject cubeObject;
-//GameObject cubeObject1;
-//GameObject texObject1;
+GameObject objectArray[1000];
+GameObject UIObjectArray[10];
 
 
 

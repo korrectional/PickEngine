@@ -5,6 +5,7 @@
 #include <iostream>
 #include "glad.h"
 #include "GameObject.h"
+#include "PickPhysics.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -22,17 +23,28 @@ private:
     float dmY;
     int mX, mY;
     float i = 0;    
-public:
-    GameObject gameObject;
     float transform[3] = {0,0,3.0f};float rotation[3] = {3.14,4.6,0};
-    glm::vec3 direction;
+    float sX, sY;
     float dirR[2];
     float distanceY;
-    //float rotation[3];
+    glm::vec3 direction;
+
+    glm::vec3 cameraPos;
+    glm::vec3 cameraFront;
+    glm::vec3 cameraUp;
+    glm::mat4 view_;
+    float y2val;
+
+    
+
+
+public:
+    GameObject gameObject;
     bool mouseCommand = true;
 
-    void initialize(bool mouseCommand_)
+    void initialize(bool mouseCommand_, float sX_, float sY_)
     {
+        sX=sX_;sY=sY_;
         mouseCommand = mouseCommand_;
         for(int i=0;i<3;i++){gameObject.transform[i] = transform[i];}
         for(int i=0;i<3;i++){gameObject.rotation[i] = rotation[i];}
@@ -40,14 +52,11 @@ public:
     }
 
 
-    glm::mat4 camera(float yaw, float pitch)
+    glm::mat4 camera()
     {
-        yaw = 0;
-        pitch = 0;
-
-        glm::vec3 cameraPos   = glm::vec3(gameObject.transform[0],gameObject.transform[1],gameObject.transform[2]);
-        glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-        glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
+        cameraPos   = glm::vec3(gameObject.transform[0],gameObject.transform[1],gameObject.transform[2]);
+        cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+        cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
 
         processRotInput();
         distanceY = fabs(sin(gameObject.rotation[0]+1.57));
@@ -57,11 +66,11 @@ public:
         direction.z = sin(gameObject.rotation[1]) * distanceY;
         cameraFront = glm::normalize(direction);
 
-        glm::mat4 view_;
+        view_;
         view_ = glm::lookAt(
-        glm::vec3(cameraPos), 
+        cameraPos, 
   		glm::vec3(cameraPos + cameraFront), 
-  		glm::vec3(cameraUp));
+  		cameraUp);
 
         return view_;
     }
@@ -75,6 +84,9 @@ public:
             velocity_[0] = dirR[0] * -velocity[0];
             velocity_[1] = 0;
             velocity_[2] = dirR[1] * -velocity[0];
+        }
+        else if(velocity[1]!=0){
+            velocity_[1] = velocity[1];
         }
         else{
             calculateDir();
@@ -110,7 +122,7 @@ public:
     }
 
 
-    void defaultCameraCommandLoop(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed){
+    void defaultCameraCommandLoop(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed, float sensX, float sensY){
         if(mouseCommand == true){
             SDL_GetMouseState(&mX, &mY);
             if(olXweid==0){omX=mX;omY=mY;olXweid=1;}
@@ -122,22 +134,22 @@ public:
             dmY = 0;
             dmX = 0;
             if(upPressed){
-                dmY = -4;
+                dmY = -4*sensY;
             }
             if(downPressed){
-                dmY = 4;
+                dmY = 4*sensY;
             }
             if(leftPressed){
-                dmX = -0.05;
+                dmX = -0.05*sensX;
             }
             if(rightPressed){
-                dmX = 0.05;
+                dmX = 0.05*sensX;
             }
 
         }
 
 
-        float y2val = dmY*3.14/500;
+        y2val = dmY*3.14/sY;
         float rotate____[3]={y2val,dmX,0};
         gameObject.rotate(rotate____);
 
