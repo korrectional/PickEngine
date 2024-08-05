@@ -26,7 +26,7 @@
 //                Create shader code 
 // set vars
 UI ui;
-renderer render;
+//renderer render; in renderer.h
 PickPhysics physics;
 
 
@@ -87,6 +87,7 @@ int main()
     
     return 0;
 }
+
 
 
 

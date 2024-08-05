@@ -6,21 +6,19 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "input.h"
+//#include "main.cpp"
 
 
 void gameObjectCreation(){
     float transform[3] = {0.0f,0.0f,-3.0f};
-    float rotation[4] = {0.0f,0.1f,0.0f,0.0f}; // rotation[0] is degrees
+    float rotation[4] = {0.0f,0.1f,0.0f,0.0f};
     GLfloat red[4] = {1.0f,1.0f,0.0f,1.0f}; 
     
+    
+    objectArray[0].create("cube1", transform, rotation, red, true, 0, false);
+    objectArray[1].create("cube1", transform, rotation, red, true, 1, false);
+    objectArray[2].create("cube1", transform, rotation, red, true, 0, false); 
 
-    // Scene Objects
-    objectArray[0].create("cube1", transform, rotation, red, true, false);
-    objectArray[1].create("cube1", transform, rotation, red, true, false);
-    objectArray[2].create("cube1", transform, rotation, red, true, false);
-    //for(int i=2;i<100;i++){
-    //    objectArray[i].create("cube1", transform, rotation, red, 36*5, true);
-    //}
     float transform_[3] = {0,0,1};
     objectArray[1].transformPos(transform_);
     transform_[0] = 0.2;
@@ -34,14 +32,6 @@ void gameObjectCreation(){
     objectArray[0].setColor(green);
     GLfloat grey[4] = {0.5f,0.5f,0.5f,0.5f};
     UIObjectArray[0].setColor(grey);
-
-
-    //for(int i=0;i<100;i++){
-    //    float transform_[3] = {0,0+cos(float(i)),-6.0f-float(i)};
-    //    objectArray[i].transformPos(transform_);
-    //}
-    // /float transform__[3] = {0.4,0.5,-3.0f};
-    //objectArray[1].transformPos(transform__);
 
 }
 

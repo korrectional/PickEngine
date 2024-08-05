@@ -105,7 +105,6 @@ public:
             trmod = 2;
         }
 
-        std::cout<<trmod<<" min: "<<min<<"\n";
         if(min % 2 == 0){
             transform[trmod] = -dist[min];
         }

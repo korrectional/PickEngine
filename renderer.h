@@ -20,7 +20,6 @@
 
 
 
-
 class renderer{
 private:
     const char *vertexShaderSource = "#version 330 core\n"
@@ -150,8 +149,16 @@ private:
     GLuint vertexShaderTex;
     GLuint fragmentShaderTex;
     GLuint shaderProgramTex;
-    unsigned int texture;
+    unsigned int texture[10];
     float FOV = 45;
+
+
+    void createTextures(){
+        // TIME TO CREATE TEXTURE OBJECT!!!
+        createTexture(0,"../wall.png");
+        createTexture(1,"../letuce.png");
+
+    }
 
 
 
@@ -206,6 +213,8 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        createTextures();
 
 
 
@@ -367,11 +376,9 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 
-  //      // TIME TO CREATE TEXTURE OBJECT!!!
-        createTexture(texture);
 
 
-// Texture out 
+
 
 
 
@@ -515,9 +522,9 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
     };
 
 
-    void createTexture(GLuint texture_){
-        glGenTextures(1, &texture_);
-        glBindTexture(GL_TEXTURE_2D, texture); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
+    void createTexture(int texNum, const char* texPath){
+        glGenTextures(1, &texture[texNum]);
+        glBindTexture(GL_TEXTURE_2D, texture[texNum]); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
         // set the texture wrapping parameters
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -526,7 +533,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         // load image, create texture and generate mipmaps
         int width, height, nrChannels;
-        unsigned char *data = stbi_load("/home/david/Desktop/PickEngine/wall.png", &width, &height, &nrChannels, 0);
+        unsigned char *data = stbi_load(texPath, &width, &height, &nrChannels, 0);
         if (data)
         {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -599,14 +606,13 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
             glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
         }
         //////////////////////////////////////////////////DRAWDRAW/////////////////////////////
-        glBindTexture(GL_TEXTURE_2D, texture);
+        
         glEnable(GL_DEPTH_TEST);  // Scene
 
         for(int i=0;i<gameObjectCount;i++){
-            objectArray[i].renderObject(shaderProgram, VAO[i],view);
+            objectArray[i].renderObject(shaderProgram, texture, VAO[i],view);
         }
         
-        //objectArray[1].renderObject(shaderProgram, VAO[1],view);
         glDisable(GL_DEPTH_TEST);  
 
 
@@ -635,6 +641,10 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 };
 
+
+
+
+renderer render;
 
 
 

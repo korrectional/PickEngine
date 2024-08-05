@@ -4,7 +4,8 @@
 
 #include <iostream>
 #include "glad.h"
-//#include "PickPhysics.h"
+//#include "renderer.h"
+
 
 
 
@@ -31,6 +32,7 @@ public:
     float transform[3] = {0,0,0};
     float rotation[4] = {0,0.1,0,0};
     bool staticCollider;
+    int texNum;
 
     float initCollisionBox[6] = {
         0.5,-0.5,//x
@@ -45,8 +47,9 @@ public:
     
     
 
-    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], bool textured_, bool staticCollider_)
+    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], bool textured_, int texNum_ ,bool staticCollider_)
     {
+        //render.createTexture(3,texPath);
         gameObjectCount++;
         for(int i=0;i<3;i++){transform[i] = transform_[i];}
         for(int i=0;i<4;i++){rotation[i] = rotation_[i];}
@@ -60,9 +63,13 @@ public:
 
 
         textured = textured_;
+        texNum = texNum_;
         tag = tag_;
         staticCollider = staticCollider_;
 
+        //if(textured){
+        //    texture
+        //}
         updateCollider(true);
     }
 
@@ -105,6 +112,8 @@ public:
     }
 
 
+
+
     void createButtonObject(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], float vertices_[], int pointCount_, GLuint VAO_, GLuint VBO, bool aaa)
     {
         for(int i=0;i<3;i++){transform[i] = transform_[i];}
@@ -135,9 +144,10 @@ public:
 
     }
 
-    void renderObject(GLuint shader, GLuint VAO_, glm::mat4 view_)
+    void renderObject(GLuint shader, unsigned int* texture, GLuint VAO_, glm::mat4 view_)
     {
         glUseProgram(shader);
+        glBindTexture(GL_TEXTURE_2D, texture[texNum]);
 
 
         view = glm::mat4(1.0f);
