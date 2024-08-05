@@ -5,7 +5,7 @@
 #include <iostream>
 #include "glad.h"
 #include "GameObject.h"
-#include "PickPhysics.h"
+//#include "PickPhysics.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -44,11 +44,11 @@ public:
 
     void initialize(bool mouseCommand_, float sX_, float sY_)
     {
+        gameObject.createCamera();
         sX=sX_;sY=sY_;
         mouseCommand = mouseCommand_;
         for(int i=0;i<3;i++){gameObject.transform[i] = transform[i];}
-        for(int i=0;i<3;i++){gameObject.rotation[i] = rotation[i];}
-        
+        for(int i=0;i<3;i++){gameObject.rotation[i] = rotation[i];}   
     }
 
 

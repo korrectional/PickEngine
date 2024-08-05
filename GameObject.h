@@ -29,7 +29,7 @@ private:
 
 public:
     float transform[3] = {0,0,0};
-    float rotation[4] = {0,0,0,0};
+    float rotation[4] = {0,0.1,0,0};
     bool staticCollider;
 
     float initCollisionBox[6] = {
@@ -62,7 +62,25 @@ public:
         textured = textured_;
         tag = tag_;
         staticCollider = staticCollider_;
+
+        updateCollider(true);
     }
+
+
+
+
+    void createCamera()
+    {
+        for(int i=0;i<6;i=i+2){
+            collisionBox[i] = transform[i/2]+initCollisionBox[i];
+            collisionBox[i+1] = transform[i/2]+initCollisionBox[i+1];
+        }
+
+        staticCollider = false;
+
+        updateCollider(true);
+    }
+
 
 
     
@@ -168,16 +186,12 @@ public:
 
 
     //////////////////////////////UTILITY//////////////////////////////////////////////////////////
-    void updateCollider(){
-        if(!staticCollider){
+    void updateCollider(bool except){
+        if(!staticCollider||except){
             for(int i=0;i<6;i=i+2){
                 collisionBox[i] = transform[i/2]+initCollisionBox[i];
                 collisionBox[i+1] = transform[i/2]+initCollisionBox[i+1];
             }
-            //for(int i=0;i<6;i++){
-            //    std::cout<<collisionBox[i]<<"\n";
-            //}
-            //std::cout<<"\n";
         }
 
         

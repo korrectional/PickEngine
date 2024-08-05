@@ -21,9 +21,11 @@ void gameObjectCreation(){
     //for(int i=2;i<100;i++){
     //    objectArray[i].create("cube1", transform, rotation, red, 36*5, true);
     //}
-    float transform_[3] = {1,0,0};
+    float transform_[3] = {0,0,1};
     objectArray[1].transformPos(transform_);
-    transform_[0] = 2.5;
+    transform_[0] = 0.2;
+    transform_[1] = 0.3;
+    transform_[2] = 2.7;
     objectArray[2].transformPos(transform_);
     
 
@@ -64,15 +66,13 @@ void Loop(){
     float transform__[3] = {0,0.01f,0};
     objectArray[0].force(transform__);
 
-    float transform___[3] = {0.01,0,0};
+    float transform___[3] = {0,0,0.01};
     objectArray[1].force(transform___);
 
     
     
     
-    objectArray[0].updateCollider();
-    objectArray[1].updateCollider();
-    objectArray[2].updateCollider();
+
 
 
 
