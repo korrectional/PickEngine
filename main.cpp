@@ -9,6 +9,7 @@
 #include "input.h"
 #include "PickPhysics.h"
 #include "userScript.cpp"
+#include "viewScript.cpp"
 
 
 
@@ -25,7 +26,6 @@
 
 //                Create shader code 
 // set vars
-UI ui;
 //renderer render; in renderer.h
 PickPhysics physics;
 
@@ -44,12 +44,13 @@ int main()
     render.initializeText();
     
     
-    Input input;
+    //Input input;
 
 
 
 
-    Boot();
+    //Boot();
+    viewBoot();
 
 
     while (1)
@@ -61,12 +62,17 @@ int main()
 
 
 
-        
-        Loop();
+        if(playing){
+            Loop();
+            viewConLoop();
 
 
-
-        physics.collisionLoop();
+            physics.collisionLoop();
+        }
+        else{
+            viewConLoop();
+            viewLoop();
+        }
         render.renderLoop(visionMode);
         SDL_Delay(17);
 	}

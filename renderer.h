@@ -49,7 +49,7 @@ private:
 
         "void main()\n"
         "{\n"
-        "   FragColor = vec4(texture(ourTexture, TexCoord))*vec4(color);;\n"
+        "   FragColor = vec4(texture(ourTexture, TexCoord))*vec4(color);\n"
         "}\n\0";
 
     const char *vertexShaderSourceUI = "#version 330 core\n"
@@ -97,40 +97,7 @@ private:
 
 
 
-
-
-
-
-
-    const char *vertexShaderSourceTexture = "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "layout (location = 1) in vec2 aTexCoord;\n"
-        
-        "out vec2 TexCoord;\n"
-
-        "void main()\n"
-        "{\n"
-        "   gl_Position = vec4(aPos.x,aPos.y,aPos.z,1.0f);\n"
-        "   TexCoord = aTexCoord;\n"
-
-        "}\0";
-
-
-    const char* fragmentShaderSourceTexture = "#version 330 core\n"
-        "out vec4 FragColor;\n"
-        
-        "uniform vec4 color;\n"
-        "in vec2 TexCoord;\n"
-
-        "uniform sampler2D ourTexture;\n"
-
-        
-        "void main()\n"
-        "{\n"
-        "   FragColor = vec4(texture(ourTexture, TexCoord))*vec4(color);\n"
-        "}\n\0";
-
-        int sX;
+    int sX;
     int sY;
 
     SDL_Renderer* renderer;
@@ -150,13 +117,14 @@ private:
     GLuint fragmentShaderTex;
     GLuint shaderProgramTex;
     unsigned int texture[10];
-    float FOV = 45;
+    float FOV = 90;
 
 
     void createTextures(){
         // TIME TO CREATE TEXTURE OBJECT!!!
         createTexture(0,"../wall.png");
         createTexture(1,"../letuce.png");
+        createTexture(2,"../windows.png");
 
     }
 
@@ -272,22 +240,6 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 
-        vertexShaderTex = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShaderTex, 1, &vertexShaderSourceTexture, NULL);
-        glCompileShader(vertexShaderTex);
-
-        fragmentShaderTex = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShaderTex, 1, &fragmentShaderSourceTexture, NULL);
-        glCompileShader(fragmentShaderTex);
-
-        shaderProgramTex = glCreateProgram();
-        glAttachShader(shaderProgramTex, vertexShaderTex);
-        glAttachShader(shaderProgramTex, fragmentShaderTex);
-        glLinkProgram(shaderProgramTex);
-        
-        glDeleteShader(vertexShaderTex);
-        glDeleteShader(fragmentShaderTex); // texShader
-
 
 
 
@@ -357,14 +309,14 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
                 
-        float texCoords[] = {                       // TEXTURES!!!!!
-            -1.0f, 1.0f, 0.0f,   0.0f, 1.0f,
-            -1.0f, 0.9f, 0.0f,   1.0f, 1.0f,
-            -0.75f, 1.0f, 0.0f,   0.0f, 0.0f,
-            -1.0f, 0.9f, 0.0f,   1.0f, 1.0f,
-            -0.75f, 1.0f, 0.0f,   0.0f, 0.0f,
-            -0.75f, 0.9f, 0.0f,   1.0f, 0.0f
-        };
+       // float texCoords[] = {                       // TEXTURES!!!!!
+       //     -1.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+       //     -1.0f, 0.9f, 0.0f,   1.0f, 1.0f,
+       //     -0.75f, 1.0f, 0.0f,   0.0f, 0.0f,
+       //     -1.0f, 0.9f, 0.0f,   1.0f, 1.0f,
+       //     -0.75f, 1.0f, 0.0f,   0.0f, 0.0f,
+       //     -0.75f, 0.9f, 0.0f,   1.0f, 0.0f
+       // };
 
        
 

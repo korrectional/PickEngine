@@ -6,42 +6,8 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "input.h"
-//#include "main.cpp"
-
-
-void gameObjectCreation(){
-    float transform[3] = {0.0f,0.0f,-3.0f};
-    float rotation[4] = {0.0f,0.1f,0.0f,0.0f};
-    GLfloat red[4] = {1.0f,1.0f,0.0f,1.0f}; 
-    
-    
-    objectArray[0].create("cube1", transform, rotation, red, true, 0, false);
-    objectArray[1].create("cube1", transform, rotation, red, true, 1, false);
-    objectArray[2].create("cube1", transform, rotation, red, true, 0, false); 
-
-    float transform_[3] = {0,0,1};
-    objectArray[1].transformPos(transform_);
-    transform_[0] = 0.2;
-    transform_[1] = 0.3;
-    transform_[2] = 2.7;
-    objectArray[2].transformPos(transform_);
-    
-
-    
-    GLfloat green[4] = {0,1.0f,0,1.0f};
-    objectArray[0].setColor(green);
-    GLfloat grey[4] = {0.5f,0.5f,0.5f,0.5f};
-    UIObjectArray[0].setColor(grey);
-
-}
-
-
-
 
 void Boot(){
-    // Object positions
-    float transform___[3] = {0,0,0};
-    UIObjectArray[0].transformPos(transform___);
 
     
 }

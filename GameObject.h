@@ -16,8 +16,6 @@ int gameObjectCount = 0;
 class GameObject
 {
 private:
-    GLfloat color[4] = {0,0,0,1.0f};
-    float vertices[6]; 
     GLuint VAO;
     int pointCount;
     const char* tag;
@@ -28,13 +26,21 @@ private:
     int modelLoc;
     int colorLoc;
 
-public:
+public:    
+    float vertices[6]; 
+    GLfloat color[4] = {0,0,0,1.0f};
+
     float transform[3] = {0,0,0};
     float rotation[4] = {0,0.1,0,0};
     bool staticCollider;
     int texNum;
 
     float initCollisionBox[6] = {
+        0.5,-0.5,//x
+        0.5,-0.5,//y
+        0.5,-0.5//z
+    };
+    float defInitCollisionBox[6] = {
         0.5,-0.5,//x
         0.5,-0.5,//y
         0.5,-0.5//z
@@ -47,10 +53,15 @@ public:
     
     
 
-    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], bool textured_, int texNum_ ,bool staticCollider_)
+    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], bool textured_, int texNum_ ,float* initCollisionBox_ = nullptr ,bool staticCollider_=true)
     {
+        
         //render.createTexture(3,texPath);
         gameObjectCount++;
+        if(!initCollisionBox_){
+            for(int i=0;i<6;i++){initCollisionBox[i] = defInitCollisionBox[i];}
+        }
+        
         for(int i=0;i<3;i++){transform[i] = transform_[i];}
         for(int i=0;i<4;i++){rotation[i] = rotation_[i];}
         for(int i=0;i<4;i++){color[i] = color_[i];}
@@ -78,6 +89,13 @@ public:
 
     void createCamera()
     {
+        initCollisionBox[0] = 0.3;
+        initCollisionBox[1] = -0.3;
+        initCollisionBox[2] = 0.5;
+        initCollisionBox[3] = -0.5;
+        initCollisionBox[4] = 0.3;
+        initCollisionBox[5] = -0.3;
+
         for(int i=0;i<6;i=i+2){
             collisionBox[i] = transform[i/2]+initCollisionBox[i];
             collisionBox[i+1] = transform[i/2]+initCollisionBox[i+1];

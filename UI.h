@@ -16,6 +16,7 @@ return 1 = space
 
 */
 
+bool playing = false;
 
 
 
@@ -72,33 +73,33 @@ public:
 
 
 
-    float* ButtonLogic(const SDL_Event& ev, float change, float* location){
-        if(ev.button.x >= location[0] &&
-            ev.button.x <= location[2] &&
-            ev.button.y >= location[1] &&
-            ev.button.y <= location[3])
-        {
-        
-            //position = position + change;  // TRYNA MAKE IT MOVE!!!
-            float* velocity = new float[3];
-            velocity[0] = 0.0f;
-            velocity[1] = 0.0f;
-            velocity[2] = change;
+    //vvoid ButtonLogic__(const SDL_Event& ev, float* location, int funcNum){
+    //v    std::cout<<ev.button.x<<"\n";
+    //v    //error I need to solve the positioning of the button
+//v
+    //v    if(ev.button.x >= location[0] &&
+    //v        ev.button.x <= location[2] &&
+    //v        ev.button.y >= location[1] &&
+    //v        ev.button.y <= location[3])
+    //v    {
+    //v        if(funcNum == 0){
+    //v            setPlaying(true);
+    //v        }
+    //v        
+//v
+    //v    }
+    //v};
 
-            return velocity;
 
 
-        }
-        else{
-            float* velocity = new float[3];
-            velocity[0] = 0.0f;
-            velocity[1] = 0.0f;
-            velocity[2] = 0.0f;
-//
-            return velocity;
-        }
-        
-    };
+
+
+
+
+
+
+
+
 
 
 
@@ -175,4 +176,8 @@ public:
         }
     }
 };
+
+
+UI ui;
+
 
