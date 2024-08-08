@@ -2,6 +2,18 @@
 	"entries" : 
 	[
 		{
+			"name" : "ASSIMP_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for ASSIMP."
+				}
+			],
+			"type" : "PATH",
+			"value" : "ASSIMP_DIR-NOTFOUND"
+		},
+		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -1148,6 +1160,42 @@
 			],
 			"type" : "PATH",
 			"value" : "/usr/lib/x86_64-linux-gnu/cmake/SDL2"
+		},
+		{
+			"name" : "SDLs2_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for SDLs2."
+				}
+			],
+			"type" : "PATH",
+			"value" : "SDLs2_DIR-NOTFOUND"
+		},
+		{
+			"name" : "assimp_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for assimp."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/assimp-5.2"
+		},
+		{
+			"name" : "draco_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for draco."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/draco"
 		}
 	],
 	"kind" : "cache",

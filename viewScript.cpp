@@ -39,6 +39,21 @@ void gameObjectCreation(){
     GLfloat grey[4] = {0.5f,0.5f,0.5f,0.5f};
     UIObjectArray[0].setColor(grey);
 
+
+
+
+
+
+    GLfloat apricot[4] = {
+        0.5f,0.5f,0.5f,0.5f
+    }; 
+
+
+    // UI
+    UIObjectArray[0].createUI("start", transform, apricot);
+    UIObjectArray[1].createUI("starts", transform, apricot);
+
+
 }
 
 
@@ -48,6 +63,8 @@ void viewBoot(){
     // Object positions
     float transform___[3] = {0,0,0};
     UIObjectArray[0].transformPos(transform___);
+    float transform__[3] = {1.75,0,0};
+    UIObjectArray[1].transformPos(transform__);
     
 }
 
@@ -59,6 +76,11 @@ void viewConLoop(){
         0,0,
         65,25
     };
+    float soonButtonLoc[4] = {
+        435,0,
+        500,25
+    };
+
 
 
 
@@ -67,6 +89,7 @@ void viewConLoop(){
         lMousePressedFrames++;
         if(lMousePressedFrames == 1){
             input.ButtonLogic(input.event, playButtonLoc, 0);
+            input.ButtonLogic(input.event, soonButtonLoc, 1);
         }
     }
     else{

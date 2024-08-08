@@ -10,6 +10,9 @@
 #include "PickPhysics.h"
 #include "userScript.cpp"
 #include "viewScript.cpp"
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 
 
 

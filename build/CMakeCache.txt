@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//The directory containing a CMake configuration file for ASSIMP.
+ASSIMP_DIR:PATH=ASSIMP_DIR-NOTFOUND
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 
@@ -216,6 +219,15 @@ PickEngine_SOURCE_DIR:STATIC=/home/david/Desktop/PickEngine
 
 //The directory containing a CMake configuration file for SDL2.
 SDL2_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/SDL2
+
+//The directory containing a CMake configuration file for SDLs2.
+SDLs2_DIR:PATH=SDLs2_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for assimp.
+assimp_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/assimp-5.2
+
+//The directory containing a CMake configuration file for draco.
+draco_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/draco
 
 
 ########################

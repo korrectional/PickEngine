@@ -10,13 +10,14 @@
 
 
 int gameObjectCount = 0;
-
+int UIObjectCount = 0;
 
 
 class GameObject
 {
 private:
     GLuint VAO;
+    //int VAOnum;
     int pointCount;
     const char* tag;
     bool textured;
@@ -132,35 +133,59 @@ public:
 
 
 
-    void createButtonObject(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], float vertices_[], int pointCount_, GLuint VAO_, GLuint VBO, bool aaa)
+
+
+
+    void createUI(const char* tag_, float transform_[3], GLfloat color_[4])
     {
+        UIObjectCount++;
+
         for(int i=0;i<3;i++){transform[i] = transform_[i];}
-        for(int i=0;i<4;i++){rotation[i] = rotation_[i];}
         for(int i=0;i<4;i++){color[i] = color_[i];}
-        
 
         tag = tag_;
-        pointCount = pointCount_;
+    }
+
+    void createRenderUI(float vertices_[], GLuint VAO_, GLuint VBO)
+    {
         glBindVertexArray(VAO_);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, pointCount*4, vertices_, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, 6*3*4, vertices_, GL_DYNAMIC_DRAW);
 
-
-        
-        if(aaa == true){
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-            glEnableVertexAttribArray(0);
-            glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-            glEnableVertexAttribArray(1);
-        }
-        else{
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-            glEnableVertexAttribArray(0);
-
-        }
-
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
 
     }
+
+
+
+    void renderUI(GLuint shader, GLuint VAO_)
+    {
+        glUseProgram(shader);
+
+
+        glm::mat4 view = glm::mat4(1.0f);
+        view = glm::translate(view, glm::vec3(transform[0],transform[1],transform[2]));
+        int viewLoc = glGetUniformLocation(shader, "view");
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        
+        int colorLoc = glGetUniformLocation(shader, "color"); 
+        glUniform4f(colorLoc, color[0],color[1],color[2],color[3]); // MAKING COLOR
+
+
+        glBindVertexArray(VAO_);
+        glDrawArrays(GL_TRIANGLES, 0, 6); 
+    }
+
+
+
+
+
+
+
+
+
+
 
     void renderObject(GLuint shader, unsigned int* texture, GLuint VAO_, glm::mat4 view_)
     {
@@ -188,24 +213,20 @@ public:
     }
 
 
-    void renderButtonObject(GLuint shader, GLuint VAO_)
-    {
-        glUseProgram(shader);
 
 
-        glm::mat4 view = glm::mat4(1.0f);
-        view = glm::translate(view, glm::vec3(transform[0],transform[1],transform[2]));
-        int viewLoc = glGetUniformLocation(shader, "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        
-        
-        int colorLoc = glGetUniformLocation(shader, "color"); 
-        glUniform4f(colorLoc, color[0],color[1],color[2],color[3]); // MAKING COLOR
 
 
-        glBindVertexArray(VAO_);
-        glDrawArrays(GL_TRIANGLES, 0, 6); 
-    }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -225,6 +246,11 @@ public:
         
     }
 
+    
+    bool alreadyCollided = false;
+
+
+
 
     
     //////////////////////////////////USER/UTILITY/////////////////////////////////////////
@@ -233,6 +259,19 @@ public:
     
     
     
+    void onCollision(int objectNumber){
+        if(alreadyCollided){
+            return;
+        }
+        alreadyCollided = true;
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Here you specify what to do based on the objectNumber
+        std::cout<<"COLLLLIISION!!!";
+        if(objectNumber == 1){
+            // if 1, do something
+        }
+    }
     
     
     
@@ -275,7 +314,7 @@ public:
 };
 
 GameObject objectArray[1000];
-GameObject UIObjectArray[10];
+GameObject UIObjectArray[100];
 
 
 

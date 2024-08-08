@@ -157,7 +157,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,16);
 
         SDL_Init(SDL_INIT_VIDEO);
-        window = SDL_CreateWindow("Line",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sX, sY, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+        window = SDL_CreateWindow("PickEngine",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sX, sY, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
         renderer = SDL_CreateRenderer(window, -1, 0); 
         glcontext = SDL_GL_CreateContext(window);
 
@@ -343,9 +343,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
             0.0f,0.0f,0.0f,0.0f
         }; // rotation[0] is degrees
 
-        GLfloat red[4] = {
-            0.5f,0.5f,0.5f,0.5f
-        }; 
+
         
 
         // Scene Objects
@@ -353,7 +351,11 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
             objectArray[i].createRenderObject(vertices, 36*5, VAO[i],VBO[i]);
         }
         // UI
-        UIObjectArray[0].createButtonObject("button1", transform, rotation, red, button,6*3,VAO[gameObjectCount],VBO[gameObjectCount], false);
+        for(int i=0;i<UIObjectCount;i++){
+            UIObjectArray[i].createRenderUI(button,VAO[gameObjectCount+i+1],VBO[gameObjectCount+i+1]);
+        }
+
+
 
         
 
@@ -571,8 +573,9 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 
-        UIObjectArray[0].renderButtonObject(shaderProgramUI, VAO[gameObjectCount]);
-        
+        for(int i=0;i<UIObjectCount;i++){
+            UIObjectArray[i].renderUI(shaderProgramUI, VAO[gameObjectCount+i+1]);
+        }
 
 
         
@@ -581,7 +584,9 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         const char text2render[12] = "PICK ENGINE";
         ui.RenderText(shaderProgramText, VAOtxt[0], text2render,sizeof(text2render), 0.01,0.01, 1.0f);
 
-        
+        //const char text2render[12] = "PICK ENGINE";
+        ui.RenderText(shaderProgramText, VAOtxt[1], text2render,sizeof(text2render), 0.01,0.2, 1.0f);
+
 
         
         SDL_GL_SwapWindow(window);

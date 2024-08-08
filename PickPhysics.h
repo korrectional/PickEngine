@@ -24,9 +24,9 @@ public:
     {
         camera.gameObject.updateCollider(false);
         for(int i=0;i<6;i++){camCollisions[i] = camera.gameObject.collisionBox[i];}
-        objectArray[0].updateCollider(false);
-        objectArray[1].updateCollider(false);
-        objectArray[2].updateCollider(false);
+        for(int i=0;i<gameObjectCount;i++){
+            objectArray[i].updateCollider(false);
+        }
         for(int i=0;i<gameObjectCount;i++){
             for(int d=0;d<gameObjectCount;d++){
                 if(d==i){
@@ -40,6 +40,8 @@ public:
                     if(objectArray[i].collisionBox[2]>objectArray[d].collisionBox[3] && objectArray[i].collisionBox[3]<objectArray[d].collisionBox[2]){
                         if(objectArray[i].collisionBox[4]>objectArray[d].collisionBox[5] && objectArray[i].collisionBox[5]<objectArray[d].collisionBox[4]){
                             // WHAT TO DO IF COLLIDING:
+                            objectArray[i].onCollision(i);
+                            objectArray[d].onCollision(d);
                             goBackTransform(i,d, false);
                         }
                     }

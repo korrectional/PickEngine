@@ -65,6 +65,9 @@
                         playing = true;
                     }
                 }
+                else if(funcNum == 1){
+                    std::cout<<"COMING SOON";
+                }
                 
 
             }
@@ -89,7 +92,7 @@
                 }
 
 
-                std::cout<<event.button.x<<"\n"<<event.button.y<<"\n\n";
+                //std::cout<<event.button.x<<"\n"<<event.button.y<<"\n\n";
 
 
 
@@ -116,7 +119,7 @@
                         
                 }
 
-                if(!lMousePressed){
+                if(!lMousePressed && event.button.y > 0 && event.button.y < 5000 && event.button.y > 0){
                     lastX = event.button.x;
                     lastY = event.button.y;
 
