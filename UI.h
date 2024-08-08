@@ -10,6 +10,7 @@
 
 
 /*
+return -1 = null
 return 0 = invalid character
 return 1 = space
 
@@ -26,13 +27,13 @@ public:
 
     
 
-    void RenderText(GLuint shader, GLuint VAO, const char* words, int amountChars,float positionX, float positionY ,float distans)
+    void RenderText(GLuint shader, GLuint VAO, char* words, int amountChars,float positionX, float positionY ,float distans)
     {
         amountChars --;
         int letterInt;
         for(int i=0;i<amountChars;i++){
             letterInt = checkLetters(words[i]);
-            if(letterInt == 0){return;}if(letterInt == 1){continue;}
+            if(letterInt == -1){return;}if(letterInt == 0){return;}if(letterInt == 1){continue;}
 
 
             float distance = float(i)*0.08*distans;
@@ -110,6 +111,8 @@ public:
 
     int checkLetters(char letter){
         switch (letter) {
+            case '\0':
+                return -1;
             case ' ':
                 return 1;
             case 'A':
@@ -165,7 +168,26 @@ public:
             case 'Z':
                 return 96;
             
-
+            case '0':
+                return 54;
+            case '1':
+                return 55;
+            case '2':
+                return 56;
+            case '3':
+                return 57;
+            case '4':
+                return 58;
+            case '5':
+                return 59;
+            case '6':
+                return 60;
+            case '7':
+                return 61;
+            case '8':
+                return 62;
+            case '9':
+                return 63;
                 
 
                 

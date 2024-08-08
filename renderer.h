@@ -581,11 +581,13 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         
 
         // Text
-        const char text2render[12] = "PICK ENGINE";
+        char text2render[12] = "PICK ENGINE";
         ui.RenderText(shaderProgramText, VAOtxt[0], text2render,sizeof(text2render), 0.01,0.01, 1.0f);
 
-        //const char text2render[12] = "PICK ENGINE";
-        ui.RenderText(shaderProgramText, VAOtxt[1], text2render,sizeof(text2render), 0.01,0.2, 1.0f);
+
+        char positionText[3];
+        positionText[0] = char('0' + int(objectArray[0].transform[1]));
+        ui.RenderText(shaderProgramText, VAOtxt[1], positionText,sizeof(positionText), 0.01,0.2, 1.0f);
 
 
         
