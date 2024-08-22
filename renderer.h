@@ -2,6 +2,9 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include "imgui-master/imgui.h"
+#include "imgui-master/imgui_impl_sdl2.h"
+#include "imgui-master/imgui_impl_opengl3.h"
 
 #include <iostream>
 #include <SDL2/SDL.h>
@@ -10,6 +13,9 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "stb_image_implementation.h"
+
+
+
 
 
 #include <glm/glm.hpp>
@@ -100,8 +106,6 @@ private:
     int sX;
     int sY;
 
-    SDL_Renderer* renderer;
-    SDL_GLContext glcontext;
     GLuint vertexShader;
     GLuint fragmentShader;
     GLuint shaderProgram;
@@ -134,6 +138,8 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
     SDL_Window* window;
+    SDL_Renderer* renderer;
+    SDL_GLContext glcontext;
 
 
 
@@ -387,9 +393,27 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
         setFOV();
+        imGuiSetup();
 
 
-        
+        //ImGui::Begin("Window", NULL);
+        //ImGui::Text("hihi");
+        //ImGui::End();
+
+    }
+
+    
+    void imGuiSetup(){
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGuiIO& io = ImGui::GetIO(); (void)io;
+        io.WantCaptureKeyboard = true;
+        ImGui::StyleColorsDark();
+        ImGui_ImplSDL2_InitForOpenGL(window, glcontext);
+        ImGui_ImplOpenGL3_Init();
+
+
+
     }
     
     
@@ -504,6 +528,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
     glm::mat4 projection;
     int projectionLoc;
+    
     void setFOV(){
         // set FOV
         projection = glm::perspective(glm::radians(FOV), float(sX) / float(sY), 0.1f, 100.0f);
@@ -517,7 +542,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
         
     }
-
+    bool boola = true;
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -529,6 +554,17 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     void renderLoop(int visionMode)
     {
+
+
+
+
+
+
+
+
+
+
+
         
         glm::mat4 view = camera.camera();
 
@@ -581,17 +617,40 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         
 
         // Text
-        char text2render[12] = "PICK ENGINE";
-        ui.RenderText(shaderProgramText, VAOtxt[0], text2render,sizeof(text2render), 0.01,0.01, 1.0f);
-
-
-        char positionText[3];
-        positionText[0] = char('0' + int(objectArray[0].transform[1]));
-        ui.RenderText(shaderProgramText, VAOtxt[1], positionText,sizeof(positionText), 0.01,0.2, 1.0f);
+        //char text2render[12] = "PICK ENGINE";
+        //ui.RenderText(shaderProgramText, VAOtxt[0], text2render,sizeof(text2render), 0.01,0.01, 1.0f);
+        //char* objectNamae = objectArray[0].tag;
+        //std::cout<<objectArray[0].tag<<" namae\n";
+        //ui.RenderText(shaderProgramText, VAOtxt[1], objectArray[0].tag,sizeof(objectNamae), 0.01,0.1, 1.0f);
+        //char objectName[8];
+        //ui.RenderText(shaderProgramText, VAOtxt[1], objectName,sizeof(objectName), 0.01,0.2, 1.0f, 1, objectArray[0].transform[0]);
+        //ui.RenderText(shaderProgramText, VAOtxt[1], objectName,sizeof(objectName), 0.01,0.3, 1.0f, 1, objectArray[0].transform[1]);
+        //ui.RenderText(shaderProgramText, VAOtxt[1], objectName,sizeof(objectName), 0.01,0.4, 1.0f, 1, objectArray[0].transform[2]);
 
 
         
+
+
+
+        // ImGui
+
+
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplSDL2_NewFrame();
+        ImGui::NewFrame();
+
+        ui.interface();
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        
+
+
+            
+
         SDL_GL_SwapWindow(window);
+
+
     }
 
 

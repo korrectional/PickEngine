@@ -80,6 +80,11 @@ int main()
         SDL_Delay(17);
 	}
 
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImGui::DestroyContext();
+
+
     SDL_DestroyWindow(render.window);
     SDL_Quit();
 

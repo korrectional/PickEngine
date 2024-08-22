@@ -16,11 +16,12 @@ void gameObjectCreation(){
     GLfloat red[4] = {1.0f,1.0f,0.0f,1.0f}; 
     
     GLfloat orange[4] = {0.0f,0.2f,1.0f,0.7f};
+    
 
-    objectArray[0].create("cube1", transform, rotation, red, true, 0, nullptr, false);
-    objectArray[1].create("cube1", transform, rotation, red, true, 1, nullptr, false);
-    objectArray[2].create("cube1", transform, rotation, red, true, 0, nullptr, false); 
-    objectArray[3].create("cube1", transform, rotation, red, true, 2, nullptr, false); 
+    objectArray[0].create("CUBE1", transform, rotation, red, true, 0, nullptr, false);
+    objectArray[1].create("CUBE1", transform, rotation, red, true, 1, nullptr, false);
+    objectArray[2].create("CUBE1", transform, rotation, red, true, 0, nullptr, false); 
+    objectArray[3].create("CUBE1", transform, rotation, red, true, 2, nullptr, false); 
 
     float transform_[3] = {0,0,1};
     objectArray[1].transformPos(transform_);
@@ -36,8 +37,9 @@ void gameObjectCreation(){
     GLfloat green[4] = {0,1.0f,0,1.0f};
     objectArray[0].setColor(green);
     objectArray[3].setColor(orange);
-    GLfloat grey[4] = {0.5f,0.5f,0.5f,0.5f};
-    UIObjectArray[0].setColor(grey);
+    GLfloat yellow[4] = {0,1.0f,0,1.0f};
+    objectArray[1].setColor(yellow);
+
 
 
 
@@ -49,9 +51,7 @@ void gameObjectCreation(){
     }; 
 
 
-    // UI
-    UIObjectArray[0].createUI("start", transform, apricot);
-    UIObjectArray[1].createUI("starts", transform, apricot);
+
 
 
 }
@@ -61,11 +61,7 @@ void gameObjectCreation(){
 
 void viewBoot(){
     // Object positions
-    float transform___[3] = {0,0,0};
-    UIObjectArray[0].transformPos(transform___);
-    float transform__[3] = {1.75,0,0};
-    UIObjectArray[1].transformPos(transform__);
-    
+
 }
 
 
@@ -88,8 +84,8 @@ void viewConLoop(){
     if(lMousePressed){
         lMousePressedFrames++;
         if(lMousePressedFrames == 1){
-            input.ButtonLogic(input.event, playButtonLoc, 0);
-            input.ButtonLogic(input.event, soonButtonLoc, 1);
+            //input.ButtonLogic(input.event, playButtonLoc, 0);
+            //input.ButtonLogic(input.event, soonButtonLoc, 1);
         }
     }
     else{

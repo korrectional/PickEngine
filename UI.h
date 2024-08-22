@@ -1,4 +1,10 @@
 #pragma once
+
+
+#include "imgui-master/imgui.h"
+#include "imgui-master/imgui_impl_sdl2.h"
+#include "imgui-master/imgui_impl_opengl3.h"
+
 #include <SDL2/SDL.h>
 #include <iostream>
 #include "font.h"
@@ -9,13 +15,6 @@
 
 
 
-/*
-return -1 = null
-return 0 = invalid character
-return 1 = space
-
-
-*/
 
 bool playing = false;
 
@@ -25,10 +24,77 @@ bool playing = false;
 class UI{
 public:
 
+
+
+
+
+    void interface(){
+        ImGui::Begin("Menu");
+
+
+
+        ImGui::Checkbox("Play" , &playing);
+
+
+
+        ImGui::End();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
-    void RenderText(GLuint shader, GLuint VAO, char* words, int amountChars,float positionX, float positionY ,float distans)
-    {
+    void RenderText(GLuint shader, GLuint VAO, char* words, int amountChars,float positionX, float positionY ,float distans, int coords = -1, float transform = -1)
+    {   
+        if(coords != -1)
+        {
+            if(transform<0){
+                words[0] = '-';
+                words[1] = char('0' + int(transform*-1/100));
+                words[2] = char('0' + int(transform*-1/10));
+                words[3] = char('0' + int(transform*-1)%10);
+                words[4] = '.';
+                words[5] = char('0' + int(transform*-1*10)%10);
+                words[6] = char('0' + int(transform*-1*100)%10);
+            }
+            else{
+                words[0] = char('0' + int(transform/1000));
+                words[1] = char('0' + int(transform/100));
+                words[2] = char('0' + int(transform/10));
+                words[3] = char('0' + int(transform)%10);
+                words[4] = '.';
+                words[5] = char('0' + int(transform*10)%10);
+                words[6] = char('0' + int(transform*100)%10);
+            }
+        }
+        
+        
+        
         amountChars --;
         int letterInt;
         for(int i=0;i<amountChars;i++){
@@ -74,27 +140,6 @@ public:
 
 
 
-    //vvoid ButtonLogic__(const SDL_Event& ev, float* location, int funcNum){
-    //v    std::cout<<ev.button.x<<"\n";
-    //v    //error I need to solve the positioning of the button
-//v
-    //v    if(ev.button.x >= location[0] &&
-    //v        ev.button.x <= location[2] &&
-    //v        ev.button.y >= location[1] &&
-    //v        ev.button.y <= location[3])
-    //v    {
-    //v        if(funcNum == 0){
-    //v            setPlaying(true);
-    //v        }
-    //v        
-//v
-    //v    }
-    //v};
-
-
-
-
-
 
 
 
@@ -112,7 +157,7 @@ public:
     int checkLetters(char letter){
         switch (letter) {
             case '\0':
-                return -1;
+                return 1;
             case ' ':
                 return 1;
             case 'A':
@@ -168,6 +213,11 @@ public:
             case 'Z':
                 return 96;
             
+            case '-':
+                return 51;
+            case '.':
+                return 52;
+
             case '0':
                 return 54;
             case '1':

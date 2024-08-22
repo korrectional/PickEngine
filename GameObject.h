@@ -19,7 +19,6 @@ private:
     GLuint VAO;
     //int VAOnum;
     int pointCount;
-    const char* tag;
     bool textured;
     int viewLoc;
     glm::mat4 model;
@@ -28,6 +27,7 @@ private:
     int colorLoc;
 
 public:    
+    const char* tag;
     float vertices[6]; 
     GLfloat color[4] = {0,0,0,1.0f};
 
@@ -56,7 +56,7 @@ public:
 
     void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], bool textured_, int texNum_ ,float* initCollisionBox_ = nullptr ,bool staticCollider_=true)
     {
-        
+
         //render.createTexture(3,texPath);
         gameObjectCount++;
         if(!initCollisionBox_){
@@ -78,7 +78,7 @@ public:
         texNum = texNum_;
         tag = tag_;
         staticCollider = staticCollider_;
-
+        std::cout<<tag<<" ha\n";
         //if(textured){
         //    texture
         //}
@@ -136,7 +136,7 @@ public:
 
 
 
-    void createUI(const char* tag_, float transform_[3], GLfloat color_[4])
+    void createUI(char* tag_, float transform_[3], GLfloat color_[4])
     {
         UIObjectCount++;
 
