@@ -28,18 +28,6 @@ public:
 
 
 
-    void interface(){
-        ImGui::Begin("Menu");
-
-
-
-        ImGui::Checkbox("Play" , &playing);
-
-
-
-        ImGui::End();
-
-    }
 
 
 

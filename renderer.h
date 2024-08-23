@@ -7,6 +7,9 @@
 #include "imgui-master/imgui_impl_opengl3.h"
 
 #include <iostream>
+#include <string>
+#include <cstring>  // For strcpy and strlen
+
 #include <SDL2/SDL.h>
 #include "glad.h"
 #include "UI.h"
@@ -21,6 +24,21 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+
+
+
+
+
+void interface();
+
+
+
+
+
+
+
+
 
 
 
@@ -257,59 +275,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
         
-        GLfloat vertices[] = {
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-             0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-
-        };
-
-        GLfloat button[] = {
-            -1.0f , 1.0f, 0.0f,
-            -1.0f , 0.9f, 0.0f,
-            -0.75f , 1.0f, 0.0f,  //  125 x, 50 ys
-            -1.0f , 0.9f, 0.0f,
-            -0.75f , 1.0f, 0.0f,
-            -0.75f , 0.9f, 0.0f
-        };
 
 
 
@@ -350,16 +316,13 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         }; // rotation[0] is degrees
 
 
+
+
+
         
 
         // Scene Objects
-        for(int i=0;i<gameObjectCount;i++){
-            objectArray[i].createRenderObject(vertices, 36*5, VAO[i],VBO[i]);
-        }
-        // UI
-        for(int i=0;i<UIObjectCount;i++){
-            UIObjectArray[i].createRenderUI(button,VAO[gameObjectCount+i+1],VBO[gameObjectCount+i+1]);
-        }
+        objectRenderSet();
 
 
 
@@ -399,6 +362,18 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         //ImGui::Begin("Window", NULL);
         //ImGui::Text("hihi");
         //ImGui::End();
+
+    }
+
+
+    void objectRenderSet(){
+        for(int i=0;i<gameObjectCount;i++){
+            objectArray[i].createRenderObject(verticesS, 36*5, VAO[i],VBO[i]);
+        }
+        // UI
+        for(int i=0;i<UIObjectCount;i++){
+            UIObjectArray[i].createRenderUI(button,VAO[gameObjectCount+i+1],VBO[gameObjectCount+i+1]);
+        }
 
     }
 
@@ -639,7 +614,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
-        ui.interface();
+        interface();
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -663,6 +638,225 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 renderer render;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// gameobject craeteion
+char tagg[] = "nametag";
+float transform[3] = {0,0,0};
+float rotationdir[3] = {0,0,0};
+float rotangle = 1.0f;
+float rotation[4] = {0,0,0,0};
+float colorRBG[3] = {0,255,0};
+float colorPick;
+GLfloat color[4] = {0,1.0,0,1.0};
+int texnum = 0;
+
+
+
+bool showGameObject;
+float aha = 1.04;
+float buffer;
+bool startWindowOpen = true;
+bool createGameObjectOpen = false;
+
+
+void interface(){
+    
+
+    ImGui::Begin("Menu");
+
+    if(startWindowOpen){
+
+        ImGui::Begin("Startup");
+
+        ImGui::SeparatorText("PickEngine");
+        ImGui::Text("This is my game engine");
+        ImGui::TextLinkOpenURL("Please star my github project", "https://github.com/korrectional/PickEngine");
+
+        if(ImGui::Button("Close")){
+            startWindowOpen = false;
+        }
+        ImGui::End();
+    }
+
+
+    ImGui::Checkbox("Play" , &playing);
+
+
+
+    if(ImGui::BeginMenu("Items")){
+        ImGui::MenuItem("GameObject editor", NULL, &showGameObject);
+
+        ImGui::EndMenu();
+    }
+
+
+
+
+
+
+    //ImGui::CloseCurrentPopup();
+
+
+    // various screens:
+
+    if(showGameObject){
+        ImGui::Begin("GameObjects");
+    
+        for(int i = 0; i < gameObjectCount; i++){
+            
+            
+            if(ImGui::TreeNode(objectArray[i].tag)){
+
+
+                buffer = objectArray[i].transform[0];
+                ImGui::InputFloat("#", &buffer);
+                objectArray[i].transform[0] = buffer;
+                buffer = objectArray[i].transform[1];
+                ImGui::InputFloat("##", &buffer);
+                objectArray[i].transform[1] = buffer;
+                buffer = objectArray[i].transform[2];
+                ImGui::InputFloat("###", &buffer);
+                objectArray[i].transform[2] = buffer;
+
+                
+                ImGui::TreePop();
+            }
+
+        }
+
+        if(ImGui::Button("Create GameObject")){
+            createGameObjectOpen = true;
+        }
+
+
+        ImGui::End();
+
+    }
+
+    // Create GameObject
+
+    if(createGameObjectOpen){
+        ImGui::Begin("Create");
+
+
+        ImGui::InputText("nametag", tagg, sizeof(tagg));
+        ImGui::InputFloat3("transform", transform);
+        ImGui::InputFloat3("rotation", rotationdir);
+        ImGui::InputFloat("angle", &rotangle);
+        //ImGui::ColorPicker4("Pick color", &colorPick);
+        ImGui::InputFloat3("RGB color", colorRBG);
+        color[0] = colorRBG[0]/255;color[1] = colorRBG[1]/255;color[2] = colorRBG[2]/255;
+        ImGui::InputInt("texture number", &texnum);
+
+
+
+
+        if(ImGui::Button("Create")){
+            char* taggg = new char[strlen(tagg)+1];    
+            strcpy(taggg, tagg);
+            memset(tagg, '#', sizeof(tagg));
+            std::cout<<taggg<<"\n";
+
+            rotation[0] = rotangle;
+            rotation[1] = rotationdir[0];
+            rotation[2] = rotationdir[1];
+            rotation[3] = rotationdir[2];
+            if(rotation[1] == 0&&rotation[2] == 0&&rotation[3] == 0){rotation[1] = 1.0;}
+
+            objectArray[gameObjectCount].create(taggg, transform, rotation, color, true, texnum, nullptr, false);
+            std::cout<<taggg<<"\n"<<transform[0]<<"\n"<<transform[1]<<"\n"<<transform[2]<<"\n"<<rotation[0]<<"\n"<<rotation[1]<<"\n"<<rotation[2]<<"\n"<<rotation[3]<<"\n";
+
+
+
+            float transform[3] = {0.0f,2.0f,-3.0f};
+            float rotation[4] = {0.0f,0.1f,0.0f,0.0f};
+            GLfloat red[4] = {1.0f,1.0f,0.0f,1.0f}; 
+            //objectArray[gameObjectCount].create("CUBE4", transform, rotation, red, true, 2, nullptr, false); 
+
+            
+
+
+
+            render.objectRenderSet();
+            createGameObjectOpen = false;
+        }
+
+
+
+        if(ImGui::Button("Close")){
+            createGameObjectOpen = false;
+        }
+        ImGui::End();
+
+    }
+
+
+    ImGui::End();
+
+}
+
+
 
 
 

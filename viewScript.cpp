@@ -18,10 +18,14 @@ void gameObjectCreation(){
     GLfloat orange[4] = {0.0f,0.2f,1.0f,0.7f};
     
 
-    objectArray[0].create("CUBE1", transform, rotation, red, true, 0, nullptr, false);
-    objectArray[1].create("CUBE1", transform, rotation, red, true, 1, nullptr, false);
-    objectArray[2].create("CUBE1", transform, rotation, red, true, 0, nullptr, false); 
-    objectArray[3].create("CUBE1", transform, rotation, red, true, 2, nullptr, false); 
+    objectArray[gameObjectCount].create("CUBE1", transform, rotation, red, true, 0, nullptr, false);
+    objectArray[gameObjectCount].create("CUBE2", transform, rotation, red, true, 1, nullptr, false);
+    objectArray[gameObjectCount].create("CUBE3", transform, rotation, red, true, 0, nullptr, false); 
+    objectArray[gameObjectCount].create("CUBE4", transform, rotation, red, true, 2, nullptr, false); 
+
+    //objectArray[gameObjectCount].create("CUBE5", transform, rotation, red, true, 2, nullptr, false); 
+    //objectArray[gameObjectCount].create("CUBE6", transform, rotation, red, true, 2, nullptr, false); 
+    
 
     float transform_[3] = {0,0,1};
     objectArray[1].transformPos(transform_);

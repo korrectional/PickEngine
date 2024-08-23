@@ -12,6 +12,61 @@
 int gameObjectCount = 0;
 int UIObjectCount = 0;
 
+GLfloat verticesS[] = {
+-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+    0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+    0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+
+};
+
+GLfloat button[] = {
+-1.0f , 1.0f, 0.0f,
+-1.0f , 0.9f, 0.0f,
+-0.75f , 1.0f, 0.0f,  //  125 x, 50 ys
+-1.0f , 0.9f, 0.0f,
+-0.75f , 1.0f, 0.0f,
+-0.75f , 0.9f, 0.0f
+};
+
+
 
 class GameObject
 {
@@ -54,7 +109,7 @@ public:
     
     
 
-    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], bool textured_, int texNum_ ,float* initCollisionBox_ = nullptr ,bool staticCollider_=true)
+    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], bool textured_, int texNum_ ,float* initCollisionBox_ = nullptr ,bool staticCollider_=false)
     {
 
         //render.createTexture(3,texPath);
@@ -78,7 +133,6 @@ public:
         texNum = texNum_;
         tag = tag_;
         staticCollider = staticCollider_;
-        std::cout<<tag<<" ha\n";
         //if(textured){
         //    texture
         //}
@@ -115,7 +169,7 @@ public:
         pointCount = pointCount_;
         glBindVertexArray(VAO_);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, pointCount*4, vertices_, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, pointCount*4, verticesS, GL_DYNAMIC_DRAW);
         if(textured = true)
         {
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
@@ -309,6 +363,7 @@ public:
     {
         for(int i=0;i<4;i++){color[i] = color_[i];}
     }
+    
     
 
 };
