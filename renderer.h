@@ -43,7 +43,6 @@ void interface();
 
 
 
-
 class renderer{
 private:
     const char *vertexShaderSource = "#version 330 core\n"
@@ -75,6 +74,49 @@ private:
         "{\n"
         "   FragColor = vec4(texture(ourTexture, TexCoord))*vec4(color);\n"
         "}\n\0";
+
+
+
+
+
+
+
+    const char *vertexShaderSourceGizmo = "#version 330 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "uniform mat4 model;\n"
+        "uniform mat4 view;\n"
+        "uniform mat4 projection;\n"
+        "uniform mat4 rotation;\n"
+
+
+
+        "void main()\n"
+        "{\n"
+        "   gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
+        "}\0";
+
+
+
+    const char* fragmentShaderSourceGizmo = "#version 330 core\n"
+        "out vec4 FragColor;\n"
+        "uniform vec4 color;\n"
+
+        "void main()\n"
+        "{\n"
+        "   FragColor = vec4(color);\n"
+        "}\n\0";
+
+
+
+
+
+
+
+
+
+
+
+
 
     const char *vertexShaderSourceUI = "#version 330 core\n"
         "layout (location = 0) in vec3 aPos;\n"
@@ -127,6 +169,9 @@ private:
     GLuint vertexShader;
     GLuint fragmentShader;
     GLuint shaderProgram;
+    GLuint vertexShaderGizmo;
+    GLuint fragmentShaderGizmo;
+    GLuint shaderProgramGizmo;
     GLuint vertexShaderUI;
     GLuint fragmentShaderUI;
     GLuint vertexShaderText;
@@ -134,7 +179,7 @@ private:
     GLuint VAO[1000], VBO[1000]; 
     GLuint shaderProgramUI;
     GLuint shaderProgramText;
-    GLuint VAOtxt[1], VBOtxt[1]; //txt
+    GLuint VAOtxt[1000], VBOtxt[1000]; //txt
     GLuint vertexShaderTex;
     GLuint fragmentShaderTex;
     GLuint shaderProgramTex;
@@ -158,6 +203,8 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
     SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_GLContext glcontext;
+    bool showCollisionGizmo = false;
+
 
 
 
@@ -244,6 +291,40 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 
+
+
+
+        // Gizmo
+        vertexShaderGizmo = glCreateShader(GL_VERTEX_SHADER);
+        glShaderSource(vertexShaderGizmo, 1, &vertexShaderSourceGizmo, NULL);
+        glCompileShader(vertexShaderGizmo);
+
+            
+
+        glGetShaderiv(vertexShaderGizmo, GL_COMPILE_STATUS, &success);
+        if(!success)
+        {
+            glGetShaderInfoLog(vertexShaderGizmo, 512, NULL, infoLog);
+            std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+        }
+
+
+
+        fragmentShaderGizmo = glCreateShader(GL_FRAGMENT_SHADER);
+        glShaderSource(fragmentShaderGizmo, 1, &fragmentShaderSourceGizmo, NULL);
+        glCompileShader(fragmentShaderGizmo);
+
+        shaderProgramGizmo = glCreateProgram();
+        glAttachShader(shaderProgramGizmo, vertexShaderGizmo);
+        glAttachShader(shaderProgramGizmo, fragmentShaderGizmo);
+        glLinkProgram(shaderProgramGizmo);
+
+        glDeleteShader(vertexShaderGizmo);
+        glDeleteShader(fragmentShaderGizmo);
+
+
+
+
     //  UI SHADER
 
         vertexShaderUI = glCreateShader(GL_VERTEX_SHADER);
@@ -295,9 +376,17 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         // VAO and VBO!!!
         glGenVertexArrays(1000, VAO);
         glGenBuffers(1000, VBO);
+                // Bind both the VBO and VAO to 0 so that we don't accidentally modify the VAO and VBO we created
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(0);
 
 
 
+        glGenVertexArrays(1000, VAOtxt);
+        glGenBuffers(1000, VBOtxt);
+                // Bind both the VBO and VAO to 0 so that we don't accidentally modify the VAO and VBO we created
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(0);
 
 
 
@@ -329,9 +418,6 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         
 
 
-        // Bind both the VBO and VAO to 0 so that we don't accidentally modify the VAO and VBO we created
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindVertexArray(0);
 
         
 
@@ -368,12 +454,13 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
     void objectRenderSet(){
         for(int i=0;i<gameObjectCount;i++){
-            objectArray[i].createRenderObject(verticesS, 36*5, VAO[i],VBO[i]);
+            objectArray[i].createRenderObject(36*5, VAO[i],VBO[i]);
+            objectArray[i].createGizmoRenderObject(36*5, VAOtxt[i],VBOtxt[i]);
         }
         // UI
-        for(int i=0;i<UIObjectCount;i++){
-            UIObjectArray[i].createRenderUI(button,VAO[gameObjectCount+i+1],VBO[gameObjectCount+i+1]);
-        }
+        //for(int i=0;i<UIObjectCount;i++){
+        //    UIObjectArray[i].createRenderUI(button,VAO[gameObjectCount+i+1],VBO[gameObjectCount+i+1]);
+        //}
 
     }
 
@@ -442,23 +529,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         
 
 
-        glGenVertexArrays(1, VAOtxt);
-        glGenBuffers(1, VBOtxt);
-        //glGenBuffers(1, &EBO);
-
-
-        // First
-        glBindVertexArray(VAOtxt[0]);
-        glBindBuffer(GL_ARRAY_BUFFER, VBOtxt[0]);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(block), block, GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-
-
-
-        // Bind both the VBO and VAO to 0 so that we don't accidentally modify the VAO and VBO we created
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindVertexArray(0);
+        
 
 
         // Text settings
@@ -500,12 +571,13 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
     }
 
 
-
     glm::mat4 projection;
     int projectionLoc;
+    int projectionLocGizmo;
     
     void setFOV(){
         // set FOV
+        glUseProgram(shaderProgram);
         projection = glm::perspective(glm::radians(FOV), float(sX) / float(sY), 0.1f, 100.0f);
         projectionLoc = glGetUniformLocation(shaderProgram, "projection");
 
@@ -514,6 +586,22 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         view = glm::translate(view, glm::vec3(0,0,-3.0f)); 
         int viewLoc = glGetUniformLocation(shaderProgram, "view");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+
+
+
+        glUseProgram(shaderProgramGizmo);
+        projectionLocGizmo = glGetUniformLocation(shaderProgramGizmo, "projection");
+//
+//
+        view = glm::mat4(1.0f);
+        view = glm::translate(view, glm::vec3(0,0,-3.0f)); 
+        viewLoc = glGetUniformLocation(shaderProgramGizmo, "view");
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+
+
+
+
+        
 
         
     }
@@ -550,10 +638,11 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 
-
-
         glUseProgram(shaderProgram);
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+        glUseProgram(shaderProgramGizmo);
+        glUniformMatrix4fv(projectionLocGizmo, 1, GL_FALSE, glm::value_ptr(projection));
 
 
 
@@ -573,9 +662,23 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         //////////////////////////////////////////////////DRAWDRAW/////////////////////////////
         
         glEnable(GL_DEPTH_TEST);  // Scene
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         for(int i=0;i<gameObjectCount;i++){
             objectArray[i].renderObject(shaderProgram, texture, VAO[i],view);
+        }
+
+
+
+
+        if(showCollisionGizmo){
+
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            glDisable(GL_DEPTH_TEST);  
+
+            for(int i=0;i<gameObjectCount;i++){
+                objectArray[i].renderGizmoObject(shaderProgramGizmo, VAOtxt[i],view);
+            }
         }
         
         glDisable(GL_DEPTH_TEST);  
@@ -584,9 +687,9 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 
-        for(int i=0;i<UIObjectCount;i++){
-            UIObjectArray[i].renderUI(shaderProgramUI, VAO[gameObjectCount+i+1]);
-        }
+        //for(int i=0;i<UIObjectCount;i++){
+        //    UIObjectArray[i].renderUI(shaderProgramUI, VAO[gameObjectCount+i+1]);
+        //}
 
 
         
@@ -713,7 +816,10 @@ int texnum = 0;
 
 
 
+
+
 bool showGameObject;
+bool showGizmoPanel;
 float aha = 1.04;
 float buffer;
 bool startWindowOpen = true;
@@ -733,9 +839,17 @@ void interface(){
         ImGui::Text("This is my game engine");
         ImGui::TextLinkOpenURL("Please star my github project", "https://github.com/korrectional/PickEngine");
 
+        if(ImGui::TreeNode("tips")){
+            ImGui::Text("To change vision modes press P");
+            ImGui::Text("To move use WASD and the arrow");
+            ImGui::Text("keys for camera rotation");
+            ImGui::TreePop();
+        }
+
         if(ImGui::Button("Close")){
             startWindowOpen = false;
         }
+
         ImGui::End();
     }
 
@@ -746,6 +860,7 @@ void interface(){
 
     if(ImGui::BeginMenu("Items")){
         ImGui::MenuItem("GameObject editor", NULL, &showGameObject);
+        ImGui::MenuItem("Gizmos", NULL, &showGizmoPanel);
 
         ImGui::EndMenu();
     }
@@ -849,6 +964,19 @@ void interface(){
         }
         ImGui::End();
 
+    }
+
+
+
+    if(showGizmoPanel)
+    {
+        ImGui::Begin("Gizmos");
+
+        ImGui::Checkbox("Colliders", &render.showCollisionGizmo);
+
+        
+
+        ImGui::End();
     }
 
 

@@ -80,6 +80,8 @@ private:
     glm::mat4 view;
     int modelLoc;
     int colorLoc;
+    int locVAO;
+    int locVBO;
 
 public:    
     const char* tag;
@@ -164,11 +166,12 @@ public:
 
 
     
-    void createRenderObject(float vertices_[], int pointCount_, GLuint VAO_, GLuint VBO)
+    void createRenderObject(int pointCount_, GLuint VAO_, GLuint VBO_)
     {
+        //locVAO = VAO_; locVBO = VBO_;
         pointCount = pointCount_;
         glBindVertexArray(VAO_);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO_);
         glBufferData(GL_ARRAY_BUFFER, pointCount*4, verticesS, GL_DYNAMIC_DRAW);
         if(textured = true)
         {
@@ -182,6 +185,22 @@ public:
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
             glEnableVertexAttribArray(0);
         }
+    }
+
+
+    void createGizmoRenderObject(int pointCount_, GLuint VAO_, GLuint VBO_)
+    {
+        pointCount = pointCount_;
+        glBindVertexArray(VAO_);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO_);
+        glBufferData(GL_ARRAY_BUFFER, pointCount*4, verticesS, GL_DYNAMIC_DRAW);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
+
+
     }
 
 
@@ -200,36 +219,36 @@ public:
         tag = tag_;
     }
 
-    void createRenderUI(float vertices_[], GLuint VAO_, GLuint VBO)
-    {
-        glBindVertexArray(VAO_);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, 6*3*4, vertices_, GL_DYNAMIC_DRAW);
-
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-
-    }
-
-
-
-    void renderUI(GLuint shader, GLuint VAO_)
-    {
-        glUseProgram(shader);
-
-
-        glm::mat4 view = glm::mat4(1.0f);
-        view = glm::translate(view, glm::vec3(transform[0],transform[1],transform[2]));
-        int viewLoc = glGetUniformLocation(shader, "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        
-        int colorLoc = glGetUniformLocation(shader, "color"); 
-        glUniform4f(colorLoc, color[0],color[1],color[2],color[3]); // MAKING COLOR
-
-
-        glBindVertexArray(VAO_);
-        glDrawArrays(GL_TRIANGLES, 0, 6); 
-    }
+    //void createRenderUI(float vertices_[], GLuint VAO_, GLuint VBO)
+    //{
+    //    glBindVertexArray(VAO_);
+    //    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    //    glBufferData(GL_ARRAY_BUFFER, 6*3*4, vertices_, GL_DYNAMIC_DRAW);
+//
+    //    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    //    glEnableVertexAttribArray(0);
+//
+    //}
+//
+//
+//
+    //void renderUI(GLuint shader, GLuint VAO_)
+    //{
+    //    glUseProgram(shader);
+//
+//
+    //    glm::mat4 view = glm::mat4(1.0f);
+    //    view = glm::translate(view, glm::vec3(transform[0],transform[1],transform[2]));
+    //    int viewLoc = glGetUniformLocation(shader, "view");
+    //    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+    //    
+    //    int colorLoc = glGetUniformLocation(shader, "color"); 
+    //    glUniform4f(colorLoc, color[0],color[1],color[2],color[3]); // MAKING COLOR
+//
+//
+    //    glBindVertexArray(VAO_);
+    //    glDrawArrays(GL_TRIANGLES, 0, 6); 
+    //}
 
 
 
@@ -265,6 +284,33 @@ public:
         glBindVertexArray(VAO_);
         glDrawArrays(GL_TRIANGLES, 0, pointCount/3); 
     }
+
+
+    void renderGizmoObject(GLuint shader, GLuint VAO_, glm::mat4 view_)
+    {
+        glUseProgram(shader);
+        
+
+
+        view = glm::mat4(1.0f);
+        view = view_ * glm::translate(view, glm::vec3(transform[0],transform[1],transform[2]));
+        viewLoc = glGetUniformLocation(shader, "view");
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        
+        model = glm::mat4(1.0f);
+        model = glm::rotate(model, glm::radians(rotation[0]), glm::vec3(rotation[1],rotation[2],rotation[3])); 
+        modelLoc = glGetUniformLocation(shader, "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+        
+        colorLoc = glGetUniformLocation(shader, "color"); 
+        glUniform4f(colorLoc, 0.0,1.0,0.0,1.0); // MAKING COLOR
+
+
+        glBindVertexArray(VAO_);
+        glDrawArrays(GL_TRIANGLES, 0, pointCount/3); 
+    }
+
 
 
 
