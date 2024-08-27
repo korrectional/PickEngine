@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(PickEngine)
 
+#include(FetchContent)
+#
+#FetchContent_Declare(
+#    SDL2
+#    URL https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.30.6.tar.gz
+#)
+#FetchContent_MakeAvailable(SDL2)
+
+
 set(SourceFiles
     main.cpp
     )
@@ -25,6 +34,8 @@ set(IMGUI_SOURCES
     imgui-master/imstb_truetype.h
     imgui-master/LICENSE.txt
 )
+
+
 
 find_package(SDL2 REQUIRED)
 find_package(assimp REQUIRED)

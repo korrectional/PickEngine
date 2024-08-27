@@ -824,6 +824,7 @@ float aha = 1.04;
 float buffer;
 bool startWindowOpen = true;
 bool createGameObjectOpen = false;
+bool editGameObjectOpen = false;
 
 
 void interface(){
@@ -874,7 +875,7 @@ void interface(){
 
 
     // various screens:
-
+    int selectedGameObject = 0;
     if(showGameObject){
         ImGui::Begin("GameObjects");
     
@@ -893,6 +894,12 @@ void interface(){
                 buffer = objectArray[i].transform[2];
                 ImGui::InputFloat("###", &buffer);
                 objectArray[i].transform[2] = buffer;
+
+
+                if(ImGui::Button("Edit GameObject")){
+                    selectedGameObject = i;
+                    editGameObjectOpen = true;
+                }
 
                 
                 ImGui::TreePop();
@@ -967,6 +974,49 @@ void interface(){
     }
 
 
+    // show gameobject editor
+    float trBuffer[3];
+    float anBuffer;
+    int texBuffer;
+
+    if(editGameObjectOpen){
+        ImGui::Begin("Edit GameObject");
+
+
+        //ImGui::Text(objectArray[selectedGameObject].tag);
+        trBuffer[0] = objectArray[selectedGameObject].transform[0];trBuffer[1] = objectArray[selectedGameObject].transform[1];trBuffer[2] = objectArray[selectedGameObject].transform[2];
+        ImGui::InputFloat3("transform", trBuffer);
+        objectArray[selectedGameObject].transform[0] = trBuffer[0];objectArray[selectedGameObject].transform[1] = trBuffer[1];objectArray[selectedGameObject].transform[2] = trBuffer[2];
+        
+
+        trBuffer[0] = objectArray[selectedGameObject].rotation[1];trBuffer[1] = objectArray[selectedGameObject].rotation[2];trBuffer[2] = objectArray[selectedGameObject].rotation[3];
+        ImGui::InputFloat3("rotation", trBuffer);
+        objectArray[selectedGameObject].rotation[1] = trBuffer[0];objectArray[selectedGameObject].rotation[2] = trBuffer[1];objectArray[selectedGameObject].rotation[3] = trBuffer[2];
+
+        anBuffer = objectArray[selectedGameObject].rotation[0];
+        ImGui::InputFloat("angle", &anBuffer);
+        objectArray[selectedGameObject].rotation[0] = anBuffer;
+
+        trBuffer[0] = objectArray[selectedGameObject].color[0];trBuffer[1] = objectArray[selectedGameObject].color[1];trBuffer[2] = objectArray[selectedGameObject].color[2];
+        ImGui::InputFloat3("color", trBuffer);
+        objectArray[selectedGameObject].color[0] = trBuffer[0];objectArray[selectedGameObject].color[1] = trBuffer[1];objectArray[selectedGameObject].color[2] = trBuffer[2];
+
+        texBuffer = objectArray[selectedGameObject].texNum;
+        ImGui::InputInt("texture number", &texBuffer);
+        objectArray[selectedGameObject].texNum = texBuffer;
+
+        objectArray[0].collisionBox;
+
+
+
+        if(ImGui::Button("Close")){
+            editGameObjectOpen = false;
+        }
+        ImGui::End();
+    }
+
+
+    // show gizmo pannel
 
     if(showGizmoPanel)
     {

@@ -12,7 +12,7 @@
 #include "viewScript.cpp"
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-
+#include "objProcessor.h"
 
 
 
@@ -36,7 +36,7 @@ int main()
 {
     
 
-
+    //ObjPross::ProcessOBJ("/home/david/Desktop/PickEngine/Humanoid.obj");
 
 
     gameObjectCreation();

@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "glad.h"
+#include "objProcessor.h"
 //#include "renderer.h"
 
 
@@ -14,16 +15,16 @@ int UIObjectCount = 0;
 
 GLfloat verticesS[] = {
 -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+ 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
 -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 
 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-    0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-    0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
 -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
 
@@ -34,28 +35,33 @@ GLfloat verticesS[] = {
 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
 -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
 
-    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+ 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+ 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+ 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
 
 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-    0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-    0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
 -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
 -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
 
 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-    0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
 -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 
 };
+
+
+
+
+
 
 GLfloat button[] = {
 -1.0f , 1.0f, 0.0f,
@@ -82,6 +88,50 @@ private:
     int colorLoc;
     int locVAO;
     int locVBO;
+    GLfloat gizmoVertices[180] = {
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+    0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+    0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+    0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+    0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+
+    };
 
 public:    
     const char* tag;
@@ -110,9 +160,10 @@ public:
     };
     
     
-
+    
     void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[4], bool textured_, int texNum_ ,float* initCollisionBox_ = nullptr ,bool staticCollider_=false)
     {
+
 
         //render.createTexture(3,texPath);
         gameObjectCount++;
@@ -168,11 +219,39 @@ public:
     
     void createRenderObject(int pointCount_, GLuint VAO_, GLuint VBO_)
     {
+        std::vector<Mesh> customMesh = ObjPross::ProcessOBJ("/home/david/Desktop/PickEngine/Humanoid.obj"); // messing with customs
+        GLfloat customVertices[customMesh.size()*5];
+        //int wfs = 0;
+        for(int i = 0; i < customMesh.size(); i++){
+            customVertices[i*5] = customMesh[i].vertex.x ;
+            customVertices[i*5+1] = customMesh[i].vertex.y ;
+            customVertices[i*5+2] = customMesh[i].vertex.z ;
+            customVertices[i*5+3] = customMesh[i].texture.u;
+            customVertices[i*5+4] = customMesh[i].texture.v;
+            //std::cout << customVertices[i*5] <<" "<< customVertices[i*5+1] <<" "<< customVertices[i*5+2] <<" UV: "<< customVertices[i*5+3] <<" "<< customVertices[i*5+4] << "\n";
+        }
+
+        std::vector<Indice> indices = ObjPross::ProcessOBJIndices("/home/david/Desktop/PickEngine/Humanoid.obj"); // messing with customs
+        unsigned int customIndices[indices.size()*3];
+
+        for(int i = 0; i < indices.size(); i ++)
+        {
+            customIndices[i*3] = indices[i].x;
+            customIndices[i*3+1] = indices[i].y;
+            customIndices[i*3+2] = indices[i].z;
+            //std::cout<<customIndices[i*3]<<" "<<customIndices[i*3+1]<<" "<<customIndices[i*3+2]<<"\n";
+        }
+
+
+
+
+
         //locVAO = VAO_; locVBO = VBO_;
-        pointCount = pointCount_;
+        pointCount = pointCount_;//customMesh.size()*5;
         glBindVertexArray(VAO_);
         glBindBuffer(GL_ARRAY_BUFFER, VBO_);
         glBufferData(GL_ARRAY_BUFFER, pointCount*4, verticesS, GL_DYNAMIC_DRAW);
+        
         if(textured = true)
         {
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
@@ -193,7 +272,7 @@ public:
         pointCount = pointCount_;
         glBindVertexArray(VAO_);
         glBindBuffer(GL_ARRAY_BUFFER, VBO_);
-        glBufferData(GL_ARRAY_BUFFER, pointCount*4, verticesS, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, pointCount*4, gizmoVertices, GL_DYNAMIC_DRAW);
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
@@ -298,7 +377,7 @@ public:
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
         
         model = glm::mat4(1.0f);
-        model = glm::rotate(model, glm::radians(rotation[0]), glm::vec3(rotation[1],rotation[2],rotation[3])); 
+        model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f,0.0f,0.0f)); 
         modelLoc = glGetUniformLocation(shader, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
@@ -350,6 +429,54 @@ public:
     bool alreadyCollided = false;
 
 
+
+
+
+
+
+
+
+
+
+    //void updateCollisionGizmo(){
+    //    gizmoVertices[0] = initCollisionBox[1];
+    //    gizmoVertices[5] = initCollisionBox[0];
+    //    gizmoVertices[10] = initCollisionBox[0];
+    //    gizmoVertices[15] = initCollisionBox[0];
+    //    gizmoVertices[20] = initCollisionBox[1];
+    //    gizmoVertices[25] = initCollisionBox[1];
+    //    gizmoVertices[30] = initCollisionBox[1];
+    //    gizmoVertices[35] = initCollisionBox[0];
+    //    gizmoVertices[40] = initCollisionBox[0];
+    //    gizmoVertices[45] = initCollisionBox[0];
+    //    gizmoVertices[50] = initCollisionBox[1];
+    //    gizmoVertices[55] = initCollisionBox[1];
+    //    gizmoVertices[60] = initCollisionBox[1];
+    //    gizmoVertices[65] = initCollisionBox[1];
+    //    gizmoVertices[70] = initCollisionBox[1];
+    //    gizmoVertices[75] = initCollisionBox[1];
+    //    gizmoVertices[80] = initCollisionBox[1];
+    //    gizmoVertices[85] = initCollisionBox[1];
+    //    gizmoVertices[90] = initCollisionBox[0];
+    //    gizmoVertices[95] = initCollisionBox[0];
+    //    gizmoVertices[100] = initCollisionBox[0];
+    //    gizmoVertices[105] = initCollisionBox[0];
+    //    gizmoVertices[110] = initCollisionBox[0];
+    //    gizmoVertices[115] = initCollisionBox[0];
+    //    gizmoVertices[120] = initCollisionBox[1];
+    //    gizmoVertices[125] = initCollisionBox[0];
+    //    gizmoVertices[130] = initCollisionBox[0];
+    //    gizmoVertices[135] = initCollisionBox[0];
+    //    gizmoVertices[140] = initCollisionBox[1];
+    //    gizmoVertices[145] = initCollisionBox[1];
+    //    gizmoVertices[150] = initCollisionBox[1];
+    //    gizmoVertices[155] = initCollisionBox[0];
+    //    gizmoVertices[160] = initCollisionBox[0];
+    //    gizmoVertices[165] = initCollisionBox[0];
+    //    gizmoVertices[170] = initCollisionBox[1];
+    //    gizmoVertices[175] = initCollisionBox[1];
+//
+    //}
 
 
     

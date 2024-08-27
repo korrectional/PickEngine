@@ -427,3 +427,3318 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Determining if the __GLIBC__ exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_1a408 && [1/2] Building C object CMakeFiles/cmTC_1a408.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_1a408
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef __GLIBC__
+  return ((int*)(&__GLIBC__))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test CHECK_CPU_ARCHITECTURE_X64 succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_d6643 && [1/2] Building C object CMakeFiles/cmTC_d6643.dir/src.c.o
+[2/2] Linking C executable cmTC_d6643
+
+
+Source file was:
+
+int main(int argc, char *argv[]) {
+#if defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64)
+  return 0;
+#else
+  choke
+#endif
+}
+
+Performing C SOURCE FILE Test HAVE_GCC_WALL succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_6bbd6 && [1/2] Building C object CMakeFiles/cmTC_6bbd6.dir/src.c.o
+[2/2] Linking C executable cmTC_6bbd6
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_GCC_WUNDEF succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_075b9 && [1/2] Building C object CMakeFiles/cmTC_075b9.dir/src.c.o
+[2/2] Linking C executable cmTC_075b9
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_GCC_NO_STRICT_ALIASING succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_c7be4 && [1/2] Building C object CMakeFiles/cmTC_c7be4.dir/src.c.o
+[2/2] Linking C executable cmTC_c7be4
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_GCC_WDECLARATION_AFTER_STATEMENT succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5f935 && [1/2] Building C object CMakeFiles/cmTC_5f935.dir/src.c.o
+[2/2] Linking C executable cmTC_5f935
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_GCC_ATOMICS succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_64f39 && [1/2] Building C object CMakeFiles/cmTC_64f39.dir/src.c.o
+[2/2] Linking C executable cmTC_64f39
+
+
+Source file was:
+int main(int argc, char **argv) {
+        int a;
+        void *x, *y, *z;
+        __sync_lock_test_and_set(&a, 4);
+        __sync_lock_test_and_set(&x, y);
+        __sync_fetch_and_add(&a, 1);
+        __sync_bool_compare_and_swap(&a, 5, 10);
+        __sync_bool_compare_and_swap(&x, y, z);
+        return 0; }
+Performing C SOURCE FILE Test HAVE_GCC_FVISIBILITY succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_7bc41 && [1/2] Building C object CMakeFiles/cmTC_7bc41.dir/src.c.o
+[2/2] Linking C executable cmTC_7bc41
+
+
+Source file was:
+
+      #if !defined(__GNUC__) || __GNUC__ < 4
+      #error SDL only uses visibility attributes in GCC 4 or newer
+      #endif
+      int main(int argc, char **argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_GCC_WSHADOW succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_78fc1 && [1/2] Building C object CMakeFiles/cmTC_78fc1.dir/src.c.o
+[2/2] Linking C executable cmTC_78fc1
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_GCC_WUNUSED_LOCAL_TYPEDEFS succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_c62e3 && [1/2] Building C object CMakeFiles/cmTC_c62e3.dir/src.c.o
+[2/2] Linking C executable cmTC_c62e3
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_NO_UNDEFINED succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_c90fc && [1/2] Building C object CMakeFiles/cmTC_c90fc.dir/src.c.o
+[2/2] Linking C executable cmTC_c90fc
+
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_MMX succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_7d63b && [1/2] Building C object CMakeFiles/cmTC_7d63b.dir/src.c.o
+[2/2] Linking C executable cmTC_7d63b
+
+
+Source file was:
+
+          #ifdef __MINGW32__
+          #include <_mingw.h>
+          #ifdef __MINGW64_VERSION_MAJOR
+          #include <intrin.h>
+          #else
+          #include <mmintrin.h>
+          #endif
+          #else
+          #include <mmintrin.h>
+          #endif
+          #ifndef __MMX__
+          #error Assembler CPP flag not enabled
+          #endif
+          int main(int argc, char **argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_3DNOW succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_4bd25 && [1/2] Building C object CMakeFiles/cmTC_4bd25.dir/src.c.o
+[2/2] Linking C executable cmTC_4bd25
+
+
+Source file was:
+
+          #include <mm3dnow.h>
+          #ifndef __3dNOW__
+          #error Assembler CPP flag not enabled
+          #endif
+          int main(int argc, char **argv) {
+            void *p = 0;
+            _m_prefetch(p);
+            return 0;
+          }
+Performing C SOURCE FILE Test HAVE_SSE succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_d2795 && [1/2] Building C object CMakeFiles/cmTC_d2795.dir/src.c.o
+[2/2] Linking C executable cmTC_d2795
+
+
+Source file was:
+
+          #ifdef __MINGW32__
+          #include <_mingw.h>
+          #ifdef __MINGW64_VERSION_MAJOR
+          #include <intrin.h>
+          #else
+          #include <xmmintrin.h>
+          #endif
+          #else
+          #include <xmmintrin.h>
+          #endif
+          #ifndef __SSE__
+          #error Assembler CPP flag not enabled
+          #endif
+          int main(int argc, char **argv) { return 0; }
+Performing C SOURCE FILE Test CPU_SUPPORTS_SSE2 succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_76792 && [1/2] Building C object CMakeFiles/cmTC_76792.dir/src.c.o
+[2/2] Linking C executable cmTC_76792
+
+
+Source file was:
+
+          #ifdef __MINGW32__
+          #include <_mingw.h>
+          #ifdef __MINGW64_VERSION_MAJOR
+          #include <intrin.h>
+          #else
+          #include <emmintrin.h>
+          #endif
+          #else
+          #include <emmintrin.h>
+          #endif
+          #ifndef __SSE2__
+          #error Assembler CPP flag not enabled
+          #endif
+          int main(int argc, char **argv) { return 0; }
+Performing C SOURCE FILE Test CPU_SUPPORTS_SSE3 succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_d0b18 && [1/2] Building C object CMakeFiles/cmTC_d0b18.dir/src.c.o
+[2/2] Linking C executable cmTC_d0b18
+
+
+Source file was:
+
+          #ifdef __MINGW32__
+          #include <_mingw.h>
+          #ifdef __MINGW64_VERSION_MAJOR
+          #include <intrin.h>
+          #else
+          #include <pmmintrin.h>
+          #endif
+          #else
+          #include <pmmintrin.h>
+          #endif
+          #ifndef __SSE3__
+          #error Assembler CPP flag not enabled
+          #endif
+          int main(int argc, char **argv) { return 0; }
+Determining if the include file immintrin.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_78977 && [1/2] Building C object CMakeFiles/cmTC_78977.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_78977
+
+
+
+Determining if the include file ctype.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_a130a && [1/2] Building C object CMakeFiles/cmTC_a130a.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_a130a
+
+
+
+Determining if the include file float.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_c4bee && [1/2] Building C object CMakeFiles/cmTC_c4bee.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_c4bee
+
+
+
+Determining if the include file iconv.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_74718 && [1/2] Building C object CMakeFiles/cmTC_74718.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_74718
+
+
+
+Determining if the include file inttypes.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_a78b1 && [1/2] Building C object CMakeFiles/cmTC_a78b1.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_a78b1
+
+
+
+Determining if the include file limits.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_94a80 && [1/2] Building C object CMakeFiles/cmTC_94a80.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_94a80
+
+
+
+Determining if the include file malloc.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5205d && [1/2] Building C object CMakeFiles/cmTC_5205d.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_5205d
+
+
+
+Determining if the include file math.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_ba518 && [1/2] Building C object CMakeFiles/cmTC_ba518.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_ba518
+
+
+
+Determining if the include file memory.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_d8a0e && [1/2] Building C object CMakeFiles/cmTC_d8a0e.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_d8a0e
+
+
+
+Determining if the include file signal.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_239b2 && [1/2] Building C object CMakeFiles/cmTC_239b2.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_239b2
+
+
+
+Determining if the include file stdarg.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_2d7c5 && [1/2] Building C object CMakeFiles/cmTC_2d7c5.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_2d7c5
+
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_04133 && [1/2] Building C object CMakeFiles/cmTC_04133.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_04133
+
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_f2501 && [1/2] Building C object CMakeFiles/cmTC_f2501.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_f2501
+
+
+
+Determining if the include file stdio.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_58ee6 && [1/2] Building C object CMakeFiles/cmTC_58ee6.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_58ee6
+
+
+
+Determining if the include file stdlib.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_b439b && [1/2] Building C object CMakeFiles/cmTC_b439b.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_b439b
+
+
+
+Determining if the include file string.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_57d0f && [1/2] Building C object CMakeFiles/cmTC_57d0f.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_57d0f
+
+
+
+Determining if the include file strings.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_d4d8a && [1/2] Building C object CMakeFiles/cmTC_d4d8a.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_d4d8a
+
+
+
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_ca01d && [1/2] Building C object CMakeFiles/cmTC_ca01d.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_ca01d
+
+
+
+Determining if the include file wchar.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_0f555 && [1/2] Building C object CMakeFiles/cmTC_0f555.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_0f555
+
+
+
+Determining if files stddef.h;stdarg.h;stdlib.h;string.h;stdio.h;wchar.h;float.h exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_4d85a && [1/2] Building C object CMakeFiles/cmTC_4d85a.dir/STDC_HEADERS.c.o
+[2/2] Linking C executable cmTC_4d85a
+
+
+
+Determining if the M_PI exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_2f09a && [1/2] Building C object CMakeFiles/cmTC_2f09a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2f09a
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef M_PI
+  return ((int*)(&M_PI))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test HAVE_MPROTECT succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_75d41 && [1/2] Building C object CMakeFiles/cmTC_75d41.dir/src.c.o
+[2/2] Linking C executable cmTC_75d41
+
+
+Source file was:
+#include <sys/types.h>
+                             #include <sys/mman.h>
+                             int main(void) { return 0; }
+Determining if the strtod exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_3690c && [1/2] Building C object CMakeFiles/cmTC_3690c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3690c
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strtod
+  return ((int*)(&strtod))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the malloc exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_d8242 && [1/2] Building C object CMakeFiles/cmTC_d8242.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_d8242
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef malloc
+  return ((int*)(&malloc))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the calloc exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_dc585 && [1/2] Building C object CMakeFiles/cmTC_dc585.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_dc585
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef calloc
+  return ((int*)(&calloc))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the realloc exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_04a78 && [1/2] Building C object CMakeFiles/cmTC_04a78.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_04a78
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef realloc
+  return ((int*)(&realloc))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the free exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_fbfbf && [1/2] Building C object CMakeFiles/cmTC_fbfbf.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_fbfbf
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef free
+  return ((int*)(&free))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the getenv exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_c2840 && [1/2] Building C object CMakeFiles/cmTC_c2840.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c2840
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef getenv
+  return ((int*)(&getenv))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the setenv exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_3b043 && [1/2] Building C object CMakeFiles/cmTC_3b043.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3b043
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef setenv
+  return ((int*)(&setenv))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the putenv exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_a44d1 && [1/2] Building C object CMakeFiles/cmTC_a44d1.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_a44d1
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef putenv
+  return ((int*)(&putenv))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the unsetenv exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_1b70d && [1/2] Building C object CMakeFiles/cmTC_1b70d.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_1b70d
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef unsetenv
+  return ((int*)(&unsetenv))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the bsearch exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_3a287 && [1/2] Building C object CMakeFiles/cmTC_3a287.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3a287
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef bsearch
+  return ((int*)(&bsearch))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the qsort exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5dbe1 && [1/2] Building C object CMakeFiles/cmTC_5dbe1.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5dbe1
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef qsort
+  return ((int*)(&qsort))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the abs exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_ad50c && [1/2] Building C object CMakeFiles/cmTC_ad50c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_ad50c
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef abs
+  return ((int*)(&abs))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the bcopy exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_e2d69 && [1/2] Building C object CMakeFiles/cmTC_e2d69.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_e2d69
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef bcopy
+  return ((int*)(&bcopy))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the memset exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_4f2bf && [1/2] Building C object CMakeFiles/cmTC_4f2bf.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4f2bf
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef memset
+  return ((int*)(&memset))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the memcpy exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_1849d && [1/2] Building C object CMakeFiles/cmTC_1849d.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_1849d
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef memcpy
+  return ((int*)(&memcpy))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the memmove exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_b8d80 && [1/2] Building C object CMakeFiles/cmTC_b8d80.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_b8d80
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef memmove
+  return ((int*)(&memmove))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the memcmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_761a5 && [1/2] Building C object CMakeFiles/cmTC_761a5.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_761a5
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef memcmp
+  return ((int*)(&memcmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strlen exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5ae61 && [1/2] Building C object CMakeFiles/cmTC_5ae61.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5ae61
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strlen
+  return ((int*)(&strlen))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the index exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_341a8 && [1/2] Building C object CMakeFiles/cmTC_341a8.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_341a8
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef index
+  return ((int*)(&index))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the rindex exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_652d1 && [1/2] Building C object CMakeFiles/cmTC_652d1.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_652d1
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef rindex
+  return ((int*)(&rindex))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strchr exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_9312e && [1/2] Building C object CMakeFiles/cmTC_9312e.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_9312e
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strchr
+  return ((int*)(&strchr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strrchr exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_afb94 && [1/2] Building C object CMakeFiles/cmTC_afb94.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_afb94
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strrchr
+  return ((int*)(&strrchr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strstr exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_23c74 && [1/2] Building C object CMakeFiles/cmTC_23c74.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_23c74
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strstr
+  return ((int*)(&strstr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strtok_r exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_0b421 && [1/2] Building C object CMakeFiles/cmTC_0b421.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_0b421
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strtok_r
+  return ((int*)(&strtok_r))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strtol exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_6afec && [1/2] Building C object CMakeFiles/cmTC_6afec.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_6afec
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strtol
+  return ((int*)(&strtol))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strtoul exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_ee085 && [1/2] Building C object CMakeFiles/cmTC_ee085.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_ee085
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strtoul
+  return ((int*)(&strtoul))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strtoll exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_0e343 && [1/2] Building C object CMakeFiles/cmTC_0e343.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_0e343
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strtoll
+  return ((int*)(&strtoll))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strtoull exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_0e0ca && [1/2] Building C object CMakeFiles/cmTC_0e0ca.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_0e0ca
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strtoull
+  return ((int*)(&strtoull))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the atoi exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_38e84 && [1/2] Building C object CMakeFiles/cmTC_38e84.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_38e84
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef atoi
+  return ((int*)(&atoi))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the atof exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_d19a0 && [1/2] Building C object CMakeFiles/cmTC_d19a0.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_d19a0
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef atof
+  return ((int*)(&atof))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strcmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_4468a && [1/2] Building C object CMakeFiles/cmTC_4468a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4468a
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strcmp
+  return ((int*)(&strcmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strncmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_c5c7c && [1/2] Building C object CMakeFiles/cmTC_c5c7c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c5c7c
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strncmp
+  return ((int*)(&strncmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strcasecmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_2d3b3 && [1/2] Building C object CMakeFiles/cmTC_2d3b3.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2d3b3
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strcasecmp
+  return ((int*)(&strcasecmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strncasecmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_a4545 && [1/2] Building C object CMakeFiles/cmTC_a4545.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_a4545
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strncasecmp
+  return ((int*)(&strncasecmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strcasestr exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_19d06 && [1/2] Building C object CMakeFiles/cmTC_19d06.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_19d06
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strcasestr
+  return ((int*)(&strcasestr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the wcscmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_bf21c && [1/2] Building C object CMakeFiles/cmTC_bf21c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_bf21c
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcscmp
+  return ((int*)(&wcscmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the wcsdup exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5a687 && [1/2] Building C object CMakeFiles/cmTC_5a687.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5a687
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcsdup
+  return ((int*)(&wcsdup))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the wcslen exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_f3450 && [1/2] Building C object CMakeFiles/cmTC_f3450.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_f3450
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcslen
+  return ((int*)(&wcslen))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the wcsncmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_00d65 && [1/2] Building C object CMakeFiles/cmTC_00d65.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_00d65
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcsncmp
+  return ((int*)(&wcsncmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the wcsstr exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_3cc07 && [1/2] Building C object CMakeFiles/cmTC_3cc07.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3cc07
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcsstr
+  return ((int*)(&wcsstr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the wcscasecmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_ea421 && [1/2] Building C object CMakeFiles/cmTC_ea421.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_ea421
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcscasecmp
+  return ((int*)(&wcscasecmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the wcsncasecmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_8c4d9 && [1/2] Building C object CMakeFiles/cmTC_8c4d9.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_8c4d9
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcsncasecmp
+  return ((int*)(&wcsncasecmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the sscanf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_03bd9 && [1/2] Building C object CMakeFiles/cmTC_03bd9.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_03bd9
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sscanf
+  return ((int*)(&sscanf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the vsscanf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_53f40 && [1/2] Building C object CMakeFiles/cmTC_53f40.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_53f40
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef vsscanf
+  return ((int*)(&vsscanf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the vsnprintf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_e0177 && [1/2] Building C object CMakeFiles/cmTC_e0177.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_e0177
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef vsnprintf
+  return ((int*)(&vsnprintf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the fopen64 exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_8b903 && [1/2] Building C object CMakeFiles/cmTC_8b903.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_8b903
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fopen64
+  return ((int*)(&fopen64))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the fseeko exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_05c0d && [1/2] Building C object CMakeFiles/cmTC_05c0d.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_05c0d
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fseeko
+  return ((int*)(&fseeko))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the fseeko64 exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_acf14 && [1/2] Building C object CMakeFiles/cmTC_acf14.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_acf14
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fseeko64
+  return ((int*)(&fseeko64))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the _Exit exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_84096 && [1/2] Building C object CMakeFiles/cmTC_84096.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_84096
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _Exit
+  return ((int*)(&_Exit))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the sigaction exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5dcb5 && [1/2] Building C object CMakeFiles/cmTC_5dcb5.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5dcb5
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <signal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sigaction
+  return ((int*)(&sigaction))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the setjmp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_6bcbe && [1/2] Building C object CMakeFiles/cmTC_6bcbe.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_6bcbe
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <setjmp.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef setjmp
+  return ((int*)(&setjmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the nanosleep exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_043eb && [1/2] Building C object CMakeFiles/cmTC_043eb.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_043eb
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <time.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef nanosleep
+  return ((int*)(&nanosleep))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the sysconf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_911d2 && [1/2] Building C object CMakeFiles/cmTC_911d2.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_911d2
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sysconf
+  return ((int*)(&sysconf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the getauxval exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_62e7a && [1/2] Building C object CMakeFiles/cmTC_62e7a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_62e7a
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/auxv.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef getauxval
+  return ((int*)(&getauxval))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the poll exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5a6a0 && [1/2] Building C object CMakeFiles/cmTC_5a6a0.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5a6a0
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <poll.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef poll
+  return ((int*)(&poll))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the memfd_create exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_21135 && [1/2] Building C object CMakeFiles/cmTC_21135.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_21135
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/mman.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef memfd_create
+  return ((int*)(&memfd_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the posix_fallocate exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_2f2a6 && [1/2] Building C object CMakeFiles/cmTC_2f2a6.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2f2a6
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <fcntl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef posix_fallocate
+  return ((int*)(&posix_fallocate))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the function pow exists in the m passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_8edf9 && [1/2] Building C object CMakeFiles/cmTC_8edf9.dir/CheckFunctionExists.c.o
+<command-line>: warning: conflicting types for built-in function ‘pow’; expected ‘double(double,  double)’ [-Wbuiltin-declaration-mismatch]
+/usr/share/cmake-3.22/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+    7 |   CHECK_FUNCTION_EXISTS(void);
+      |   ^~~~~~~~~~~~~~~~~~~~~
+/usr/share/cmake-3.22/Modules/CheckFunctionExists.c:1:1: note: ‘pow’ is declared in header ‘<math.h>’
+  +++ |+#include <math.h>
+    1 | #ifdef CHECK_FUNCTION_EXISTS
+[2/2] Linking C executable cmTC_8edf9
+
+
+
+Determining if the atan exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_89439 && [1/2] Building C object CMakeFiles/cmTC_89439.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_89439
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef atan
+  return ((int*)(&atan))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the atan2 exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_72aab && [1/2] Building C object CMakeFiles/cmTC_72aab.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_72aab
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef atan2
+  return ((int*)(&atan2))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the atanf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_b7a86 && [1/2] Building C object CMakeFiles/cmTC_b7a86.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_b7a86
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef atanf
+  return ((int*)(&atanf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the atan2f exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_74b3e && [1/2] Building C object CMakeFiles/cmTC_74b3e.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_74b3e
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef atan2f
+  return ((int*)(&atan2f))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the ceil exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_22595 && [1/2] Building C object CMakeFiles/cmTC_22595.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_22595
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef ceil
+  return ((int*)(&ceil))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the ceilf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_4dc1f && [1/2] Building C object CMakeFiles/cmTC_4dc1f.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4dc1f
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef ceilf
+  return ((int*)(&ceilf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the copysign exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_05042 && [1/2] Building C object CMakeFiles/cmTC_05042.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_05042
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef copysign
+  return ((int*)(&copysign))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the copysignf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_b3648 && [1/2] Building C object CMakeFiles/cmTC_b3648.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_b3648
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef copysignf
+  return ((int*)(&copysignf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the cos exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_3c6db && [1/2] Building C object CMakeFiles/cmTC_3c6db.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3c6db
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef cos
+  return ((int*)(&cos))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the cosf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_783b4 && [1/2] Building C object CMakeFiles/cmTC_783b4.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_783b4
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef cosf
+  return ((int*)(&cosf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the exp exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_f9139 && [1/2] Building C object CMakeFiles/cmTC_f9139.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_f9139
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef exp
+  return ((int*)(&exp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the expf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_07e4d && [1/2] Building C object CMakeFiles/cmTC_07e4d.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_07e4d
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef expf
+  return ((int*)(&expf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the fabs exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_50f45 && [1/2] Building C object CMakeFiles/cmTC_50f45.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_50f45
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fabs
+  return ((int*)(&fabs))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the fabsf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5afdf && [1/2] Building C object CMakeFiles/cmTC_5afdf.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5afdf
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fabsf
+  return ((int*)(&fabsf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the floor exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_c0ab4 && [1/2] Building C object CMakeFiles/cmTC_c0ab4.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c0ab4
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef floor
+  return ((int*)(&floor))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the floorf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_2daab && [1/2] Building C object CMakeFiles/cmTC_2daab.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2daab
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef floorf
+  return ((int*)(&floorf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the fmod exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_2b751 && [1/2] Building C object CMakeFiles/cmTC_2b751.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2b751
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fmod
+  return ((int*)(&fmod))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the fmodf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_bb6c8 && [1/2] Building C object CMakeFiles/cmTC_bb6c8.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_bb6c8
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fmodf
+  return ((int*)(&fmodf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the log exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_426b1 && [1/2] Building C object CMakeFiles/cmTC_426b1.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_426b1
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef log
+  return ((int*)(&log))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the logf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_e625c && [1/2] Building C object CMakeFiles/cmTC_e625c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_e625c
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef logf
+  return ((int*)(&logf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the log10 exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_db8f0 && [1/2] Building C object CMakeFiles/cmTC_db8f0.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_db8f0
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef log10
+  return ((int*)(&log10))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the log10f exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_f81f0 && [1/2] Building C object CMakeFiles/cmTC_f81f0.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_f81f0
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef log10f
+  return ((int*)(&log10f))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the lround exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_d0bf6 && [1/2] Building C object CMakeFiles/cmTC_d0bf6.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_d0bf6
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef lround
+  return ((int*)(&lround))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the lroundf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5adc5 && [1/2] Building C object CMakeFiles/cmTC_5adc5.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5adc5
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef lroundf
+  return ((int*)(&lroundf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the pow exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5c147 && [1/2] Building C object CMakeFiles/cmTC_5c147.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5c147
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pow
+  return ((int*)(&pow))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the powf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_38d3c && [1/2] Building C object CMakeFiles/cmTC_38d3c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_38d3c
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef powf
+  return ((int*)(&powf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the round exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_94771 && [1/2] Building C object CMakeFiles/cmTC_94771.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_94771
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef round
+  return ((int*)(&round))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the roundf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_fb44c && [1/2] Building C object CMakeFiles/cmTC_fb44c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_fb44c
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef roundf
+  return ((int*)(&roundf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the scalbn exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_8cffd && [1/2] Building C object CMakeFiles/cmTC_8cffd.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_8cffd
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef scalbn
+  return ((int*)(&scalbn))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the scalbnf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_4a542 && [1/2] Building C object CMakeFiles/cmTC_4a542.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4a542
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef scalbnf
+  return ((int*)(&scalbnf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the sin exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_7a06b && [1/2] Building C object CMakeFiles/cmTC_7a06b.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7a06b
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sin
+  return ((int*)(&sin))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the sinf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_4408b && [1/2] Building C object CMakeFiles/cmTC_4408b.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4408b
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sinf
+  return ((int*)(&sinf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the sqrt exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_03164 && [1/2] Building C object CMakeFiles/cmTC_03164.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_03164
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sqrt
+  return ((int*)(&sqrt))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the sqrtf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_13432 && [1/2] Building C object CMakeFiles/cmTC_13432.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_13432
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sqrtf
+  return ((int*)(&sqrtf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the tan exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_9d297 && [1/2] Building C object CMakeFiles/cmTC_9d297.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_9d297
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef tan
+  return ((int*)(&tan))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the tanf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_c4c24 && [1/2] Building C object CMakeFiles/cmTC_c4c24.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c4c24
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef tanf
+  return ((int*)(&tanf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the acos exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_4e6ce && [1/2] Building C object CMakeFiles/cmTC_4e6ce.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4e6ce
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef acos
+  return ((int*)(&acos))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the acosf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_031f6 && [1/2] Building C object CMakeFiles/cmTC_031f6.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_031f6
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef acosf
+  return ((int*)(&acosf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the asin exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_d6da1 && [1/2] Building C object CMakeFiles/cmTC_d6da1.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_d6da1
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef asin
+  return ((int*)(&asin))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the asinf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_6d409 && [1/2] Building C object CMakeFiles/cmTC_6d409.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_6d409
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef asinf
+  return ((int*)(&asinf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the trunc exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_e491e && [1/2] Building C object CMakeFiles/cmTC_e491e.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_e491e
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef trunc
+  return ((int*)(&trunc))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the truncf exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_7de64 && [1/2] Building C object CMakeFiles/cmTC_7de64.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7de64
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <math.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef truncf
+  return ((int*)(&truncf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test ICONV_IN_LIBC succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_fadee && [1/2] Building C object CMakeFiles/cmTC_fadee.dir/src.c.o
+[2/2] Linking C executable cmTC_fadee
+
+
+Source file was:
+
+        #define LIBICONV_PLUG 1 /* in case libiconv header is in include path */
+        #include <stddef.h>
+        #include <iconv.h>
+        int main(int argc, char **argv) {
+            return !iconv_open(NULL,NULL);
+        }
+Determining if the include file alloca.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_8edfc && [1/2] Building C object CMakeFiles/cmTC_8edfc.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_8edfc
+
+
+
+Determining if the alloca exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_3d585 && [1/2] Building C object CMakeFiles/cmTC_3d585.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3d585
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <alloca.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef alloca
+  return ((int*)(&alloca))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the alloca exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_ee647 && [1/2] Building C object CMakeFiles/cmTC_ee647.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_ee647
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef alloca
+  return ((int*)(&alloca))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test HAVE_SA_SIGACTION succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_29885 && [1/2] Building C object CMakeFiles/cmTC_29885.dir/src.c.o
+[2/2] Linking C executable cmTC_29885
+
+
+Source file was:
+
+#include <signal.h>
+
+int main()
+{
+  (void)sizeof(((struct sigaction *)0)->sa_sigaction);
+  return 0;
+}
+
+Determining if the dlopen exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_9aa23 && [1/2] Building C object CMakeFiles/cmTC_9aa23.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_9aa23
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <dlfcn.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef dlopen
+  return ((int*)(&dlopen))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test HAVE_O_CLOEXEC succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_b23dc && [1/2] Building C object CMakeFiles/cmTC_b23dc.dir/src.c.o
+[2/2] Linking C executable cmTC_b23dc
+
+
+Source file was:
+
+    #include <fcntl.h>
+    int flag = O_CLOEXEC;
+    int main(int argc, char **argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_OSS_SYS_SOUNDCARD_H succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_828e0 && [1/2] Building C object CMakeFiles/cmTC_828e0.dir/src.c.o
+[2/2] Linking C executable cmTC_828e0
+
+
+Source file was:
+
+        #include <sys/soundcard.h>
+        int main(int argc, char **argv) { int arg = SNDCTL_DSP_SETFRAGMENT; return 0; }
+Determining if the shmat exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_84695 && [1/2] Building C object CMakeFiles/cmTC_84695.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_84695
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/shm.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef shmat
+  return ((int*)(&shmat))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test HAVE_XGENERICEVENT succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_1923f && [1/2] Building C object CMakeFiles/cmTC_1923f.dir/src.c.o
+[2/2] Linking C executable cmTC_1923f
+
+
+Source file was:
+
+          #include <X11/Xlib.h>
+          int main(int argc, char **argv) {
+            Display *display;
+            XEvent event;
+            XGenericEventCookie *cookie = &event.xcookie;
+            XNextEvent(display, &event);
+            XGetEventData(display, cookie);
+            XFreeEventData(display, cookie);
+            return 0; }
+Determining if the XkbKeycodeToKeysym exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_4b509 && [1/2] Building C object CMakeFiles/cmTC_4b509.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4b509
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <X11/Xlib.h>
+#include <X11/XKBlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef XkbKeycodeToKeysym
+  return ((int*)(&XkbKeycodeToKeysym))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test HAVE_XINPUT2_MULTITOUCH succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_56e33 && [1/2] Building C object CMakeFiles/cmTC_56e33.dir/src.c.o
+[2/2] Linking C executable cmTC_56e33
+
+
+Source file was:
+
+            #include <X11/Xlib.h>
+            #include <X11/Xproto.h>
+            #include <X11/extensions/XInput2.h>
+            int event_type = XI_TouchBegin;
+            XITouchClassInfo *t;
+            Status XIAllowTouchEvents(Display *a,int b,unsigned int c,Window d,int f) {
+              return (Status)0;
+            }
+            int main(int argc, char **argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_XFIXES_H succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_b30a4 && [1/2] Building C object CMakeFiles/cmTC_b30a4.dir/src.c.o
+[2/2] Linking C executable cmTC_b30a4
+
+
+Source file was:
+
+            #include <X11/Xlib.h>
+            #include <X11/Xproto.h>
+            #include <X11/extensions/XInput2.h>
+            #include <X11/extensions/Xfixes.h>
+            BarrierEventID b;
+            int main(int argc, char **argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_OPENGL_EGL succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_3bab8 && [1/2] Building C object CMakeFiles/cmTC_3bab8.dir/src.c.o
+[2/2] Linking C executable cmTC_3bab8
+
+
+Source file was:
+
+        #define EGL_API_FB
+        #define MESA_EGL_NO_X11_HEADERS
+        #define EGL_NO_X11
+        #include <EGL/egl.h>
+        #include <EGL/eglext.h>
+        int main (int argc, char** argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_OPENGL_GLX succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_3d2d8 && [1/2] Building C object CMakeFiles/cmTC_3d2d8.dir/src.c.o
+[2/2] Linking C executable cmTC_3d2d8
+
+
+Source file was:
+
+        #include <GL/glx.h>
+        int main(int argc, char** argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_OPENGL succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_2560d && [1/2] Building C object CMakeFiles/cmTC_2560d.dir/src.c.o
+[2/2] Linking C executable cmTC_2560d
+
+
+Source file was:
+
+        #include <GL/gl.h>
+        #include <GL/glext.h>
+        int main(int argc, char** argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_OPENGLES_V1 succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_95488 && [1/2] Building C object CMakeFiles/cmTC_95488.dir/src.c.o
+[2/2] Linking C executable cmTC_95488
+
+
+Source file was:
+
+        #include <GLES/gl.h>
+        #include <GLES/glext.h>
+        int main (int argc, char** argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_OPENGLES_V2 succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_7ea6f && [1/2] Building C object CMakeFiles/cmTC_7ea6f.dir/src.c.o
+[2/2] Linking C executable cmTC_7ea6f
+
+
+Source file was:
+
+        #include <GLES2/gl2.h>
+        #include <GLES2/gl2ext.h>
+        int main (int argc, char** argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_LINUX_INPUT_H succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_1d1fb && [1/2] Building C object CMakeFiles/cmTC_1d1fb.dir/src.c.o
+[2/2] Linking C executable cmTC_1d1fb
+
+
+Source file was:
+
+        #include <linux/input.h>
+        #ifndef EVIOCGNAME
+        #error EVIOCGNAME() ioctl not available
+        #endif
+        int main(int argc, char** argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_INPUT_KD succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_5cae9 && [1/2] Building C object CMakeFiles/cmTC_5cae9.dir/src.c.o
+[2/2] Linking C executable cmTC_5cae9
+
+
+Source file was:
+
+          #include <linux/kd.h>
+          #include <linux/keyboard.h>
+          #include <sys/ioctl.h>
+          int main(int argc, char **argv) {
+              struct kbentry kbe;
+              kbe.kb_table = KG_CTRL;
+              ioctl(0, KDGKBENT, &kbe);
+              return 0;
+          }
+Determining if the include file libudev.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_e5011 && [1/2] Building C object CMakeFiles/cmTC_e5011.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_e5011
+
+
+
+Determining if the include file sys/inotify.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_2f0a3 && [1/2] Building C object CMakeFiles/cmTC_2f0a3.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_2f0a3
+
+
+
+Determining if the inotify_init exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_89a11 && [1/2] Building C object CMakeFiles/cmTC_89a11.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_89a11
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/inotify.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef inotify_init
+  return ((int*)(&inotify_init))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the inotify_init1 exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_a46d5 && [1/2] Building C object CMakeFiles/cmTC_a46d5.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_a46d5
+
+
+File /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/inotify.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef inotify_init1
+  return ((int*)(&inotify_init1))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test HAVE_PTHREADS succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_a8a9c && [1/2] Building C object CMakeFiles/cmTC_a8a9c.dir/src.c.o
+[2/2] Linking C executable cmTC_a8a9c
+
+
+Source file was:
+
+      #include <pthread.h>
+      int main(int argc, char** argv) {
+        pthread_attr_t type;
+        pthread_attr_init(&type);
+        return 0;
+      }
+Performing C SOURCE FILE Test HAVE_RECURSIVE_MUTEXES succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_0c905 && [1/2] Building C object CMakeFiles/cmTC_0c905.dir/src.c.o
+[2/2] Linking C executable cmTC_0c905
+
+
+Source file was:
+
+        #include <pthread.h>
+        int main(int argc, char **argv) {
+          pthread_mutexattr_t attr;
+          pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+          return 0;
+        }
+Performing C SOURCE FILE Test HAVE_PTHREADS_SEM succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_bdd7a && [1/2] Building C object CMakeFiles/cmTC_bdd7a.dir/src.c.o
+[2/2] Linking C executable cmTC_bdd7a
+
+
+Source file was:
+#include <pthread.h>
+                                 #include <semaphore.h>
+                                 int main(int argc, char **argv) { return 0; }
+Performing C SOURCE FILE Test HAVE_SEM_TIMEDWAIT succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_1ae32 && [1/2] Building C object CMakeFiles/cmTC_1ae32.dir/src.c.o
+/home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/src.c: In function ‘main’:
+/home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/src.c:5:19: warning: argument 1 null where non-null expected [-Wnonnull]
+    5 |                   sem_timedwait(NULL, NULL);
+      |                   ^~~~~~~~~~~~~
+In file included from /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/src.c:3:
+/usr/include/semaphore.h:63:12: note: in a call to function ‘sem_timedwait’ declared ‘nonnull’
+   63 | extern int sem_timedwait (sem_t *__restrict __sem,
+      |            ^~~~~~~~~~~~~
+/home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/src.c:5:19: warning: argument 2 null where non-null expected [-Wnonnull]
+    5 |                   sem_timedwait(NULL, NULL);
+      |                   ^~~~~~~~~~~~~
+In file included from /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp/src.c:3:
+/usr/include/semaphore.h:63:12: note: in a call to function ‘sem_timedwait’ declared ‘nonnull’
+   63 | extern int sem_timedwait (sem_t *__restrict __sem,
+      |            ^~~~~~~~~~~~~
+[2/2] Linking C executable cmTC_1ae32
+
+
+Source file was:
+
+              #include <pthread.h>
+              #include <semaphore.h>
+              int main(int argc, char **argv) {
+                  sem_timedwait(NULL, NULL);
+                  return 0;
+              }
+Determining if files pthread.h exist passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_a3d60 && [1/2] Building C object CMakeFiles/cmTC_a3d60.dir/HAVE_PTHREAD_H.c.o
+[2/2] Linking C executable cmTC_a3d60
+
+
+
+Performing C SOURCE FILE Test HAVE_PTHREAD_SETNAME_NP succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_e5f43 && [1/2] Building C object CMakeFiles/cmTC_e5f43.dir/src.c.o
+[2/2] Linking C executable cmTC_e5f43
+
+
+Source file was:
+
+            #include <pthread.h>
+            int main(int argc, char **argv) {
+              #ifdef __APPLE__
+              pthread_setname_np("");
+              #else
+              pthread_setname_np(pthread_self(),"");
+              #endif
+              return 0;
+            }
+Determining if the function clock_gettime exists in the c passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_7d0b8 && [1/2] Building C object CMakeFiles/cmTC_7d0b8.dir/CheckFunctionExists.c.o
+[2/2] Linking C executable cmTC_7d0b8
+
+
+
+Determining if the include file linux/version.h exists passed with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_9ee8b && [1/2] Building C object CMakeFiles/cmTC_9ee8b.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_9ee8b
+
+
+
+Performing C SOURCE FILE Test HAVE_ENABLE_NEW_DTAGS succeeded with the following output:
+Change Dir: /home/david/Desktop/PickEngine/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_f6a95 && [1/2] Building C object CMakeFiles/cmTC_f6a95.dir/src.c.o
+[2/2] Linking C executable cmTC_f6a95
+
+
+Source file was:
+int main(void) { return 0; }
