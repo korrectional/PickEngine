@@ -3,12 +3,14 @@
 
 
 #include <iostream>
+#include <string>
 #include "glad/glad.h"
 #include "objProcessor.h"
 //#include "renderer.h"
 
 
 
+bool playing;
 
 int gameObjectCount = 0;
 int UIObjectCount = 0;
@@ -83,7 +85,6 @@ private:
     GLuint VAO;
     //int VAOnum;
     int pointCount;
-    bool textured;
     int viewLoc;
     glm::mat4 model;
     glm::mat4 view;
@@ -134,11 +135,11 @@ private:
 -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
 -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 
-
     };
 
 public:    
-    const char* tag;
+    std::string tag;
+    bool textured;
     float vertices[6]; 
     GLfloat color[3] = {0,0,0};
 
@@ -146,6 +147,8 @@ public:
     float rotation[4] = {0,0.1,0,0};
     bool staticCollider;
     int texNum;
+
+    bool enabled = true;
 
     float initCollisionBox[6] = {
         0.5,-0.5,//x
@@ -163,9 +166,9 @@ public:
         0.5,-0.5 //z
     };
     
+
     
-    
-    void create(const char* tag_, float transform_[3], float rotation_[4], GLfloat color_[3], bool textured_, int texNum_ ,float* initCollisionBox_ = nullptr ,bool staticCollider_=false)
+    void create(std::string tag_, float transform_[3], float rotation_[4], GLfloat color_[3], bool textured_, int texNum_ ,float* initCollisionBox_ = nullptr ,bool staticCollider_=false)
     {
 
 
@@ -271,9 +274,11 @@ public:
 
     void renderObject(GLuint shader, unsigned int* texture, GLuint VAO_, glm::mat4 view_)
     {
+        if(!enabled){return;}
+
+        glUseProgram(shader);
         if(textured){
 
-            glUseProgram(shader);
             glBindTexture(GL_TEXTURE_2D, texture[texNum]);
         }
 
@@ -298,6 +303,8 @@ public:
 
     void renderGizmoObject(GLuint shader, GLuint VAO_, glm::mat4 view_)
     {
+        if(!enabled){return;}
+
         glUseProgram(shader);
         
 
@@ -343,6 +350,7 @@ public:
 
     //////////////////////////////UTILITY//////////////////////////////////////////////////////////
     void updateCollider(bool except){
+        if(!enabled){return;}
         if(!staticCollider||except){
             for(int i=0;i<6;i=i+2){
                 collisionBox[i] = transform[i/2]+initCollisionBox[i];
@@ -414,7 +422,9 @@ public:
     
     
     
-    void onCollision(int objectNumber){
+    void onCollision(int objectNumber, int targetNumber){
+        if(!enabled){return;}
+
         if(alreadyCollided){
             return;
         }
@@ -422,8 +432,8 @@ public:
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Here you specify what to do based on the objectNumber
-        std::cout<<"COLLLLIISION!!!";
-        if(objectNumber == 1){
+        std::cout<<"Collision: "<<objectNumber;
+        if(objectNumber == 1 && targetNumber == 1){
             // if 1, do something
         }
     }
@@ -469,6 +479,24 @@ public:
     {
         for(int i=0;i<4;i++){color[i] = color_[i];}
     }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
 
@@ -476,6 +504,38 @@ public:
 
 GameObject objectArray[1000];
 GameObject UIObjectArray[100];
+
+
+
+
+void deleteObject(int objectNumber)
+{
+    for(int i = objectNumber; i < gameObjectCount-1; i++){
+        objectArray[i] = objectArray[i+1];
+    }
+    gameObjectCount--;
+    return;
+}
+
+void disableAll(){
+    for(int i = 1; i < gameObjectCount; i++){
+        objectArray[i].enabled = false;
+    }
+}
+
+void deleteAll()
+{
+    int gameObjectCountBuffer = gameObjectCount;
+    for(int i = 1; i<gameObjectCountBuffer;i++)
+    {
+        deleteObject(i);
+    }
+}
+
+
+
+
+
 
 
 

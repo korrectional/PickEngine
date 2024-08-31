@@ -13,6 +13,7 @@
 #include <assimp/postprocess.h>
 #include "objProcessor.h"
 #include "time.h"
+#include "userInterface.h"
 
 
 
@@ -81,6 +82,8 @@ int main()
 
 
         render.renderLoop(visionMode);
+        UI::renderUserInterface();
+        SDL_GL_SwapWindow(render.window); // render loop
 
 
         gameRunDelta = timeClock.returnTick();

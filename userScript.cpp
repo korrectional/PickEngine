@@ -18,7 +18,7 @@ void Boot(){
 
 
 void Loop(){
-    objectArray[0].force3(0,0,-0.005);
+    //objectArray[0].force3(0,0,-0.005);
 
     objectArray[1].force3(0,0.01,0);
 

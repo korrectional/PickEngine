@@ -22,6 +22,7 @@ void gameObjectCreation(){
     objectArray[gameObjectCount].create("cube2", transform, rotation, red, true, 1);
     objectArray[gameObjectCount].create("cube3", transform, rotation, red, true, 0); 
     objectArray[gameObjectCount].create("cube4", transform, rotation, red, true, 2); 
+    
 
     
 
@@ -105,7 +106,6 @@ void viewConLoop(){
 
 
 void viewLoop(){
-
 
 
 

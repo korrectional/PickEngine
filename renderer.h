@@ -18,17 +18,16 @@
 #include "light.h"
 #include "shader.h"
 
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 
 
-bool playing;
 
 
 
-void interface();
 
 
 
@@ -125,8 +124,8 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         gladLoadGL();
         
         //102, 153, 255
-        //glClearColor(0.4f,0.6f,1.0f,1.0f);
-        glClearColor(0.0f,0.0f,0.0f,0.0f);
+        glClearColor(0.4f,0.6f,1.0f,1.0f);
+        //glClearColor(0.0f,0.0f,0.0f,0.0f);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         SDL_GL_SwapWindow(window);
         glViewport(0,0,sX,sY);
@@ -365,6 +364,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
         glUseProgram(mainShader.ID);
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        mainShader.setVec3("viewPos", camera.gameObject.transform); 
 
         glUseProgram(gizmoShader.ID);
         glUniformMatrix4fv(projectionLocGizmo, 1, GL_FALSE, glm::value_ptr(projection));
@@ -416,25 +416,6 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 
-        // ImGui
-
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplSDL2_NewFrame();
-        ImGui::NewFrame();
-
-        interface();
-
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-        
-
-
-            
-
-        
-
-        SDL_GL_SwapWindow(window);
-
 
     }
 
@@ -452,297 +433,6 @@ renderer render;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// gameobject craeteion
-char tagg[] = "nametag";
-float transform[3] = {0,0,0};
-float rotationdir[3] = {0,0,0};
-float rotangle = 1.0f;
-float rotation[4] = {0,0,0,0};
-float colorRBG[3] = {0,255,0};
-float colorPick;
-GLfloat color[4] = {0,1.0,0,1.0};
-int texnum = 0;
-
-
-
-
-
-bool showGameObject;
-bool showDebugPanel;
-float aha = 1.04;
-float buffer;
-bool startWindowOpen = true;
-bool createGameObjectOpen = false;
-bool editGameObjectOpen = false;
-
-
-void interface(){
-    
-
-    ImGui::Begin("Menu");
-
-    if(startWindowOpen){
-
-        ImGui::Begin("Startup");
-
-        ImGui::SeparatorText("PickEngine");
-        ImGui::Text("This is my game engine");
-        ImGui::TextLinkOpenURL("Please star my github project", "https://github.com/korrectional/PickEngine");
-
-        if(ImGui::TreeNode("tips")){
-            ImGui::Text("To change vision modes press P");
-            ImGui::Text("To move use WASD and the arrow");
-            ImGui::Text("keys for camera rotation");
-            ImGui::TreePop();
-        }
-
-        if(ImGui::Button("Close")){
-            startWindowOpen = false;
-        }
-
-        ImGui::End();
-    }
-
-
-    ImGui::Checkbox("Play" , &playing);
-
-
-
-    if(ImGui::BeginMenu("Items")){
-        ImGui::MenuItem("GameObject editor", NULL, &showGameObject);
-        ImGui::MenuItem("Debug tools", NULL, &showDebugPanel);
-
-        ImGui::EndMenu();
-    }
-
-
-
-
-
-
-    //ImGui::CloseCurrentPopup();
-
-
-    // various screens:
-    int selectedGameObject = 0;
-    if(showGameObject){
-        ImGui::Begin("GameObjects");
-    
-        for(int i = 0; i < gameObjectCount; i++){
-            
-            
-            if(ImGui::TreeNode(objectArray[i].tag)){
-
-
-                buffer = objectArray[i].transform[0];
-                ImGui::InputFloat("#", &buffer);
-                objectArray[i].transform[0] = buffer;
-                buffer = objectArray[i].transform[1];
-                ImGui::InputFloat("##", &buffer);
-                objectArray[i].transform[1] = buffer;
-                buffer = objectArray[i].transform[2];
-                ImGui::InputFloat("###", &buffer);
-                objectArray[i].transform[2] = buffer;
-
-
-                if(ImGui::Button("Edit GameObject")){
-                    selectedGameObject = i;
-                    editGameObjectOpen = true;
-                }
-
-                
-                ImGui::TreePop();
-            }
-
-        }
-
-        if(ImGui::Button("Create GameObject")){
-            createGameObjectOpen = true;
-        }
-
-
-        ImGui::End();
-
-    }
-
-    // Create GameObject
-
-    if(createGameObjectOpen){
-        ImGui::Begin("Create");
-
-
-        ImGui::InputText("nametag", tagg, sizeof(tagg));
-        ImGui::InputFloat3("transform", transform);
-        ImGui::InputFloat3("rotation", rotationdir);
-        ImGui::InputFloat("angle", &rotangle);
-        //ImGui::ColorPicker4("Pick color", &colorPick);
-        ImGui::InputFloat3("RGB color", colorRBG);
-        color[0] = colorRBG[0]/255;color[1] = colorRBG[1]/255;color[2] = colorRBG[2]/255;
-        ImGui::InputInt("texture number", &texnum);
-
-
-
-
-        if(ImGui::Button("Create")){
-            char* taggg = new char[strlen(tagg)+1];    
-            strcpy(taggg, tagg);
-            memset(tagg, '#', sizeof(tagg));
-            std::cout<<taggg<<"\n";
-
-            rotation[0] = rotangle;
-            rotation[1] = rotationdir[0];
-            rotation[2] = rotationdir[1];
-            rotation[3] = rotationdir[2];
-            if(rotation[1] == 0&&rotation[2] == 0&&rotation[3] == 0){rotation[1] = 1.0;}
-
-            objectArray[gameObjectCount].create(taggg, transform, rotation, color, true, texnum, nullptr, false);
-            //std::cout<<taggg<<"\n"<<transform[0]<<"\n"<<transform[1]<<"\n"<<transform[2]<<"\n"<<rotation[0]<<"\n"<<rotation[1]<<"\n"<<rotation[2]<<"\n"<<rotation[3]<<"\n";
-
-
-
-            float transform[3] = {0.0f,2.0f,-3.0f};
-            float rotation[4] = {0.0f,0.1f,0.0f,0.0f};
-            GLfloat red[4] = {1.0f,1.0f,0.0f,1.0f}; 
-            //objectArray[gameObjectCount].create("CUBE4", transform, rotation, red, true, 2, nullptr, false); 
-
-            
-
-
-
-            render.objectRenderSet();
-            createGameObjectOpen = false;
-        }
-
-
-
-        if(ImGui::Button("Close")){
-            createGameObjectOpen = false;
-        }
-        ImGui::End();
-
-    }
-
-
-    // show gameobject editor
-    float trBuffer[3];
-    float anBuffer;
-    int texBuffer;
-
-    if(editGameObjectOpen){
-        ImGui::Begin("Edit GameObject");
-
-
-        //ImGui::Text(objectArray[selectedGameObject].tag);
-        trBuffer[0] = objectArray[selectedGameObject].transform[0];trBuffer[1] = objectArray[selectedGameObject].transform[1];trBuffer[2] = objectArray[selectedGameObject].transform[2];
-        ImGui::InputFloat3("transform", trBuffer);
-        objectArray[selectedGameObject].transform[0] = trBuffer[0];objectArray[selectedGameObject].transform[1] = trBuffer[1];objectArray[selectedGameObject].transform[2] = trBuffer[2];
-        
-
-        trBuffer[0] = objectArray[selectedGameObject].rotation[1];trBuffer[1] = objectArray[selectedGameObject].rotation[2];trBuffer[2] = objectArray[selectedGameObject].rotation[3];
-        ImGui::InputFloat3("rotation", trBuffer);
-        objectArray[selectedGameObject].rotation[1] = trBuffer[0];objectArray[selectedGameObject].rotation[2] = trBuffer[1];objectArray[selectedGameObject].rotation[3] = trBuffer[2];
-
-        anBuffer = objectArray[selectedGameObject].rotation[0];
-        ImGui::InputFloat("angle", &anBuffer);
-        objectArray[selectedGameObject].rotation[0] = anBuffer;
-
-        trBuffer[0] = objectArray[selectedGameObject].color[0];trBuffer[1] = objectArray[selectedGameObject].color[1];trBuffer[2] = objectArray[selectedGameObject].color[2];
-        ImGui::InputFloat3("color", trBuffer);
-        objectArray[selectedGameObject].color[0] = trBuffer[0];objectArray[selectedGameObject].color[1] = trBuffer[1];objectArray[selectedGameObject].color[2] = trBuffer[2];
-
-        texBuffer = objectArray[selectedGameObject].texNum;
-        ImGui::InputInt("texture number", &texBuffer);
-        objectArray[selectedGameObject].texNum = texBuffer;
-
-        objectArray[0].collisionBox;
-
-
-
-        if(ImGui::Button("Close")){
-            editGameObjectOpen = false;
-        }
-        ImGui::End();
-    }
-
-
-    // show gizmo pannel
-
-    if(showDebugPanel)
-    {
-        ImGui::Begin("Gizmos");
-
-        int fps = 1000/timeClock.delta;
-        ImGui::Text("FPS: %d", fps);
-        ImGui::Text("TPS: %d", timeClock.delta);
-        ImGui::Checkbox("Colliders", &render.showCollisionGizmo);
-
-        
-
-        ImGui::End();
-    }
-
-
-    ImGui::End();
-
-}
 
 
 

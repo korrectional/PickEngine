@@ -39,8 +39,8 @@ public:
                         g = 10;
                     }
                     if(g == 5){
-                        objectArray[i].onCollision(i);
-                        objectArray[d].onCollision(d);
+                        objectArray[i].onCollision(i, d);
+                        objectArray[d].onCollision(d, i);
                         goBackTransform(i,d, false);
                     }
                 }

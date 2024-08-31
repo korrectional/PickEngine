@@ -208,6 +208,5 @@ public:
 };
 
 
-UI ui;
 
 
