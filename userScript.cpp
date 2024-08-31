@@ -1,10 +1,9 @@
 #include <iostream>
 #include <SDL2/SDL.h>
-#include "glad.h"
-#include "UI.h"
+#include "glad/glad.h"
 #include "renderer.h"
-#include "GameObject.h"
-#include "Camera.h"
+#include "gameObject.h"
+#include "camera.h"
 #include "input.h"
 
 void Boot(){
@@ -19,18 +18,14 @@ void Boot(){
 
 
 void Loop(){
-    float transform__[3] = {0,0.01f,0};
-    objectArray[0].force(transform__);
+    objectArray[0].force3(0,0,-0.005);
 
-    float transform___[3] = {0,0,0.01};
-    objectArray[1].force(transform___);
-
-    
-    
-    
+    objectArray[1].force3(0,0.01,0);
 
 
+    objectArray[2].force3(0,0,0.02);
 
+    objectArray[3].force3(0,0,0.03);
 
     
 
@@ -63,10 +58,6 @@ void Loop(){
     }
 
 
-    //float rotation___[4] = {2.0,0.7,0.4,0.2};
-    //objectArray[0].rotate(rotation___);
-    //float rotation____[4] = {3.0,0.3,0.5,0};
-    //objectArray[1].rotate(rotation____);
 }
 
 

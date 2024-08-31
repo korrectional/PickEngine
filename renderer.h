@@ -8,18 +8,15 @@
 
 #include <iostream>
 #include <string>
-#include <cstring>  // For strcpy and strlen
 
 #include <SDL2/SDL.h>
-#include "glad.h"
-#include "UI.h"
-#include "GameObject.h"
-#include "Camera.h"
-#include "stb_image_implementation.h"
-
-
-
-
+#include "glad/glad.h"
+#include "gameObject.h"
+#include "camera.h"
+#include "stb/stb_image.h"
+#include "time.h"
+#include "light.h"
+#include "shader.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -27,6 +24,7 @@
 
 
 
+bool playing;
 
 
 
@@ -35,7 +33,9 @@ void interface();
 
 
 
-
+Shader mainShader;
+Shader gizmoShader;
+Shader sunShader;
 
 
 
@@ -45,66 +45,6 @@ void interface();
 
 class renderer{
 private:
-    const char *vertexShaderSource = "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "layout (location = 1) in vec2 aTexCoord;\n"
-        "uniform mat4 model;\n"
-        "uniform mat4 view;\n"
-        "uniform mat4 projection;\n"
-        "uniform mat4 rotation;\n"
-        "out vec2 TexCoord;\n"
-
-
-
-        "void main()\n"
-        "{\n"
-        "   gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
-        "   TexCoord = aTexCoord;\n"
-        "}\0";
-
-
-
-    const char* fragmentShaderSource = "#version 330 core\n"
-        "out vec4 FragColor;\n"
-        "uniform vec4 color;\n"
-        "in vec2 TexCoord;\n"
-        "uniform sampler2D ourTexture;\n"
-
-        "void main()\n"
-        "{\n"
-        "   FragColor = vec4(texture(ourTexture, TexCoord))*vec4(color);\n"
-        "}\n\0";
-
-
-
-
-
-
-
-    const char *vertexShaderSourceGizmo = "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "uniform mat4 model;\n"
-        "uniform mat4 view;\n"
-        "uniform mat4 projection;\n"
-        "uniform mat4 rotation;\n"
-
-
-
-        "void main()\n"
-        "{\n"
-        "   gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
-        "}\0";
-
-
-
-    const char* fragmentShaderSourceGizmo = "#version 330 core\n"
-        "out vec4 FragColor;\n"
-        "uniform vec4 color;\n"
-
-        "void main()\n"
-        "{\n"
-        "   FragColor = vec4(color);\n"
-        "}\n\0";
 
 
 
@@ -115,83 +55,30 @@ private:
 
 
 
-
-
-
-    const char *vertexShaderSourceUI = "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "uniform mat4 view;\n"
-
-        "void main()\n"
-        "{\n"
-        "   gl_Position = view*vec4(aPos.x,aPos.y,aPos.z,1.0f);\n"
-        "}\0";
-
-
-    const char* fragmentShaderSourceUI = "#version 330 core\n"
-        "out vec4 FragColor;\n"
-        "uniform vec4 color;\n"
-        "void main()\n"
-        "{\n"
-        "   FragColor = color;\n"
-        "}\n\0";
 
 
     // Text
 
-    const char *vertexShaderSourceText = "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "uniform vec2 pos;\n"
 
 
 
-        "void main()\n"
-        "{\n"
-        "   gl_Position = vec4(aPos.x+pos.x,aPos.y+pos.y,aPos.z,1.0f);\n"
-        "}\0";
-
-
-
-
-    const char* fragmentShaderSourceText = "#version 330 core\n"
-        "out vec4 FragColor;\n"
-        "uniform vec4 color;\n"
-        "void main()\n"
-        "{\n"
-        "   FragColor = color;\n"
-        "}\n\0";
 
 
 
     int sX;
     int sY;
 
-    GLuint vertexShader;
-    GLuint fragmentShader;
-    GLuint shaderProgram;
-    GLuint vertexShaderGizmo;
-    GLuint fragmentShaderGizmo;
-    GLuint shaderProgramGizmo;
-    GLuint vertexShaderUI;
-    GLuint fragmentShaderUI;
-    GLuint vertexShaderText;
-    GLuint fragmentShaderText;
     GLuint VAO[1000], VBO[1000]; 
-    GLuint shaderProgramUI;
-    GLuint shaderProgramText;
-    GLuint VAOtxt[1000], VBOtxt[1000]; //txt
-    GLuint vertexShaderTex;
-    GLuint fragmentShaderTex;
-    GLuint shaderProgramTex;
-    unsigned int texture[10];
+    GLuint VAOtxt[1000], VBOtxt[1000]; //gizmos
+    unsigned int texture[100];
     float FOV = 90;
 
 
     void createTextures(){
         // TIME TO CREATE TEXTURE OBJECT!!!
-        createTexture(0,"../wall.png");
-        createTexture(1,"../letuce.png");
-        createTexture(2,"../windows.png");
+        createTexture(0,"../assets/wall.png");
+        createTexture(1,"../assets/letuce.png");
+        createTexture(2,"../assets/windows.png");
 
     }
 
@@ -208,9 +95,6 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 
-
-    // set vars
-    UI ui;
 
 
 
@@ -241,7 +125,8 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         gladLoadGL();
         
         //102, 153, 255
-        glClearColor(0.4f,0.6f,1.0f,1.0f);
+        //glClearColor(0.4f,0.6f,1.0f,1.0f);
+        glClearColor(0.0f,0.0f,0.0f,0.0f);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         SDL_GL_SwapWindow(window);
         glViewport(0,0,sX,sY);
@@ -257,119 +142,16 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 
-
-
-        // Creating shader program
-        vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-        glCompileShader(vertexShader);
-
-            
-        int  success;
-        char infoLog[512];
-        glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-        if(!success)
-        {
-            glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-            std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-        }
-
-
-
-        fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-        glCompileShader(fragmentShader);
-
-        shaderProgram = glCreateProgram();
-        glAttachShader(shaderProgram, vertexShader);
-        glAttachShader(shaderProgram, fragmentShader);
-        glLinkProgram(shaderProgram);
-
-        glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
-
-
-
-
-
-
-
-        // Gizmo
-        vertexShaderGizmo = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShaderGizmo, 1, &vertexShaderSourceGizmo, NULL);
-        glCompileShader(vertexShaderGizmo);
-
-            
-
-        glGetShaderiv(vertexShaderGizmo, GL_COMPILE_STATUS, &success);
-        if(!success)
-        {
-            glGetShaderInfoLog(vertexShaderGizmo, 512, NULL, infoLog);
-            std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-        }
-
-
-
-        fragmentShaderGizmo = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShaderGizmo, 1, &fragmentShaderSourceGizmo, NULL);
-        glCompileShader(fragmentShaderGizmo);
-
-        shaderProgramGizmo = glCreateProgram();
-        glAttachShader(shaderProgramGizmo, vertexShaderGizmo);
-        glAttachShader(shaderProgramGizmo, fragmentShaderGizmo);
-        glLinkProgram(shaderProgramGizmo);
-
-        glDeleteShader(vertexShaderGizmo);
-        glDeleteShader(fragmentShaderGizmo);
-
-
-
-
-    //  UI SHADER
-
-        vertexShaderUI = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShaderUI, 1, &vertexShaderSourceUI, NULL);
-        glCompileShader(vertexShaderUI);
-
-        fragmentShaderUI = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShaderUI, 1, &fragmentShaderSourceUI, NULL);
-        glCompileShader(fragmentShaderUI);
-
-        shaderProgramUI = glCreateProgram();
-        glAttachShader(shaderProgramUI, vertexShaderUI);
-        glAttachShader(shaderProgramUI, fragmentShaderUI);
-        glLinkProgram(shaderProgramUI);
-
-        glDeleteShader(vertexShaderUI);
-        glDeleteShader(fragmentShaderUI);
-
-
-
-
-
-
-        int pixelLoc = glGetUniformLocation(shaderProgramUI, "color");
-        glUniform4f(pixelLoc, 0.5f,0.5f,0.5f,1);
-
-    // UI SHADER DONE
+        mainShader.ShaderInitialize("/home/david/Desktop/PickEngine/shaders/mainShader.vs","/home/david/Desktop/PickEngine/shaders/mainShader.fs");
+        gizmoShader.ShaderInitialize("/home/david/Desktop/PickEngine/shaders/gizmoShader.vs","/home/david/Desktop/PickEngine/shaders/gizmoShader.fs");
+        sunShader.ShaderInitialize("/home/david/Desktop/PickEngine/shaders/sunShader.vs","/home/david/Desktop/PickEngine/shaders/sunShader.fs");
 
 
 
         
+        
 
 
-
-
-
-                
-       // float texCoords[] = {                       // TEXTURES!!!!!
-       //     -1.0f, 1.0f, 0.0f,   0.0f, 1.0f,
-       //     -1.0f, 0.9f, 0.0f,   1.0f, 1.0f,
-       //     -0.75f, 1.0f, 0.0f,   0.0f, 0.0f,
-       //     -1.0f, 0.9f, 0.0f,   1.0f, 1.0f,
-       //     -0.75f, 1.0f, 0.0f,   0.0f, 0.0f,
-       //     -0.75f, 0.9f, 0.0f,   1.0f, 0.0f
-       // };
 
        
 
@@ -423,10 +205,6 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 
-        // One-time UI settings
-        glUseProgram(shaderProgramUI);  
-        int colorUILoc = glGetUniformLocation(shaderProgramUI, "color");
-        glUniform4f(colorUILoc, 0.5f, 0.5f, 0.5f, 0.5f);
 
         
 
@@ -457,10 +235,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
             objectArray[i].createRenderObject(36*5, VAO[i],VBO[i]);
             objectArray[i].createGizmoRenderObject(36*5, VAOtxt[i],VBOtxt[i]);
         }
-        // UI
-        //for(int i=0;i<UIObjectCount;i++){
-        //    UIObjectArray[i].createRenderUI(button,VAO[gameObjectCount+i+1],VBO[gameObjectCount+i+1]);
-        //}
+
 
     }
 
@@ -485,65 +260,6 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void initializeText()
-    {
-// shader start
-        vertexShaderText = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShaderText, 1, &vertexShaderSourceText, NULL);
-        glCompileShader(vertexShaderText);
-
-            
-        int  successUI;
-        char infoLogUI[512];
-        glGetShaderiv(vertexShaderText, GL_COMPILE_STATUS, &successUI);
-        if(!successUI)
-        {
-            glGetShaderInfoLog(vertexShaderText, 512, NULL, infoLogUI);
-            std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLogUI << std::endl;
-        }
-
-
-
-        fragmentShaderText = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShaderText, 1, &fragmentShaderSourceText, NULL);
-        glCompileShader(fragmentShaderText);
-
-        shaderProgramText = glCreateProgram();
-        glAttachShader(shaderProgramText, vertexShaderText);
-        glAttachShader(shaderProgramText, fragmentShaderText);
-        glLinkProgram(shaderProgramText);
-
-        glDeleteShader(vertexShaderText);
-        glDeleteShader(fragmentShaderText);
-// shader done
-
-
-        GLfloat block[] = {
-            -1, 1, 0,
-            -0.99, 1, 0,
-            -1, 0.99, 0,
-            -0.99, 1, 0,
-            -1, 0.99, 0,
-            -0.99, 0.99, 0
-        };
-        
-
-
-        
-
-
-        // Text settings
-        glUseProgram(shaderProgramText);
-        int pixelLoc = glGetUniformLocation(shaderProgramText, "color");
-        glUniform4f(pixelLoc, 1,1,1,1);
-
-        glUseProgram(shaderProgramText);
-        int posLoc = glGetUniformLocation(shaderProgramText, "pos");
-        glUniform2f(posLoc,0,0);
-
-
-        
-    };
 
 
     void createTexture(int texNum, const char* texPath){
@@ -574,29 +290,29 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
     glm::mat4 projection;
     int projectionLoc;
     int projectionLocGizmo;
+    int projectionLocSun;
     
     void setFOV(){
         // set FOV
-        glUseProgram(shaderProgram);
+        glUseProgram(mainShader.ID);
         projection = glm::perspective(glm::radians(FOV), float(sX) / float(sY), 0.1f, 100.0f);
-        projectionLoc = glGetUniformLocation(shaderProgram, "projection");
+        projectionLoc = glGetUniformLocation(mainShader.ID, "projection");
 
 
         glm::mat4 view = glm::mat4(1.0f);
         view = glm::translate(view, glm::vec3(0,0,-3.0f)); 
-        int viewLoc = glGetUniformLocation(shaderProgram, "view");
+        int viewLoc = glGetUniformLocation(mainShader.ID, "view");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
 
 
-        glUseProgram(shaderProgramGizmo);
-        projectionLocGizmo = glGetUniformLocation(shaderProgramGizmo, "projection");
-//
-//
-        view = glm::mat4(1.0f);
-        view = glm::translate(view, glm::vec3(0,0,-3.0f)); 
-        viewLoc = glGetUniformLocation(shaderProgramGizmo, "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUseProgram(gizmoShader.ID);
+        glUniformMatrix4fv(glGetUniformLocation(gizmoShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        projectionLocGizmo = glGetUniformLocation(gizmoShader.ID, "projection");
+
+        glUseProgram(sunShader.ID);
+        glUniformMatrix4fv(glGetUniformLocation(sunShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        projectionLocSun = glGetUniformLocation(sunShader.ID, "projection");
 
 
 
@@ -606,6 +322,7 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         
     }
     bool boola = true;
+    float lightPosition[3] = {10.0f,10.0f,10.0f};
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -617,7 +334,15 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     void renderLoop(int visionMode)
     {
-
+        glUseProgram(mainShader.ID);
+        float color[3] = {1.0f,1.0f,1.0f};
+        mainShader.setVec3("lightColor", color);
+        
+        lightPosition[0] = objectArray[0].transform[0];
+        lightPosition[1] = objectArray[0].transform[1];
+        lightPosition[2] = objectArray[0].transform[2];
+        
+        mainShader.setVec3("lightPos", lightPosition);
 
 
 
@@ -638,11 +363,14 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
 
-        glUseProgram(shaderProgram);
+        glUseProgram(mainShader.ID);
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-        glUseProgram(shaderProgramGizmo);
+        glUseProgram(gizmoShader.ID);
         glUniformMatrix4fv(projectionLocGizmo, 1, GL_FALSE, glm::value_ptr(projection));
+
+        glUseProgram(sunShader.ID);
+        glUniformMatrix4fv(projectionLocSun, 1, GL_FALSE, glm::value_ptr(projection));
 
 
 
@@ -662,48 +390,26 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
         //////////////////////////////////////////////////DRAWDRAW/////////////////////////////
         
         glEnable(GL_DEPTH_TEST);  // Scene
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-        for(int i=0;i<gameObjectCount;i++){
-            objectArray[i].renderObject(shaderProgram, texture, VAO[i],view);
+        glUseProgram(sunShader.ID);
+        objectArray[0].renderObject(sunShader.ID, 0, VAO[0],view);
+        
+        for(int i=1;i<gameObjectCount;i++){
+            objectArray[i].renderObject(mainShader.ID, texture, VAO[i],view);
         }
 
 
 
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        glDisable(GL_DEPTH_TEST);  
 
         if(showCollisionGizmo){
 
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-            glDisable(GL_DEPTH_TEST);  
 
             for(int i=0;i<gameObjectCount;i++){
-                objectArray[i].renderGizmoObject(shaderProgramGizmo, VAOtxt[i],view);
+                objectArray[i].renderGizmoObject(gizmoShader.ID, VAOtxt[i],view);
             }
         }
         
-        glDisable(GL_DEPTH_TEST);  
-
-
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-
-        //for(int i=0;i<UIObjectCount;i++){
-        //    UIObjectArray[i].renderUI(shaderProgramUI, VAO[gameObjectCount+i+1]);
-        //}
-
-
-        
-
-        // Text
-        //char text2render[12] = "PICK ENGINE";
-        //ui.RenderText(shaderProgramText, VAOtxt[0], text2render,sizeof(text2render), 0.01,0.01, 1.0f);
-        //char* objectNamae = objectArray[0].tag;
-        //std::cout<<objectArray[0].tag<<" namae\n";
-        //ui.RenderText(shaderProgramText, VAOtxt[1], objectArray[0].tag,sizeof(objectNamae), 0.01,0.1, 1.0f);
-        //char objectName[8];
-        //ui.RenderText(shaderProgramText, VAOtxt[1], objectName,sizeof(objectName), 0.01,0.2, 1.0f, 1, objectArray[0].transform[0]);
-        //ui.RenderText(shaderProgramText, VAOtxt[1], objectName,sizeof(objectName), 0.01,0.3, 1.0f, 1, objectArray[0].transform[1]);
-        //ui.RenderText(shaderProgramText, VAOtxt[1], objectName,sizeof(objectName), 0.01,0.4, 1.0f, 1, objectArray[0].transform[2]);
 
 
         
@@ -711,7 +417,6 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
         // ImGui
-
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplSDL2_NewFrame();
@@ -725,6 +430,8 @@ public: /////////////////////////////////////BEGIN//////////////////////////////
 
 
             
+
+        
 
         SDL_GL_SwapWindow(window);
 
@@ -819,7 +526,7 @@ int texnum = 0;
 
 
 bool showGameObject;
-bool showGizmoPanel;
+bool showDebugPanel;
 float aha = 1.04;
 float buffer;
 bool startWindowOpen = true;
@@ -861,7 +568,7 @@ void interface(){
 
     if(ImGui::BeginMenu("Items")){
         ImGui::MenuItem("GameObject editor", NULL, &showGameObject);
-        ImGui::MenuItem("Gizmos", NULL, &showGizmoPanel);
+        ImGui::MenuItem("Debug tools", NULL, &showDebugPanel);
 
         ImGui::EndMenu();
     }
@@ -947,7 +654,7 @@ void interface(){
             if(rotation[1] == 0&&rotation[2] == 0&&rotation[3] == 0){rotation[1] = 1.0;}
 
             objectArray[gameObjectCount].create(taggg, transform, rotation, color, true, texnum, nullptr, false);
-            std::cout<<taggg<<"\n"<<transform[0]<<"\n"<<transform[1]<<"\n"<<transform[2]<<"\n"<<rotation[0]<<"\n"<<rotation[1]<<"\n"<<rotation[2]<<"\n"<<rotation[3]<<"\n";
+            //std::cout<<taggg<<"\n"<<transform[0]<<"\n"<<transform[1]<<"\n"<<transform[2]<<"\n"<<rotation[0]<<"\n"<<rotation[1]<<"\n"<<rotation[2]<<"\n"<<rotation[3]<<"\n";
 
 
 
@@ -1018,10 +725,13 @@ void interface(){
 
     // show gizmo pannel
 
-    if(showGizmoPanel)
+    if(showDebugPanel)
     {
         ImGui::Begin("Gizmos");
 
+        int fps = 1000/timeClock.delta;
+        ImGui::Text("FPS: %d", fps);
+        ImGui::Text("TPS: %d", timeClock.delta);
         ImGui::Checkbox("Colliders", &render.showCollisionGizmo);
 
         

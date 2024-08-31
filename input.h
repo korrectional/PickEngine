@@ -4,10 +4,8 @@
 
     #include <iostream>
     #include <SDL2/SDL.h>
-    #include "glad.h"
-    #include "UI.h"
-    #include "GameObject.h"
-    #include "Camera.h"
+    #include "gameObject.h"
+    #include "camera.h"
     #include "renderer.h"
 
 

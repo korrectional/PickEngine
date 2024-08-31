@@ -1,18 +1,18 @@
 #include <iostream>
 #include <SDL2/SDL.h>
-#include "glad.h"
-#include "glad.c"
-#include "UI.h"
+#include "glad/glad.h"
+#include "glad/glad.c"
 #include "renderer.h"
-#include "GameObject.h"
-#include "Camera.h"
+#include "gameObject.h"
+#include "camera.h"
 #include "input.h"
-#include "PickPhysics.h"
+#include "pickPhysics.h"
 #include "userScript.cpp"
 #include "viewScript.cpp"
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include "objProcessor.h"
+#include "time.h"
 
 
 
@@ -43,7 +43,6 @@ int main()
     // INITIALIZATION
     camera.initialize(false, 500, 500);
     render.initializeRenderer(500, 500);
-    render.initializeText();
     
     
     //Input input;
@@ -54,9 +53,12 @@ int main()
     //Boot();
     viewBoot();
 
+    int gameRunDelta;
 
     while (1)
 	{
+        timeClock.tick();
+
         input.getEvents();
         if(exitProgram){
             break;
@@ -75,9 +77,22 @@ int main()
             viewConLoop();
             viewLoop();
         }
+
+
+
         render.renderLoop(visionMode);
-        SDL_Delay(17);
+
+
+        gameRunDelta = timeClock.returnTick();
+        
+        if(gameRunDelta < 17){
+            SDL_Delay(17 - gameRunDelta);
+        }
 	}
+
+
+
+
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
