@@ -6,37 +6,37 @@
 },
 {
   "directory": "/home/david/Desktop/PickEngine/build",
-  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/imgui-master/imgui_demo.cpp.o -c /home/david/Desktop/PickEngine/imgui-master/imgui_demo.cpp",
-  "file": "/home/david/Desktop/PickEngine/imgui-master/imgui_demo.cpp"
+  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/third-party/imgui-master/imgui_demo.cpp.o -c /home/david/Desktop/PickEngine/third-party/imgui-master/imgui_demo.cpp",
+  "file": "/home/david/Desktop/PickEngine/third-party/imgui-master/imgui_demo.cpp"
 },
 {
   "directory": "/home/david/Desktop/PickEngine/build",
-  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/imgui-master/imgui_draw.cpp.o -c /home/david/Desktop/PickEngine/imgui-master/imgui_draw.cpp",
-  "file": "/home/david/Desktop/PickEngine/imgui-master/imgui_draw.cpp"
+  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/third-party/imgui-master/imgui_draw.cpp.o -c /home/david/Desktop/PickEngine/third-party/imgui-master/imgui_draw.cpp",
+  "file": "/home/david/Desktop/PickEngine/third-party/imgui-master/imgui_draw.cpp"
 },
 {
   "directory": "/home/david/Desktop/PickEngine/build",
-  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/imgui-master/imgui_impl_opengl3.cpp.o -c /home/david/Desktop/PickEngine/imgui-master/imgui_impl_opengl3.cpp",
-  "file": "/home/david/Desktop/PickEngine/imgui-master/imgui_impl_opengl3.cpp"
+  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/third-party/imgui-master/imgui_impl_opengl3.cpp.o -c /home/david/Desktop/PickEngine/third-party/imgui-master/imgui_impl_opengl3.cpp",
+  "file": "/home/david/Desktop/PickEngine/third-party/imgui-master/imgui_impl_opengl3.cpp"
 },
 {
   "directory": "/home/david/Desktop/PickEngine/build",
-  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/imgui-master/imgui_impl_sdl2.cpp.o -c /home/david/Desktop/PickEngine/imgui-master/imgui_impl_sdl2.cpp",
-  "file": "/home/david/Desktop/PickEngine/imgui-master/imgui_impl_sdl2.cpp"
+  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/third-party/imgui-master/imgui_impl_sdl2.cpp.o -c /home/david/Desktop/PickEngine/third-party/imgui-master/imgui_impl_sdl2.cpp",
+  "file": "/home/david/Desktop/PickEngine/third-party/imgui-master/imgui_impl_sdl2.cpp"
 },
 {
   "directory": "/home/david/Desktop/PickEngine/build",
-  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/imgui-master/imgui_tables.cpp.o -c /home/david/Desktop/PickEngine/imgui-master/imgui_tables.cpp",
-  "file": "/home/david/Desktop/PickEngine/imgui-master/imgui_tables.cpp"
+  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/third-party/imgui-master/imgui_tables.cpp.o -c /home/david/Desktop/PickEngine/third-party/imgui-master/imgui_tables.cpp",
+  "file": "/home/david/Desktop/PickEngine/third-party/imgui-master/imgui_tables.cpp"
 },
 {
   "directory": "/home/david/Desktop/PickEngine/build",
-  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/imgui-master/imgui_widgets.cpp.o -c /home/david/Desktop/PickEngine/imgui-master/imgui_widgets.cpp",
-  "file": "/home/david/Desktop/PickEngine/imgui-master/imgui_widgets.cpp"
+  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/third-party/imgui-master/imgui_widgets.cpp.o -c /home/david/Desktop/PickEngine/third-party/imgui-master/imgui_widgets.cpp",
+  "file": "/home/david/Desktop/PickEngine/third-party/imgui-master/imgui_widgets.cpp"
 },
 {
   "directory": "/home/david/Desktop/PickEngine/build",
-  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/imgui-master/imgui.cpp.o -c /home/david/Desktop/PickEngine/imgui-master/imgui.cpp",
-  "file": "/home/david/Desktop/PickEngine/imgui-master/imgui.cpp"
+  "command": "/usr/bin/g++ -I/usr/include/SDL2 -I/home/david/Desktop/PickEngine/imgui -g -o CMakeFiles/PickEngine.dir/third-party/imgui-master/imgui.cpp.o -c /home/david/Desktop/PickEngine/third-party/imgui-master/imgui.cpp",
+  "file": "/home/david/Desktop/PickEngine/third-party/imgui-master/imgui.cpp"
 }
 ]

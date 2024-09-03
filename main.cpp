@@ -1,36 +1,39 @@
 #include <iostream>
 #include <SDL2/SDL.h>
-#include "glad/glad.h"
-#include "glad/glad.c"
-#include "renderer.h"
-#include "gameObject.h"
-#include "camera.h"
-#include "input.h"
-#include "pickPhysics.h"
-#include "userScript.cpp"
-#include "viewScript.cpp"
+#include "third-party/glad/glad.h"
+#include "third-party/glad/glad.c"
+#include "Engine/renderer.h"
+#include "Engine/renderer.cpp"
+#include "Engine/shader.h"
+#include "Engine/shader.cpp"
+#include "Engine/gameObject.h"
+#include "Engine/gameObject.cpp"
+#include "Engine/camera.h"
+#include "Engine/camera.cpp"
+#include "Events/input.h"
+#include "Events/input.cpp"
+#include "Events/time.h"
+#include "Events/time.cpp"
+
+#include "Engine/pickPhysics.h"
+#include "Engine/pickPhysics.cpp"
+#include "user-scripts/userScript.cpp"
+#include "user-scripts/viewScript.cpp"
+#include "user-scripts/gameObjectCreation.cpp"
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-#include "objProcessor.h"
-#include "time.h"
-#include "userInterface.h"
-
-
-
-
-// /#include <glm/glm.hpp>
-// /#include <glm/gtc/matrix_transform.hpp>
-// /#include <glm/gtc/type_ptr.hpp>
+#include "Tools/objProcessor.h"
+#include "Tools/userInterface.h"
+#include "Tools/saveData.h"
+#include "Tools/saveData.cpp"
 
 
 
 
 
 
-//                Create shader code 
-// set vars
-//renderer render; in renderer.h
-PickPhysics physics;
+ 
+
 
 
 int main()
@@ -46,7 +49,6 @@ int main()
     render.initializeRenderer(500, 500);
     
     
-    //Input input;
 
 
 
@@ -72,7 +74,7 @@ int main()
             viewConLoop();
 
 
-            physics.collisionLoop();
+            PICKPHYSICS::collisionLoop();
         }
         else{
             viewConLoop();

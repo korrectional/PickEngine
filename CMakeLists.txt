@@ -16,23 +16,23 @@ set(SourceFiles
 
 set(IMGUI_SOURCES
     
-    imgui-master/imconfig.h
-    imgui-master/imgui_demo.cpp
-    imgui-master/imgui_draw.cpp
-    imgui-master/imgui_impl_opengl3_loader.h
-    imgui-master/imgui_impl_opengl3.cpp
-    imgui-master/imgui_impl_opengl3.h
-    imgui-master/imgui_impl_sdl2.cpp
-    imgui-master/imgui_impl_sdl2.h
-    imgui-master/imgui_internal.h
-    imgui-master/imgui_tables.cpp
-    imgui-master/imgui_widgets.cpp
-    imgui-master/imgui.cpp
-    imgui-master/imgui.h
-    imgui-master/imstb_rectpack.h
-    imgui-master/imstb_textedit.h
-    imgui-master/imstb_truetype.h
-    imgui-master/LICENSE.txt
+    third-party/imgui-master/imconfig.h
+    third-party/imgui-master/imgui_demo.cpp
+    third-party/imgui-master/imgui_draw.cpp
+    third-party/imgui-master/imgui_impl_opengl3_loader.h
+    third-party/imgui-master/imgui_impl_opengl3.cpp
+    third-party/imgui-master/imgui_impl_opengl3.h
+    third-party/imgui-master/imgui_impl_sdl2.cpp
+    third-party/imgui-master/imgui_impl_sdl2.h
+    third-party/imgui-master/imgui_internal.h
+    third-party/imgui-master/imgui_tables.cpp
+    third-party/imgui-master/imgui_widgets.cpp
+    third-party/imgui-master/imgui.cpp
+    third-party/imgui-master/imgui.h
+    third-party/imgui-master/imstb_rectpack.h
+    third-party/imgui-master/imstb_textedit.h
+    third-party/imgui-master/imstb_truetype.h
+    third-party/imgui-master/LICENSE.txt
 )
 
 

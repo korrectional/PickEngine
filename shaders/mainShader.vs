@@ -6,12 +6,13 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 uniform mat4 rotation;
+uniform mat4 scale;
 out vec2 TexCoord;
 out vec3 Normal;
 out vec3 FragPos;
 void main()
 {
-   gl_Position = projection*view*model*vec4(aPos,1.0f);
+   gl_Position = projection*view*model*scale*vec4(aPos,1.0f);
    FragPos = vec3(model * vec4(aPos, 1.0));
    Normal = aNormal;
    TexCoord = aTexCoord;
