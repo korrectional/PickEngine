@@ -195,7 +195,7 @@ void userInterface(){
         ImGui::End();
 
     }
-
+    
 
     // show gameobject editor
     float trBuffer[3];
@@ -204,8 +204,7 @@ void userInterface(){
 
     if(editGameObjectOpen){
         ImGui::Begin("Edit GameObject");
-        const char* charName = objectArray[selectedGameObject].name.c_str();
-        ImGui::Text(charName);
+        ImGui::Text("%s",objectArray[selectedGameObject].name.c_str());
 
         bool buffer = objectArray[selectedGameObject].enabled;
         ImGui::Checkbox("Enabled", &buffer);
