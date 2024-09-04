@@ -305,6 +305,7 @@ int tryFind(std::string objectName)
         }
     }
     std::cout<<"\ngameObject.cpp: Cannot find object with name "<<objectName<<std::endl;
+    return 1;
 }
 
 
