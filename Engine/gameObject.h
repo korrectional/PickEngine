@@ -169,8 +169,9 @@ void deleteObject(int objectNumber);
 void deleteAll();
 
 int find(std::string objectName);
+int tryFind(std::string objectName);
 
-
+std::string checkForNames(std::string name);
 
 
 

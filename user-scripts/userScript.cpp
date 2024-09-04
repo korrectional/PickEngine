@@ -19,10 +19,9 @@ void Boot(){
 
 void Loop(){
     objectArray[0].force3(0,0,-0.005);
-    objectArray[GAMEOBJECT::find("cube1")].force3(0,0.01,0);
-    objectArray[GAMEOBJECT::find("cube2")].force3(0,0,0.02);
-    //objectArray[GAMEOBJECT::find("cube3")].force3(0,0,0.03);
-    objectArray[GAMEOBJECT::find("cube3")].scale3(1.01,1.01,1.01);
+    objectArray[GAMEOBJECT::tryFind("cube1")].force3(0,0.01,0);
+    objectArray[GAMEOBJECT::tryFind("cube2")].force3(0,0,0.02);
+    objectArray[GAMEOBJECT::tryFind("cube3")].scale3(1.01,1.01,1.01);
 
     
 

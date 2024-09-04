@@ -123,30 +123,13 @@ void userInterface(){
         ImGui::Begin("GameObjects");
     
         for(int i = 0; i < gameObjectCount; i++){
-            
-            
-            if(ImGui::TreeNode(objectArray[i].name.c_str())){
 
 
-                buffer = objectArray[i].transform[0];
-                ImGui::InputFloat("#", &buffer);
-                objectArray[i].transform[0] = buffer;
-                buffer = objectArray[i].transform[1];
-                ImGui::InputFloat("##", &buffer);
-                objectArray[i].transform[1] = buffer;
-                buffer = objectArray[i].transform[2];
-                ImGui::InputFloat("###", &buffer);
-                objectArray[i].transform[2] = buffer;
-
-
-                if(ImGui::Button("Edit GameObject")){
-                    selectedGameObject = i;
-                    editGameObjectOpen = true;
-                }
-
-                
-                ImGui::TreePop();
+            if(ImGui::Button(objectArray[i].name.c_str())){
+                selectedGameObject = i;
+                editGameObjectOpen = true;
             }
+            
 
         }
 
@@ -221,14 +204,15 @@ void userInterface(){
 
     if(editGameObjectOpen){
         ImGui::Begin("Edit GameObject");
+        const char* charName = objectArray[selectedGameObject].name.c_str();
+        ImGui::Text(charName);
 
         bool buffer = objectArray[selectedGameObject].enabled;
         ImGui::Checkbox("Enabled", &buffer);
         objectArray[selectedGameObject].enabled = buffer;
 
-        //ImGui::Text(objectArray[selectedGameObject].tag);
         trBuffer[0] = objectArray[selectedGameObject].transform[0];trBuffer[1] = objectArray[selectedGameObject].transform[1];trBuffer[2] = objectArray[selectedGameObject].transform[2];
-        ImGui::InputFloat3("transform", trBuffer);
+        ImGui::InputFloat3("position", trBuffer);
         objectArray[selectedGameObject].transform[0] = trBuffer[0];objectArray[selectedGameObject].transform[1] = trBuffer[1];objectArray[selectedGameObject].transform[2] = trBuffer[2];
         
 
@@ -253,7 +237,11 @@ void userInterface(){
         ImGui::InputInt("texture number", &texBuffer);
         objectArray[selectedGameObject].texNum = texBuffer;
 
-        for(int i = 0; i<6;i++){std::cout<<objectArray[selectedGameObject].collisionBox[i]<<"\n";}
+
+        ImGui::Checkbox("Collsion enabled", &objectArray[selectedGameObject].collisionsEnabled);
+        ImGui::Checkbox("isTrigger", &objectArray[selectedGameObject].isTrigger);
+
+
         
 
         objectArray[selectedGameObject].updateColliderScale();

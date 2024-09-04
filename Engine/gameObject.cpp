@@ -30,14 +30,11 @@ void GameObject::create(std::string name_, float transform_[3], float rotation_[
     }
     textured = textured_;
     texNum = texNum_;
-    name = name_;
     collisionsEnabled = collisionsEnabled_;
     isTrigger = isTrigger_;
 
+    name = checkForNames(name_);;
 
-    //if(textured){
-    //    texture
-    //}
     updateCollider(true);
 }
 
@@ -112,6 +109,7 @@ void GameObject::renderObject(GLuint shader, unsigned int* texture, GLuint VAO_,
     glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
     
     model = glm::mat4(1.0f);
+    if(rotation[1]==0&&rotation[2]==0&&rotation[3]==0){rotation[1]=0.1;}
     model = glm::rotate(model, glm::radians(rotation[0]), glm::vec3(rotation[1],rotation[2],rotation[3])); 
     glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
@@ -138,6 +136,10 @@ void GameObject::renderGizmoObject(GLuint shader, GLuint VAO_, glm::mat4 view_)
     model = glm::mat4(1.0f);
     model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f,0.0f,0.0f)); 
     glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+    glm::mat4 scale = glm::mat4(1.0f); 
+    scale = glm::scale(scale, glm::vec3(scaleValue[0], scaleValue[1], scaleValue[2]));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "scale"), 1, GL_FALSE, glm::value_ptr(scale)); 
     
     glUniform4f(glGetUniformLocation(shader, "color"), 0.0,1.0,0.0,1.0); // MAKING COLOR
     glBindVertexArray(VAO_);
@@ -290,6 +292,35 @@ int find(std::string objectName)
             return i;
         }
     }
-    std::cerr<<"Cannot find object with name "<<objectName<<std::endl;
+    std::cerr<<"\ngameObject.cpp: Cannot find object with name "<<objectName<<std::endl;
     std::exit(EXIT_FAILURE);
+}
+
+int tryFind(std::string objectName)
+{
+    for(int i = 1; i < gameObjectCount; i++)
+    {
+        if(objectArray[i].name == objectName){
+            return i;
+        }
+    }
+    std::cout<<"\ngameObject.cpp: Cannot find object with name "<<objectName<<std::endl;
+}
+
+
+std::string checkForNames(std::string name)
+{
+    int count = 0;
+    std::string nameSave;
+    nameSave = name;
+    for(int i = 0; i < gameObjectCount; i++)
+    {
+        if(objectArray[i].name == name)
+        {
+            count ++;
+            name = nameSave + "(" + std::to_string(count) + ")";
+            i = 0;
+        }
+    }
+    return name;
 }
