@@ -16,7 +16,7 @@
 #include "../third-party/stb/stb_image.h"
 #include "time.h"
 #include "shader.h"
-
+#include "audioPlayer.h"
 
 
 
@@ -57,13 +57,7 @@ private:
     float FOV = 90;
 
 
-    void createTextures(){
-        // TIME TO CREATE TEXTURE OBJECT!!!
-        createTexture(0,"../assets/wall.png");
-        createTexture(1,"../assets/letuce.png");
-        createTexture(2,"../assets/windows.png");
-
-    }
+    void createTextures();
 
 
 

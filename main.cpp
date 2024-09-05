@@ -17,6 +17,7 @@
 
 #include "Engine/pickPhysics.h"
 #include "Engine/pickPhysics.cpp"
+#include "Engine/audioPlayer.h"
 #include "user-scripts/userScript.cpp"
 #include "user-scripts/viewScript.cpp"
 #include "user-scripts/gameObjectCreation.cpp"
@@ -31,14 +32,12 @@
 
 
 
-
  
 
 
 
 int main()
 {
-    
 
     //ObjPross::ProcessOBJ("/home/david/Desktop/PickEngine/Humanoid.obj");
 
@@ -57,6 +56,7 @@ int main()
     viewBoot();
 
     int gameRunDelta;
+    AUDIOPLAYER::playSound("/home/david/Desktop/PickEngine/assets/ShinChan-ep6.wav");
 
     while (1)
 	{

@@ -1,10 +1,19 @@
-
 #include <iostream>
 #include <string>
 
 #include "renderer.h"
 
 
+
+
+void Renderer::createTextures(){
+        // TIME TO CREATE TEXTURE OBJECT!!!
+        createTexture(0,"../assets/wall.png");
+        createTexture(1,"../assets/letuce.png");
+        createTexture(2,"../assets/windows.png");
+        createTexture(3,"../assets/metalContainer.png");
+
+}
 
 
 
@@ -18,6 +27,7 @@ void Renderer::initializeRenderer(float sX_, float sY_)
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,16);
     SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_AUDIO);
     window = SDL_CreateWindow("PickEngine",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sX, sY, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, 0); 
     glcontext = SDL_GL_CreateContext(window);
@@ -26,7 +36,9 @@ void Renderer::initializeRenderer(float sX_, float sY_)
         SDL_SetWindowMouseGrab(window,SDL_TRUE);
         SDL_ShowCursor(SDL_DISABLE);
     }
+
     
+
     gladLoadGL();
     
     //102, 153, 255
