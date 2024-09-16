@@ -26,6 +26,7 @@ private:
     GLuint VAO;
     //int VAOnum;
     int pointCount;
+    int pointCountG;
     int viewLoc;
     glm::mat4 model;
     glm::mat4 view;
@@ -44,7 +45,7 @@ public:
     float rotation[4] = {0,0.1,0,0};
     float scaleValue[3] = {1,1,1};
     int texNum;
-    GLfloat vertices[288];
+    GLfloat vertices[7152];
 
     bool collisionsEnabled = true;
     bool isTrigger = false;

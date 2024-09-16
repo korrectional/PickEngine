@@ -39,7 +39,7 @@
 int main()
 {
 
-    //ObjPross::ProcessOBJ("/home/david/Desktop/PickEngine/Humanoid.obj");
+    //loadModel();
 
 
     gameObjectCreation();
@@ -51,12 +51,12 @@ int main()
 
 
 
-
     //Boot();
     viewBoot();
 
     int gameRunDelta;
-    AUDIOPLAYER::playSound("/home/david/Desktop/PickEngine/assets/ShinChan-ep6.wav");
+    Audio shinChan("/home/david/Desktop/PickEngine/assets/ShinChan-ep6.wav");
+    shinChan.play(1);
 
     while (1)
 	{

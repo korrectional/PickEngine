@@ -53,7 +53,7 @@ void viewConLoop(){
     }
 }
 
-
+float speed = 0.2f;
 
 void viewLoop(){
 
@@ -62,27 +62,27 @@ void viewLoop(){
     // cam control
     camera.defaultCameraCommandLoop(upPressed,downPressed,leftPressed,rightPressed, 0.9, 0.9);
     if(wPressed == true){
-        float transform____[3]={0,0,-0.1f};
+        float transform____[3]={0,0,-0.1f*speed};
         camera.force(transform____);
     }
     if(sPressed == true){
-        float transform____[3]={0,0,0.1f};
+        float transform____[3]={0,0,0.1f*speed};
         camera.force(transform____);
     }
     if(aPressed == true){
-        float transform____[3]={-0.1f,0,0};
+        float transform____[3]={-0.1f*speed,0,0};
         camera.force(transform____);
     }
     if(dPressed == true){
-        float transform____[3]={0.1f,0,0};
+        float transform____[3]={0.1f*speed,0,0};
         camera.force(transform____);
     }
     if(spPressed == true){
-        float transform____[3]={0,0.1f,0};
+        float transform____[3]={0,0.1f*speed,0};
         camera.force(transform____);
     }
     if(shPressed == true){
-        float transform____[3]={0,-0.1f,0};
+        float transform____[3]={0,-0.1f*speed,0};
         camera.force(transform____);
     }
 }
