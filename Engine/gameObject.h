@@ -35,7 +35,7 @@ private:
     int locVAO;
     int locVBO;
 
-public:    
+public:   
     std::string name;
     bool textured;
     GLfloat color[3] = {0,0,0};
@@ -45,7 +45,8 @@ public:
     float rotation[4] = {0,0.1,0,0};
     float scaleValue[3] = {1,1,1};
     int texNum;
-    GLfloat vertices[7152];
+    
+    std::string modelFile;
 
     bool collisionsEnabled = true;
     bool isTrigger = false;
@@ -71,7 +72,7 @@ public:
 
 
     
-    void create(std::string name_, float transform_[3], float rotation_[4], GLfloat color_[3], bool textured_, int texNum_ , float scale_[3] = nullptr, float* initCollisionBox_ = nullptr ,bool collisionsEnabled_=true, bool isTrigger = false);
+    void create(std::string name_, float transform_[3], float rotation_[4], GLfloat color_[3], std::string modelFile_, bool textured_, int texNum_ , float scale_[3] = nullptr, float* initCollisionBox_ = nullptr ,bool collisionsEnabled_=true, bool isTrigger = false);
 
 
     void createCamera();

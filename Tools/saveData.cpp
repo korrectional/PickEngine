@@ -105,7 +105,7 @@ void loadData(const std::string& filename)
 
             const char* tagB = tagC.c_str();
             // Now that we have the object data, we create it
-            objectArray[gameObjectCount].create(tagB, transformC, rotationC, colorC, texturedC, texNumC, scaleValueC, nullptr, collisionsEnabledC, isTriggerC);
+            objectArray[gameObjectCount].create(tagB, transformC, rotationC, colorC, "", texturedC, texNumC, scaleValueC, nullptr, collisionsEnabledC, isTriggerC);
             objectArray[gameObjectCount].updateColliderScale();
         }
 

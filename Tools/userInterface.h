@@ -42,6 +42,7 @@ GLfloat color[4] = {0,1.0,0,1.0};
 int texnum = 0;
 char fileName[16] = {"filename"}; 
 char fileNameSave[16] = {"filename"}; 
+char modelFile[64] = {"model filepath"}; 
 
 
 
@@ -156,6 +157,7 @@ void userInterface(){
         ImGui::InputFloat3("RGB color", colorRBG);
         color[0] = colorRBG[0]/255;color[1] = colorRBG[1]/255;color[2] = colorRBG[2]/255;
         ImGui::InputInt("texture number", &texnum);
+        ImGui::InputText("model", modelFile, sizeof(modelFile));
 
 
 
@@ -171,7 +173,7 @@ void userInterface(){
             rotation[3] = rotationdir[2];
             if(rotation[1] == 0&&rotation[2] == 0&&rotation[3] == 0){rotation[1] = 1.0;}
 
-            objectArray[gameObjectCount].create(taggg, transform, rotation, color, true, texnum, nullptr);
+            objectArray[gameObjectCount].create(taggg, transform, rotation, color, modelFile, true, texnum, nullptr);
 
 
 

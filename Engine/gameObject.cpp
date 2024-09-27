@@ -11,9 +11,8 @@
 
 
 
-void GameObject::create(std::string name_, float transform_[3], float rotation_[4], GLfloat color_[3], bool textured_, int texNum_ , float scale_[3], float* initCollisionBox_,bool collisionsEnabled_, bool isTrigger_)
+void GameObject::create(std::string name_, float transform_[3], float rotation_[4], GLfloat color_[3], std::string modelFile_, bool textured_, int texNum_ , float scale_[3], float* initCollisionBox_,bool collisionsEnabled_, bool isTrigger_)
 {
-    //for(int i=0;i<288;i++){vertices[i] = verticesS[i];};
     gameObjectCount++;
     if(!initCollisionBox_){
         for(int i=0;i<6;i++){initCollisionBox[i] = scaledCollisionBox[i];}
@@ -28,6 +27,7 @@ void GameObject::create(std::string name_, float transform_[3], float rotation_[
         collisionBox[i] = transform[i/2]+initCollisionBox[i];
         collisionBox[i+1] = transform[i/2]+initCollisionBox[i+1];
     }
+    modelFile = modelFile_;
     textured = textured_;
     texNum = texNum_;
     collisionsEnabled = collisionsEnabled_;
@@ -57,8 +57,9 @@ void GameObject::createCamera()
 
 void GameObject::createRenderObject(int pointCount_, GLuint VAO_, GLuint VBO_)
 {
-    std::vector<float> modelo = loadModel();
+    std::vector<float> modelo = loadModel(modelFile);
     std::cout<<modelo.size()<<"\n";
+    GLfloat vertices[modelo.size()];
     for(int i = 0; i <modelo.size(); i++)
     {
         vertices[i] = modelo[i];
@@ -69,7 +70,7 @@ void GameObject::createRenderObject(int pointCount_, GLuint VAO_, GLuint VBO_)
     pointCount = modelo.size();
     glBindVertexArray(VAO_);
     glBindBuffer(GL_ARRAY_BUFFER, VBO_);
-    glBufferData(GL_ARRAY_BUFFER, pointCount*7, vertices, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, pointCount*sizeof(float), vertices, GL_DYNAMIC_DRAW);
     
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);  // Coord
     glEnableVertexAttribArray(0);
@@ -130,7 +131,7 @@ void GameObject::renderObject(GLuint shader, unsigned int* texture, GLuint VAO_,
     glUniform3f(glGetUniformLocation(shader, "color"), color[0],color[1],color[2]); // MAKING COLOR
     glUniform1i(glGetUniformLocation(shader, "reflectivness"), reflectivness); // Set reflectivness
     glBindVertexArray(VAO_);
-    glDrawArrays(GL_TRIANGLES, 0, pointCount/7); 
+    glDrawArrays(GL_TRIANGLES, 0, pointCount/8); 
 }
 
 void GameObject::renderGizmoObject(GLuint shader, GLuint VAO_, glm::mat4 view_)

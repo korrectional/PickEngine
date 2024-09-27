@@ -14,10 +14,14 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+
+std::vector<std::vector<float>> models;
+
+bool done = false;
 
 
 struct Vertex{
@@ -26,17 +30,12 @@ struct Vertex{
     glm::vec2 texCoords;
 };
 
-
-
-
-//struct Texture {
-//    unsigned int id;
-//    std::string type;
-//};  
-
-bool done = false;
-std::vector<float> loadModel(std::string path = "/home/david/Desktop/PickEngine/assets/Humanoid.obj")
+std::vector<float> loadModel(std::string path = "/home/david/Desktop/PickEngine/assets/cube.obj")
 {
+    if(path == "")
+    {
+        path = "/home/david/Desktop/PickEngine/assets/cube.obj";
+    }
     Assimp::Importer import;
     const aiScene *scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);	
 	
@@ -56,7 +55,7 @@ std::vector<float> loadModel(std::string path = "/home/david/Desktop/PickEngine/
         model.push_back(scene->mMeshes[0]->mVertices[i].z);
 
         model.push_back(scene->mMeshes[0]->mTextureCoords[0][i].x);
-        model.push_back(scene->mMeshes[0]->mTextureCoords[0][i].z);
+        model.push_back(scene->mMeshes[0]->mTextureCoords[0][i].y);
         
         model.push_back(scene->mMeshes[0]->mNormals[i].x);
         model.push_back(scene->mMeshes[0]->mNormals[i].y);
@@ -89,6 +88,20 @@ std::vector<float> loadModel(std::string path = "/home/david/Desktop/PickEngine/
     
     return model;
 }  
+
+void addModels()
+{
+    //models.push_back(verticesS);
+    models.push_back(loadModel());
+}
+
+
+
+
+
+
+
+
 
 
 

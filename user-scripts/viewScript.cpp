@@ -53,7 +53,7 @@ void viewConLoop(){
     }
 }
 
-float speed = 0.2f;
+float speed = 1.0f;
 
 void viewLoop(){
 
